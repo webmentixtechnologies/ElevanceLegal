@@ -1,4 +1,24 @@
+# robots.txt for Elevance Legal Services
 User-agent: *
 Allow: /
 
-Sitemap: https://elevancelegal.co.uk/sitemap.xml
+# Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.elevancelegal.co.uk/sitemap.xml
+Sitemap: https://www.elevancelegal.co.uk/sitemap.txt
+Sitemap: https://www.elevancelegal.co.uk/sitemaps.txt
