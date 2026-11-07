@@ -57,16 +57,47 @@
   /* Responsive Navigation Overrides - STRICT DIRECT CHILD ONLY to prevent styling dropdown uls */
   @media (min-width: 900px) {
     .site-nav-desktop {
-      display: block !important;
+      display: flex !important;
+      align-items: center !important;
+      height: 72px !important;
     }
     .site-nav-desktop > ul {
       display: flex !important;
       flex-direction: row !important;
       align-items: center !important;
       gap: 2.25rem !important;
+      height: 72px !important;
       margin: 0 !important;
       padding: 0 !important;
       list-style: none !important;
+    }
+    .site-nav-desktop > ul > li {
+      display: flex !important;
+      align-items: center !important;
+      height: 72px !important;
+    }
+    .site-nav-desktop > ul > li > details {
+      display: flex !important;
+      align-items: center !important;
+      height: 72px !important;
+    }
+    .site-nav-desktop > ul > li > details > summary,
+    .site-nav-desktop > ul > li > a {
+      display: inline-flex !important;
+      align-items: center !important;
+      height: 32px !important;
+      line-height: 1 !important;
+      font-size: 11px !important;
+      letter-spacing: 0.08em !important;
+      vertical-align: middle !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .site-nav-desktop > ul > li > details > summary span {
+      display: inline-flex !important;
+      align-items: center !important;
+      line-height: 1 !important;
+      margin-left: 6px !important;
     }
     .site-nav-mobile {
       display: none !important;
