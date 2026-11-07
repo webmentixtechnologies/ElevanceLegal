@@ -338,6 +338,56 @@
     transform: translateY(-1px) !important;
   }
 
+  /* Unified High-End Pill Buttons (Never wrap or collapse) */
+  .btn-pill-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    border-radius: 9999px !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    border: none !important;
+    padding: 14px 36px !important;
+    min-width: 220px !important;
+    box-shadow: 0 4px 14px 0 rgba(255, 255, 255, 0.15) !important;
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+  .btn-pill-primary:hover {
+    opacity: 0.88 !important;
+    transform: translateY(-1px) !important;
+  }
+  .btn-pill-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    border-radius: 9999px !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    padding: 13px 28px !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+  .btn-pill-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-1px) !important;
+  }
+
+
   /* Exact Pitch Container Studio Sizing: 100% Width Parity Across All Components */
   .container-studio {
     width: 100% !important;
@@ -1057,7 +1107,7 @@
         Where your situation involves reserved legal activities (such as formal court litigation, conveyancing or reserved probate), we work alongside Ranjay Solicitors, an independent SRA-regulated firm. Any regulated services are subject to Ranjay Solicitors’ independent client care and terms.
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
-        <button type="button" data-intake-open="" data-prefill="Tell me about working with Ranjay Solicitors" class="rounded-full bg-fg px-7 py-3 text-sm font-medium text-canvas transition-opacity hover:opacity-85">
+        <button type="button" data-intake-open="" data-prefill="Tell me about working with Ranjay Solicitors" class="btn-pill-primary text-sm !px-7 !py-3 !min-w-0">
           Ask about solicitor referral
         </button>
       </div>
@@ -1155,7 +1205,7 @@
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">Let’s build what’s next.</h2>
-      <button type="button" data-intake-open="" class="btn-describe-matter mt-12 shadow-lg">
+      <button type="button" data-intake-open="" class="btn-pill-primary mt-12">
         Describe your matter
       </button>
     </div>
@@ -1285,10 +1335,17 @@
       <span>© 2026 Elevance Legal Services Ltd. All rights reserved.</span>
       <a class="hover:underline hover:text-fg" href="#contact" data-intake-open="" data-prefill="Privacy Policy inquiry">Privacy policy</a>
       <a class="hover:underline hover:text-fg" href="#contact" data-intake-open="" data-prefill="Terms of Service inquiry">Website terms</a>
-      <a class="hover:underline hover:text-fg" href="#top">Back to top &uarr;</a>
+      <a class="hover:underline hover:text-fg cursor-pointer" href="#top" data-scroll-to-top="">Back to top &uarr;</a>
     </div>
   </div>
-</footer></main>
+</footer>
+  <!-- Floating Scroll To Top Button -->
+  <button type="button" id="scroll-to-top" aria-label="Scroll to top" style="position: fixed; bottom: 28px; right: 28px; z-index: 50; width: 44px; height: 44px; border-radius: 9999px; background: rgba(18, 18, 18, 0.85); border: 1px solid rgba(255, 255, 255, 0.25); color: #ffffff; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); opacity: 0; pointer-events: none; transform: translateY(14px); transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.6);" title="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m18 15-6-6-6 6"/>
+    </svg>
+  </button>
+</main>
 
 <!-- Exact Pitch Intake Modal Dialog Specification -->
 <!-- Exact Pitch Intake Modal Dialog -->
@@ -1657,6 +1714,48 @@ const header = document.querySelector("[data-header]");
 const onScroll = () => header?.toggleAttribute("data-scrolled", window.scrollY > 8);
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
+
+// Smooth Scroll to Top controller
+const scrollToTopBtn = document.getElementById("scroll-to-top");
+const footerScrollTop = document.querySelector("[data-scroll-to-top]");
+
+function handleScrollTopVisibility() {
+  if (!scrollToTopBtn) return;
+  if (window.scrollY > 300) {
+    scrollToTopBtn.style.opacity = "1";
+    scrollToTopBtn.style.pointerEvents = "auto";
+    scrollToTopBtn.style.transform = "translateY(0)";
+  } else {
+    scrollToTopBtn.style.opacity = "0";
+    scrollToTopBtn.style.pointerEvents = "none";
+    scrollToTopBtn.style.transform = "translateY(14px)";
+  }
+}
+
+window.addEventListener("scroll", handleScrollTopVisibility, { passive: true });
+handleScrollTopVisibility();
+
+function scrollToTopSmooth(e) {
+  if (e) e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (window.history.pushState) {
+    window.history.pushState(null, null, "#top");
+  }
+}
+
+if (scrollToTopBtn) {
+  scrollToTopBtn.addEventListener("click", scrollToTopSmooth);
+  scrollToTopBtn.addEventListener("mouseenter", () => {
+    scrollToTopBtn.style.borderColor = "rgba(255, 255, 255, 0.65)";
+    scrollToTopBtn.style.background = "rgba(35, 35, 35, 0.95)";
+  });
+  scrollToTopBtn.addEventListener("mouseleave", () => {
+    scrollToTopBtn.style.borderColor = "rgba(255, 255, 255, 0.25)";
+    scrollToTopBtn.style.background = "rgba(18, 18, 18, 0.85)";
+  });
+}
+if (footerScrollTop) footerScrollTop.addEventListener("click", scrollToTopSmooth);
+
 </script>
 
 </body>
