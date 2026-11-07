@@ -1771,17 +1771,12 @@ if (intakeForm) {
     const name = document.getElementById("modal-name")?.value || "";
     const email = document.getElementById("modal-email")?.value || "";
     
-    // Internal email mailto fallback to info@elevancelegal.co.uk
-    const mailSubject = encodeURIComponent("Enquiry via Elevance Legal Services: " + (name || "Client"));
-    const mailBody = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nEnquiry Details:\n" + message);
-    const mailtoUrl = "mailto:info@elevancelegal.co.uk?subject=" + mailSubject + "&body=" + mailBody;
-    
-    // Attempt background post to /api/intake or trigger mailto
+    // Post to contact.php backend
     try {
-      fetch("/api/intake", {
+      fetch("contact.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: message, name, email, recipient: "info@elevancelegal.co.uk" })
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ question: message, name, email })
       }).catch(() => {});
     } catch (err) {}
 
