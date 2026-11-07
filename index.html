@@ -240,6 +240,27 @@
     color: #ffffff !important;
   }
 
+  .btn-describe-matter {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 220px !important;
+    padding: 14px 36px !important;
+    white-space: nowrap !important;
+    border-radius: 9999px !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    transition: opacity 0.2s ease !important;
+    cursor: pointer !important;
+    border: none !important;
+  }
+  .btn-describe-matter:hover {
+    opacity: 0.85 !important;
+  }
+
   /* Exact Pitch Container Studio Sizing: 100% Width Parity Across All Components */
   .container-studio {
     width: 100% !important;
@@ -1069,7 +1090,7 @@
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">Let’s build what’s next.</h2>
-      <button type="button" data-intake-open="" class="mt-12 rounded-full bg-fg px-8 py-3.5 text-sm font-medium text-canvas transition-opacity hover:opacity-85 shadow-lg">
+      <button type="button" data-intake-open="" class="btn-describe-matter mt-12 shadow-lg">
         Describe your matter
       </button>
     </div>
