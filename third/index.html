@@ -426,6 +426,25 @@
     color: #ffffff !important;
   }
 
+  
+  /* Consistent Minimal Margin between Questions and Options/Inputs */
+  .wizard-step label.block {
+    display: block !important;
+    margin-bottom: 6px !important;
+  }
+  .wizard-step label.block + .grid,
+  .wizard-step label.block + .flex,
+  .wizard-step label.block + .wizard-input,
+  .wizard-step label.block + .wizard-textarea,
+  .wizard-step label.block + input,
+  .wizard-step label.block + textarea {
+    margin-top: 0 !important;
+  }
+  .modal-urgency-detail,
+  .page-urgency-detail {
+    margin-top: 10px !important;
+  }
+
   /* Wizard Step 4: Polish Review Summary Card (Pixel-Perfect, Zero Line Collision) */
   .wizard-summary-card {
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
