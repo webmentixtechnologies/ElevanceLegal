@@ -1,8 +1,8 @@
 /**
- * generate_third_master_match.js
+ * apply_exact_benchmark_copy.js
  * 
- * Strict 1-to-1 UI Component Parity with Master: https://www.elevancelegal.co.uk/second/
- * Preserving 100% of the customer's text from Elevance_Website_Content_v2.docx
+ * Replaces all copy on /third/ with the EXACT benchmark copy provided by the user.
+ * Retains 100% of second.html's crisp UI components, frosted glass cards, hairline grids, and typography.
  */
 
 const fs = require('fs');
@@ -11,15 +11,16 @@ const path = require('path');
 const secondPath = path.join(__dirname, 'second.html');
 const secondHtml = fs.readFileSync(secondPath, 'utf8');
 
-// -------------------------------------------------------------
-// 1. DESKTOP NAVIGATION BAR (Aligned with Third's Modules)
-// -------------------------------------------------------------
-const desktopNav = `
-    <!-- Desktop Navigation Bar (Aligned with Third's Modules) -->
+// 1. EXACT BENCHMARK MENU
+// HOME     ABOUT     SERVICES     HOW WE WORK     CONTACT
+const benchmarkDesktopNav = `
+    <!-- Benchmark Navigation Bar -->
     <nav aria-label="Navigation" class="site-nav-desktop">
-      <ul>
+      <ul class="flex items-center gap-8">
+        <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#top">HOME</a></li>
+        <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#story">ABOUT</a></li>
         
-        <!-- Dropdown: SERVICES -->
+        <!-- SERVICES DROPDOWN -->
         <li>
           <details data-dropdown="" class="group/dd">
             <summary class="eyebrow flex cursor-pointer list-none items-center gap-1.5 text-fg-2 transition-colors hover:text-fg group-open/dd:text-fg [&::-webkit-details-marker]:hidden">
@@ -32,30 +33,30 @@ const desktopNav = `
                   <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Documentation &amp; Dispute</p>
                   <ul>
                     <li><a href="#services">Document Preparation &amp; Support</a></li>
-                    <li><a href="#services">Dispute Resolution &amp; Case Support</a></li>
-                    <li><a href="#services">Business &amp; Commercial Legal</a></li>
+                    <li><a href="#services">Dispute Resolution and Case Support</a></li>
+                    <li><a href="#services">Business &amp; Commercial Legal Services</a></li>
                   </ul>
                 </div>
                 <div>
                   <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Housing &amp; Workplace</p>
                   <ul>
-                    <li><a href="#services">Housing &amp; Landlord-Tenant</a></li>
+                    <li><a href="#services">Housing &amp; Landlord-Tenant Matters</a></li>
                     <li><a href="#services">Employment &amp; Workplace Matters</a></li>
                     <li><a href="#services">Family &amp; Personal Matters</a></li>
                   </ul>
                 </div>
                 <div>
-                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Estates &amp; Powers</p>
+                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Estates &amp; Notarial</p>
                   <ul>
                     <li><a href="#services">Wills &amp; Wills Drafting</a></li>
                     <li><a href="#services">Lasting Powers of Attorney</a></li>
-                    <li><a href="#services">Document Legalisation &amp; Notarial</a></li>
+                    <li><a href="#services">Document Legalisation &amp; Notarial Coordination</a></li>
                   </ul>
                 </div>
                 <div>
-                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Languages &amp; Solicitor</p>
+                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Translation &amp; Solicitor</p>
                   <ul>
-                    <li><a href="#services">Translation Services (Arabic / Kurdish)</a></li>
+                    <li><a href="#services">Translation Services</a></li>
                     <li><a href="#solicitor">Solicitor by Appointment</a></li>
                     <li><a href="#services" class="text-sm font-medium text-fg underline underline-offset-4 mt-1 inline-block">View all 10 services &rarr;</a></li>
                   </ul>
@@ -69,45 +70,67 @@ const desktopNav = `
         </li>
 
         <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#how">HOW WE WORK</a></li>
-        <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#solicitor">AUTHORISED SOLICITORS</a></li>
-        <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#support">WHO WE SUPPORT</a></li>
-        <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#why">WHY ELEVANCE</a></li>
-        <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#faq">QUESTIONS</a></li>
         <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#contact">CONTACT</a></li>
-
       </ul>
     </nav>`;
 
-// -------------------------------------------------------------
-// 2. MOBILE DRAWER NAVIGATION
-// -------------------------------------------------------------
-const mobileDrawerNav = `
+const benchmarkMobileNav = `
           <ul class="space-y-4 font-display text-2xl">
-            <li><a href="#welcome" class="text-fg-2 hover:text-fg">Welcome</a></li>
-            <li><a href="#story" class="text-fg-2 hover:text-fg">Our Story</a></li>
+            <li><a href="#top" class="text-fg-2 hover:text-fg">Home</a></li>
+            <li><a href="#story" class="text-fg-2 hover:text-fg">About</a></li>
             <li><a href="#services" class="text-fg-2 hover:text-fg">Services</a></li>
             <li><a href="#how" class="text-fg-2 hover:text-fg">How We Work</a></li>
-            <li><a href="#solicitor" class="text-fg-2 hover:text-fg">Authorised Solicitors</a></li>
-            <li><a href="#support" class="text-fg-2 hover:text-fg">Who We Support</a></li>
-            <li><a href="#why" class="text-fg-2 hover:text-fg">Why Elevance</a></li>
-            <li><a href="#faq" class="text-fg-2 hover:text-fg">Questions</a></li>
             <li><a href="#contact" class="text-fg-2 hover:text-fg">Contact</a></li>
           </ul>`;
 
-// -------------------------------------------------------------
-// 3. SECTION COMPONENTS (EXACT 1-TO-1 MASTER SECOND UI)
-// -------------------------------------------------------------
+// 2. HERO SECTION (With Exact Benchmark Copy & Buttons)
+const benchmarkHero = `
+<section class="relative flex flex-col justify-center overflow-hidden" aria-labelledby="hero-title" id="top">
+  
+  <!-- Hero Video Loop from second.html -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <video data-hero-video="" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-hidden="true" tabindex="-1" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000" src="video/hero.mp4" style="opacity: 0.9 !important; display: block !important;"></video>
+  </div>
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-canvas via-canvas/80 to-canvas/30 lg:via-canvas/60" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-canvas/80 to-transparent" aria-hidden="true"></div>
 
-// Section 01: Welcome (Master second sec_1_goals UI component)
-const sec01Welcome = `
-<!-- SECTION 01: WELCOME (Master Second UI) -->
+  <!-- Hero Content -->
+  <div class="relative mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 my-auto flex flex-col justify-center">
+    <p class="eyebrow uppercase tracking-widest text-xs font-semibold text-fg-3 mb-4">CLARITY, CONFIDENCE AND A BETTER WAY FORWARD</p>
+    <h1 id="hero-title" class="font-display text-balance">
+      Legal support that brings <br class="hidden sm:inline"><span style="color: rgba(255, 255, 255, 0.65);">clarity to complexity.</span>
+    </h1>
+
+    <p class="mt-6 md:mt-8 text-base md:text-xl font-light text-fg-2" style="max-width: 46rem; line-height: 1.55;">
+      Practical document preparation, and administrative case coordination for individuals, families and businesses. <br class="hidden md:inline">Thoughtful assistance, careful preparation and clear communication &mdash; centred on your needs.
+    </p>
+
+    <!-- Exact Benchmark Buttons: [ MAKE AN ENQUIRY ] [ EXPLORE OUR SERVICES ] -->
+    <div class="mt-8 md:mt-10 flex flex-wrap gap-4 items-center">
+      <button type="button" data-intake-open="" data-prefill="Make an enquiry" class="btn-pill-primary">
+        MAKE AN ENQUIRY
+      </button>
+      <a href="#services" class="btn-pill-secondary">
+        EXPLORE OUR SERVICES &rarr;
+      </a>
+    </div>
+
+    
+
+  </div>
+</section>
+`;
+
+// 3. SECTION: WELCOME (Exact Benchmark Copy)
+const secWelcome = `
+<!-- SECTION: WELCOME (Exact Benchmark Copy) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" aria-labelledby="welcome-title" id="welcome">
   <span aria-hidden="true" data-ambient-lines="" data-seed="welcome-pitch" data-colors="#ff9a4d,#ffd25b" class="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_15%,#000_85%,transparent)] pointer-events-none opacity-55"></span>
 
   <div class="grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">01</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>Welcome</p>
+        <p class="marker"><span class="tabular-nums">01</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>WELCOME</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 id="welcome-title" class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">
@@ -116,34 +139,29 @@ const sec01Welcome = `
     </div>
     <div class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8 space-y-4">
       <p>
-        Practical document preparation, case coordination, and administrative assistance for individuals, families, and businesses across England and Wales.
+        Legal matters can be complex and sometimes overwhelming. Whether you are dealing with a housing issue, an employment matter, a family concern or a business dispute, obtaining clear and practical assistance can make a real difference.
       </p>
       <p class="text-base text-fg-3">
-        We listen to your concerns, explain how we can help, and work towards practical solutions tailored to your circumstances with clear fixed-fee pricing.
+        At Elevance, we provide accessible document preparation and practical assistance to individuals, families and businesses. Our approach is straightforward: we listen to your concerns, explain how we can help and work towards practical solutions tailored to your circumstances.
       </p>
-      <div class="pt-4 flex flex-wrap gap-4 items-center">
-        <button type="button" data-intake-open="" data-prefill="I would like to make an enquiry" class="btn-pill-primary">
-          Make an enquiry
-        </button>
-        <a href="#services" class="btn-pill-secondary">
-          View our services &rarr;
-        </a>
-      </div>
+      <p class="text-base text-fg-3">
+        We believe legal assistance should be clear, approachable and proportionate to your needs. We explain the scope of our services and agree our fees with you before commencing work.
+      </p>
     </div>
   </div>
 </section>
 `;
 
-// Section 02: Our Story (Master second UI component)
-const sec02Story = `
-<!-- SECTION 02: OUR STORY (Master Second UI) -->
+// 4. SECTION: OUR STORY (Exact Benchmark Copy)
+const secOurStory = `
+<!-- SECTION: OUR STORY (Exact Benchmark Copy) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" aria-labelledby="story-title" id="story">
   <span aria-hidden="true" data-ambient-lines="" data-seed="story-pitch" data-colors="#5b8cff,#9b6bff" class="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_15%,#000_85%,transparent)] pointer-events-none opacity-55"></span>
 
   <div class="grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">02</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>Our Story</p>
+        <p class="marker"><span class="tabular-nums">02</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>OUR STORY</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 id="story-title" class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">
@@ -152,37 +170,25 @@ const sec02Story = `
     </div>
     <div class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8 space-y-4">
       <p>
-        Elevance Legal Services was established with a clear mission: to provide practical, accessible, and transparent legal assistance to individuals, families, and businesses across England and Wales. We believe that legal support should not feel distant, intimidating, or prohibitively expensive.
+        Elevance Legal Services was established with a simple objective: to make legal assistance more accessible, practical and straightforward.
       </p>
       <p class="text-base text-fg-3">
-        Our aim is to make legal processes straightforward and manageable, whether you are resolving a dispute, preparing essential documents, or seeking administrative coordination for complex affairs.
+        We recognise that individuals, families and businesses often need reliable legal support without the complexity or expense that can sometimes accompany traditional legal services.
       </p>
-    </div>
-  </div>
-
-  <div class="mt-16 grid gap-6 sm:grid-cols-3">
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">01</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Clarity</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">Clear communication without legal jargon. We explain your options in plain language.</p>
-    </div>
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">02</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Accessibility</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">Practical, responsive support when you need it, delivered with empathy and efficiency.</p>
-    </div>
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">03</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Client-Centred</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">Solutions designed around your specific situation, priorities, and budget.</p>
+      <p class="text-base text-fg-3">
+        Our approach is built on understanding our clients' needs, providing clear guidance and delivering practical solutions. We offer assistance across a range of legal matters, including document drafting, contractual issues, housing, family matters and business-related concerns.
+      </p>
+      <p class="text-base text-fg-3">
+        We believe in clear communication, careful preparation and a personal approach, ensuring that every client understands the assistance available and the steps involved.
+      </p>
     </div>
   </div>
 </section>
 `;
 
-// Section 03: Our Services (EXACT sec_6_solutions.html from master second with hairline-grid)
-const sec03Services = `
-<!-- SECTION 03: SERVICES (Exact Master Second Hairline Grid UI) -->
+// 5. SECTION: OUR SERVICES (Exact Benchmark 10 Services in Hairline Grid)
+const secOurServices = `
+<!-- SECTION: OUR SERVICES (Exact Benchmark Copy in Master Second Hairline Grid) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="services">
   <!-- Google-Inspired Blue & Green Ambient Sine Wave -->
   <span aria-hidden="true" data-ambient-lines="" data-seed="services-google" data-colors="#4285F4,#34A853" class="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_15%,#000_85%,transparent)] pointer-events-none opacity-55"></span>
@@ -190,74 +196,102 @@ const sec03Services = `
   <div class="grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">03</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>Our Services</p>
+        <p class="marker"><span class="tabular-nums">03</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>OUR SERVICES</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
-      <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl">Practical support for everyday needs.</h2>
+      <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">Practical support for everyday needs.</h2>
     </div>
-    <p class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8">
-      We provide practical document preparation, administrative assistance and related support services for individuals and businesses. Whether you need help preparing correspondence, organising tenancy documents, managing business paperwork or arranging document translations, our aim is to make the process straightforward and efficient. We explain the scope of our services and agree our fees before commencing work.
-    </p>
+    <div class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8 space-y-4">
+      <p>
+        We provide practical document preparation, administrative assistance and related support services for individuals and businesses.
+      </p>
+      <p class="text-base text-fg-3">
+        Whether you need help preparing correspondence, organising tenancy documents, managing business paperwork or arranging document translations, our aim is to make the process straightforward and efficient.
+      </p>
+      <p class="text-base text-fg-3">
+        We explain the scope of our services and agree our fees before commencing work.
+      </p>
+    </div>
   </div>
 
   <div class="mt-16 grid hairline-grid sm:grid-cols-2 lg:grid-cols-3">
+    
+    <!-- 01 Document Preparation & Support -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">01</span>
       <h3 class="mt-3 text-xl font-normal text-white">Document Preparation &amp; Support</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist with preparing, formatting and organising correspondence, applications, complaints and other documents, including document typing, proofreading, and compiling supporting information from your instructions.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist individuals and businesses with preparing, formatting and organising correspondence, applications, complaints and other documents. Our services include document typing, proofreading, compiling supporting information and preparing documents from instructions or information provided by clients. Where a matter requires legal advice or specialist drafting, we can help identify appropriate professional assistance.</p>
     </div>
+
+    <!-- 02 Dispute Resolution and Case Support -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">02</span>
       <h3 class="mt-3 text-xl font-normal text-white">Dispute Resolution and Case Support</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Practical assistance for individuals and businesses involved in disputes: reviewing documents, preparing formal correspondence, organising evidence, and drafting settlement proposals without unnecessary escalation.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical assistance to individuals and businesses involved in disputes, including reviewing relevant documents, preparing formal correspondence, organising evidence and drafting responses to claims or complaints. We can assist with pre-action correspondence, settlement proposals and negotiations, helping clients explore practical solutions without unnecessary escalation. Where court proceedings or other reserved legal activities are required, we can explain the limitations of our services and discuss appropriate next steps.</p>
     </div>
+
+    <!-- 03 Housing & Landlord-Tenant Matters -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">03</span>
       <h3 class="mt-3 text-xl font-normal text-white">Housing &amp; Landlord-Tenant Matters</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Support on tenancy agreements, rent arrears, deposit disputes, disrepair, and housing correspondence. Reviewing documents, explaining rights and obligations, and assisting with dispute negotiations.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical assistance to landlords and tenants on a range of housing and tenancy matters, including tenancy agreements, rent arrears, deposit disputes, disrepair, tenancy disputes and housing-related correspondence. Our services include reviewing documents, explaining relevant rights and obligations, preparing formal correspondence and assisting with negotiations to resolve disputes. Where court proceedings or specialist representation are required, we can explain the limitations of our services and help you identify appropriate next steps.</p>
     </div>
+
+    <!-- 04 Employment & Workplace Matters -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">04</span>
       <h3 class="mt-3 text-xl font-normal text-white">Employment &amp; Workplace Matters</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Practical assistance for employees and employers: employment contracts, grievances, disciplinary procedures, workplace disputes, and settlement agreement coordination.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical legal assistance to employees and employers on a range of workplace matters, including employment contracts, grievances, disciplinary procedures, workplace disputes and settlement agreements. Our services include reviewing employment documentation, explaining relevant rights and obligations, preparing formal correspondence and assisting with workplace negotiations and dispute resolution. Where specialist representation or services outside our permitted scope are required, we can help identify appropriate next steps.</p>
     </div>
+
+    <!-- 05 Family & Personal Matters -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">05</span>
       <h3 class="mt-3 text-xl font-normal text-white">Family &amp; Personal Matters</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Sensitive and practical assistance with separation, divorce-related documentation, financial arrangements, and family disputes with clarity, discretion and understanding.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide sensitive and practical legal assistance with family and personal matters, including separation, divorce-related documentation, financial arrangements and family disputes. Our services include reviewing documents, explaining relevant rights and obligations, preparing correspondence and assisting with negotiations and proposed agreements. We aim to help clients navigate difficult personal circumstances with clarity, discretion and understanding.</p>
     </div>
+
+    <!-- 06 Business & Commercial Legal Services -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">06</span>
       <h3 class="mt-3 text-xl font-normal text-white">Business &amp; Commercial Legal Services</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Commercial assistance for businesses and entrepreneurs: business contracts, service agreements, non-disclosure agreements (NDAs), commercial leases, and contractual disputes.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical legal assistance to businesses, entrepreneurs and self-employed professionals on a range of commercial matters, including business contracts, service agreements, non-disclosure agreements, commercial leases and contractual disputes. Our services include reviewing and drafting agreements, explaining contractual rights and obligations, preparing formal correspondence and assisting with commercial negotiations and dispute resolution. We aim to provide clear, commercially focused solutions that help businesses protect their interests and make informed decisions.</p>
     </div>
+
+    <!-- 07 Translation Services -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">07</span>
       <h3 class="mt-3 text-xl font-normal text-white">Translation Services</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Arabic and Kurdish to English translations of personal, business, and official documents, including certified translations compliant with UK receiving bodies.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist with Arabic and Kurdish to English translations of personal, business and other documents, subject to language availability and the nature of the assignment. Where certified translations are required, we can arrange these through appropriately qualified translators, subject to the requirements of the receiving organisation. Please contact us to discuss your translation requirements.</p>
     </div>
+
+    <!-- 08 Wills & Wills Drafting -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">08</span>
       <h3 class="mt-3 text-xl font-normal text-white">Wills &amp; Wills Drafting</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Assistance with preparing straightforward wills, helping individuals record their wishes, estate distribution arrangements, and explaining signing and witnessing requirements.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide assistance with preparing straightforward wills, helping individuals record their wishes and make arrangements for the distribution of their estate. Our services include gathering relevant information, preparing draft wills and explaining the requirements for signing and witnessing. Where more complex circumstances arise, we can explain when specialist legal advice may be appropriate.</p>
     </div>
+
+    <!-- 09 Lasting Powers of Attorney -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
       <span class="text-xs font-mono text-fg-3">09</span>
       <h3 class="mt-3 text-xl font-normal text-white">Lasting Powers of Attorney</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Preparing Lasting Powers of Attorney (LPAs) for Property &amp; Financial Affairs and Health &amp; Welfare, including form completion and Office of the Public Guardian registration guidance.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist individuals with preparing Lasting Powers of Attorney (LPAs) for Property and Financial Affairs and Health and Welfare. Our services include explaining the purpose of LPAs, gathering relevant information, preparing the necessary forms and providing guidance on signing, witnessing and registration with the Office of the Public Guardian. Where complex circumstances or concerns about mental capacity arise, specialist legal advice may be required.</p>
     </div>
+
+    <!-- 10 Document Legalisation & Notarial Coordination -->
     <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02] sm:col-span-2 lg:col-span-3">
       <span class="text-xs font-mono text-fg-3">10</span>
       <h3 class="mt-3 text-xl font-normal text-white">Document Legalisation &amp; Notarial Coordination</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Administrative assistance with documents for UK and overseas use: coordinating appointments with qualified notaries, arranging translations, and assisting with FCDO apostille and legalisation procedures.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide administrative assistance with documents intended for use in the UK and overseas. Our services include coordinating appointments with notaries, arranging document translations and assisting with apostille and legalisation procedures. We can also help clients identify the documentation and formalities required by the relevant receiving authority.</p>
     </div>
   </div>
 </section>
 `;
 
-// Section 04: Solicitor by Appointment (EXACT sec_8_collaboration.html with id="solicitor")
-const sec04Solicitor = `
-<!-- SECTION 04: SOLICITOR BY APPOINTMENT (Exact Master Second Section 8 UI) -->
+// 6. SECTION: SOLICITOR BY APPOINTMENT (Exact Benchmark Copy)
+const secSolicitor = `
+<!-- SECTION: SOLICITOR BY APPOINTMENT (Exact Benchmark Copy) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="solicitor">
   <!-- Google-Inspired Red & Yellow Ambient Sine Wave -->
   <span aria-hidden="true" data-ambient-lines="" data-seed="collab-google" data-colors="#EA4335,#FBBC05" class="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_15%,#000_85%,transparent)] pointer-events-none opacity-55"></span>
@@ -265,7 +299,7 @@ const sec04Solicitor = `
   <div class="grid gap-12 lg:grid-cols-12 items-center">
     <div class="lg:col-span-7 relative z-10">
       <div>
-        <p class="marker"><span class="tabular-nums">04</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>Solicitor by appointment</p>
+        <p class="marker"><span class="tabular-nums">04</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>SOLICITOR BY APPOINTMENT</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 class="mt-10 font-display text-4xl leading-tight md:text-6xl text-white">
@@ -275,45 +309,79 @@ const sec04Solicitor = `
         While Elevance Legal Services provides a range of legal services, we recognise that some matters may require the advice or assistance of a qualified solicitor.
       </p>
       <p class="mt-4 text-base leading-relaxed text-fg-3">
-        Appointments with a solicitor may be available by prior arrangement, depending on the nature of your enquiry and availability. Any solicitor services are provided separately, subject to the solicitor's own terms of engagement and fees.
+        Appointments with a solicitor may be available by prior arrangement, depending on the nature of your enquiry and availability.
+      </p>
+      <p class="mt-4 text-base leading-relaxed text-fg-3">
+        Any solicitor services are provided separately, subject to the solicitor's own terms of engagement and fees.
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
-        <button type="button" data-intake-open="" data-prefill="I would like to ask about an appointment with an authorised solicitor" class="btn-pill-primary">
-          Ask about a solicitor appointment
+        <button type="button" data-intake-open="" data-prefill="I would like to ask about an appointment with a qualified solicitor" class="btn-pill-primary">
+          ASK ABOUT AN APPOINTMENT
         </button>
       </div>
     </div>
 
     <div class="lg:col-span-5 relative z-10">
-      <div class="regulatory-card rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
-        <h3 class="text-xs uppercase tracking-wider text-fg-3 font-mono">Regulatory Information</h3>
-        <p class="mt-4 text-sm leading-relaxed text-white">
-          Elevance Legal Services Ltd is an independent provider of legal services and is not a solicitors' firm. We are not authorised or regulated by the Solicitors Regulation Authority (SRA).
+      <div class="rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
+        <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">INDEPENDENT SOLICITORS</p>
+        <p class="mt-4 text-sm leading-relaxed text-fg-2">
+          Appointments with a qualified solicitor may be available by prior arrangement, depending on the nature of your enquiry and availability.
         </p>
         <p class="mt-3 text-xs leading-relaxed text-fg-3">
-          We do not conduct litigation, exercise rights of audience, or undertake reserved legal activities under the Legal Services Act 2007. Where solicitor services are required, these are provided independently by authorised solicitors.
+          Any solicitor services are provided separately, subject to the solicitor's own terms of engagement and fees.
         </p>
-        <div class="mt-6 pt-4 border-t border-line">
-          <span class="text-xs text-fg-3">Company No. 16186851 &middot; London, United Kingdom</span>
-        </div>
       </div>
     </div>
   </div>
 </section>
 `;
 
-// Section 05: Why Elevance (Master second card UI matching user's image 3)
-const sec05Why = `
-<!-- SECTION 05: WHY ELEVANCE (Master Second Card UI matching screenshot) -->
+// 7. SECTION: WHO WE SUPPORT (Exact Benchmark Copy)
+const secWhoWeSupport = `
+<!-- SECTION: WHO WE SUPPORT (Exact Benchmark Copy) -->
+<section class="container-studio py-20 relative isolate border-t border-line" id="support">
+  <div class="grid gap-10 lg:grid-cols-12">
+    <div class="lg:col-span-5">
+      <div>
+        <p class="marker"><span class="tabular-nums">05</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>WHO WE SUPPORT</p>
+        <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
+      </div>
+      <h2 class="mt-10 font-display text-4xl leading-[1.05] md:text-6xl text-white">Here for individuals, families and businesses.</h2>
+    </div>
+    <div class="lg:col-span-7 grid gap-6 sm:grid-cols-2">
+      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
+        <h3 class="text-lg font-normal text-white">Individuals</h3>
+        <p class="mt-3 text-xs leading-relaxed text-fg-3">Practical legal assistance with personal matters, disputes, agreements and legal documentation, helping you understand your options and take informed decisions.</p>
+      </div>
+      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
+        <h3 class="text-lg font-normal text-white">Families</h3>
+        <p class="mt-3 text-xs leading-relaxed text-fg-3">Sensitive and approachable assistance with family-related matters, wills, powers of attorney and personal legal documentation.</p>
+      </div>
+      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
+        <h3 class="text-lg font-normal text-white">Tenants &amp; landlords</h3>
+        <p class="mt-3 text-xs leading-relaxed text-fg-3">Legal support with tenancy agreements, rent arrears, deposit disputes, disrepair concerns and landlord-tenant disagreements.</p>
+      </div>
+      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
+        <h3 class="text-lg font-normal text-white">Businesses &amp; entrepreneurs</h3>
+        <p class="mt-3 text-xs leading-relaxed text-fg-3">Commercial legal assistance with contracts, business agreements, disputes and legal documentation, tailored to the needs of businesses and self-employed professionals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+// 8. SECTION: WHY ELEVANCE (Exact Benchmark 5 Items)
+const secWhyElevance = `
+<!-- SECTION: WHY ELEVANCE (Exact Benchmark 5 Items) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="why" aria-labelledby="why-title">
   <div class="grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">05</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>Why Elevance</p>
+        <p class="marker"><span class="tabular-nums">06</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>WHY ELEVANCE</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 id="why-title" class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">
-        Support that is <br>clear, <br><span style="color: rgba(255, 255, 255, 0.65);">considered and accountable.</span>
+        Support that is clear, <br><span style="color: rgba(255, 255, 255, 0.65);">considered and accountable.</span>
       </h2>
     </div>
     <p class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8">
@@ -324,48 +392,37 @@ const sec05Why = `
   <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     
     <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">01</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Practical &amp; Approachable</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We demystify legal processes and focus on solutions that work for you, avoiding convoluted jargon.</p>
+      <h3 class="text-lg font-normal text-white">Client-first approach</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We take time to understand your circumstances, listen to your concerns and provide practical assistance tailored to your individual needs.</p>
     </div>
 
     <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">02</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Transparent Fixed Fees</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We agree on scope and costs upfront before commencing any work. No hourly surprises or runaway billing.</p>
+      <h3 class="text-lg font-normal text-white">Plain-English communication</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We communicate clearly and straightforwardly, explaining our services and the practical steps involved without unnecessary jargon.</p>
     </div>
 
     <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">03</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Responsive Communication</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We keep you informed at every stage of your matter with prompt, clear updates and realistic timelines.</p>
+      <h3 class="text-lg font-normal text-white">Careful preparation</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We approach every matter with attention to detail, ensuring that documents, correspondence and other work are prepared carefully and professionally.</p>
     </div>
 
     <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">04</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Attention to Detail</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">Thorough preparation, careful document drafting, and meticulous case coordination from start to finish.</p>
+      <h3 class="text-lg font-normal text-white">Transparent scope and fees</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We explain the services we can provide and agree the scope of work and applicable fees before commencing your matter.</p>
     </div>
 
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">05</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Solicitor Access</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">A clear, reliable pathway to an independent qualified solicitor whenever reserved legal activities are required.</p>
-    </div>
-
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <span class="text-xs font-mono text-fg-3">06</span>
-      <h3 class="mt-3 text-lg font-normal text-white">Multilingual Support</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">Certified translation and language assistance in Arabic, Kurdish, and other languages for complete peace of mind.</p>
+    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur sm:col-span-2 lg:col-span-2">
+      <h3 class="text-lg font-normal text-white">Clear professional boundaries</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We focus on providing sensible, cost-conscious legal assistance that reflects the nature and complexity of your circumstances.</p>
     </div>
 
   </div>
 </section>
 `;
 
-// Section 06: How We Work (EXACT 100% AS IS FROM second.html sec_7_how.html)
-const sec06How = `
-<!-- SECTION 06: HOW WE WORK (Exact 100% As Is Master Second UI) -->
+// 9. SECTION: HOW WE WORK (Exact Benchmark 5 Steps in Master Process Cards)
+const secHowWeWork = `
+<!-- SECTION: HOW WE WORK (Exact Benchmark Copy in Master Second Process Cards) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="how">
   <!-- Google-Inspired Green & Yellow Ambient Sine Wave -->
   <span aria-hidden="true" data-ambient-lines="" data-seed="how-google" data-colors="#34A853,#FBBC05" class="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_15%,#000_85%,transparent)] pointer-events-none opacity-55"></span>
@@ -373,366 +430,422 @@ const sec06How = `
   <div class="grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">06</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>How we work</p>
+        <p class="marker"><span class="tabular-nums">07</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>HOW WE WORK</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl">A straightforward journey from enquiry to next steps.</h2>
     </div>
-    <p class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8">
-      No open-ended clocks. We listen, assess the documents, quote upfront, and coordinate every step transparently.
-    </p>
+    
   </div>
 
   <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
     <div class="process-card rounded-2xl p-6">
-      <span class="text-3xl font-display text-fg-3">1</span>
-      <h3 class="mt-5 text-lg font-normal text-white">Initial Conversation</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">You contact us and share what you wish to achieve. We discuss the background of your enquiry, explain how we can help, and confirm if we are the right fit.</p>
+      <span class="text-3xl font-display text-fg-3">01</span>
+      <h3 class="mt-5 text-lg font-normal text-white">Initial conversation</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">Tell us about your legal matter, your concerns and what you would like to achieve. We will discuss your requirements and how we may be able to assist.</p>
     </div>
     <div class="process-card rounded-2xl p-6">
-      <span class="text-3xl font-display text-fg-3">2</span>
+      <span class="text-3xl font-display text-fg-3">02</span>
       <h3 class="mt-5 text-lg font-normal text-white">Enquiry Assessment</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We review relevant documents and information to determine the scope of assistance, and identify if any aspects require specialist advice or solicitor referral.</p>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We review your enquiry, consider the nature of the assistance required and explain the services we can provide.</p>
     </div>
     <div class="process-card rounded-2xl p-6">
-      <span class="text-3xl font-display text-fg-3">3</span>
-      <h3 class="mt-5 text-lg font-normal text-white">Clear Engagement</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We provide a written scope of work, timeline, and agreed fixed fee before commencing. No unexpected charges or runaway hourly rates.</p>
+      <span class="text-3xl font-display text-fg-3">03</span>
+      <h3 class="mt-5 text-lg font-normal text-white">Clear engagement</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We confirm the agreed scope of work, applicable fees and terms of engagement before commencing your matter.</p>
     </div>
     <div class="process-card rounded-2xl p-6">
-      <span class="text-3xl font-display text-fg-3">4</span>
-      <h3 class="mt-5 text-lg font-normal text-white">Preparation &amp; Coordination</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We prepare your documents, compile evidence chronologies, or coordinate translations, keeping you updated throughout the process.</p>
+      <span class="text-3xl font-display text-fg-3">04</span>
+      <h3 class="mt-5 text-lg font-normal text-white">Preparation &amp; coordination</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We undertake the agreed work, provide practical guidance and keep you informed of progress throughout.</p>
     </div>
     <div class="process-card rounded-2xl p-6">
-      <span class="text-3xl font-display text-fg-3">5</span>
-      <h3 class="mt-5 text-lg font-normal text-white">Solicitor by Appointment</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">Where reserved legal activities, formal court litigation, or specialist advice are needed, we arrange an appointment with an independent SRA-regulated solicitor.</p>
+      <span class="text-3xl font-display text-fg-3">05</span>
+      <h3 class="mt-5 text-lg font-normal text-white">Solicitor by appointment</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">Where appropriate, we can assist in arranging a separate appointment with a qualified solicitor, subject to availability and acceptance of instructions.</p>
     </div>
   </div>
 </section>
 `;
 
-// Section 07: Questions / FAQs (EXACT sec_9_faq.html from master second)
-const sec07Faq = `
-<!-- SECTION 07: QUESTIONS (Exact Master Second FAQ UI) -->
+// 10. SECTION: FREQUENTLY ASKED QUESTIONS (Exact Benchmark 12 Questions & Answers)
+const secFaq = `
+<!-- SECTION: FREQUENTLY ASKED QUESTIONS (Exact Benchmark 12 FAQs) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="faq">
 
   <div class="max-w-2xl">
     <div>
-      <p class="marker"><span class="tabular-nums">07</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>Questions</p>
+      <p class="marker"><span class="tabular-nums">08</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>FREQUENTLY ASKED QUESTIONS</p>
       <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
     </div>
-    <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl">Frequently asked.</h2>
-    <p class="mt-4 text-base leading-relaxed text-fg-2 md:text-lg">
-      Answers to common questions about our services, pricing, and how we work with you.
-    </p>
+    <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl">Answers before you get started.</h2>
   </div>
 
   <div class="mt-16 divide-y divide-line border-y border-line">
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>What kind of services does Elevance Legal Services provide?</span>
+        <span>Is Elevance a solicitors' firm?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        We provide practical document preparation, administrative case coordination, and support services across several areas, including contracts, housing, employment, family matters, wills, powers of attorney, translation and document legalisation.
+        No. Elevance Legal Services Ltd is an independent legal services company providing non-reserved legal services. It is not a solicitors' practice and is not authorised or regulated by the Solicitors Regulation Authority (SRA).
       </p>
     </details>
 
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>Are you a law firm?</span>
+        <span>What kind of work does Elevance provide?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        No. Elevance Legal Services Ltd is an independent legal consultancy. We are not a law firm of solicitors and are not regulated by the Solicitors Regulation Authority (SRA). We provide services that do not constitute reserved legal activities under the Legal Services Act 2007. Any reserved legal work is undertaken independently by qualified solicitors to whom we refer clients.
+        We provide legal consultancy, document drafting and practical assistance across a range of matters, including housing, family matters, business contracts, and wills.
       </p>
     </details>
 
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>How does your fee structure work?</span>
+        <span>Can Elevance provide legal advice?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        We believe legal support should be transparent and predictable. For most matters, we agree a clear fixed fee before starting work, based on the scope and complexity of the task. There are no hidden fees or unexpected charges.
+        Elevance primarily provides document preparation and administrative support services. We do not provide specialist legal advice or undertake reserved legal activities. Where legal advice is required, we can explain how to seek assistance from an appropriately qualified professional.
       </p>
     </details>
 
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>When would I need a qualified solicitor?</span>
+        <span>Can I see a solicitor?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        You may need a qualified solicitor if your matter involves reserved legal activities (such as conducting formal court litigation, appearing as an advocate before certain courts, or reserved probate and conveyancing activities) or if you require specialist formal legal advice or court representation. In such cases, we facilitate a direct, warm referral to an independent SRA-regulated solicitor.
+        Yes. Appointments with a qualified solicitor may be available by prior arrangement, subject to availability and acceptance of instructions. Any solicitor services are provided under separate terms and fees.
       </p>
     </details>
 
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>Can you help with court proceedings?</span>
+        <span>Does Elevance represent clients in court?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        We can help you organise your paperwork, compile evidence chronologies, format witness statements, and assemble court bundles if you are acting as a litigant in person. However, we cannot formally represent you on court records or conduct litigation on your behalf. Where formal legal representation is appropriate, we introduce you to an independent authorised solicitor.
+        No. Elevance does not conduct litigation or exercise reserved rights of audience. We can, however, assist with permitted pre-action correspondence, document preparation and dispute resolution.
       </p>
     </details>
 
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>How quickly can you get started?</span>
+        <span>Can you help with housing and employment matters?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        We reply to all initial enquiries within one business day. Once we have discussed your requirements and agreed on the scope and fixed fee, work typically commences within 24 to 48 hours. Urgent matters can often be accommodated on an accelerated schedule.
+        Yes. We assist with tenancy disputes, housing correspondence and related legal documentation. The assistance available will depend on the circumstances of your enquiry.
       </p>
     </details>
 
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>Do you provide translation services?</span>
+        <span>Do you provide immigration advice?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        Yes. We offer certified translations for official, commercial, and personal documents, specialising in Arabic, Kurdish (Sorani and Kurmanji), and English. We can also assist with arranging FCDO apostille legalisation and consular certification where documents are intended for use overseas.
+        No. Elevance does not provide regulated UK immigration advice or immigration services.
       </p>
     </details>
 
-    <details class="group py-6" data-lane-hot="" data-flow-step="">
+    <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>How do I make an enquiry?</span>
+        <span>Can you help with wills?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        You can reach us through our online enquiry form, via email at info@elevancelegal.co.uk, or on WhatsApp at +44 (0) 7543 105658. We will discuss your situation, explain how we can help, and provide a clear, upfront fixed-fee quote. The initial consultation is completely free of charge.
+        Yes. We assist with preparing straightforward wills, including relevant documentation and guidance on signing and registration requirements.
       </p>
     </details>
+
+    <details class="group py-6">
+      <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
+        <span>Do you offer certified translation?</span>
+        <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
+      </summary>
+      <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
+        We provide Arabic and Kurdish to English translation services. Where certified translations are required, we can assist with arranging these through appropriately qualified translators, subject to availability and the receiving organisation's requirements.
+      </p>
+    </details>
+
+    <details class="group py-6">
+      <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
+        <span>How much will it cost?</span>
+        <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
+      </summary>
+      <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
+        Our fees depend on the nature and complexity of the work. Wherever possible, we offer fixed fees for clearly defined services. We explain our charges and agree the scope of work before proceeding.
+      </p>
+    </details>
+
+    <details class="group py-6">
+      <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
+        <span>Will my information be handled confidentially?</span>
+        <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
+      </summary>
+      <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
+        Yes. We treat client information with care and confidentiality and handle personal data in accordance with applicable data protection legislation and our Privacy Notice.
+      </p>
+    </details>
+
+    <details class="group py-6">
+      <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
+        <span>Is the initial consultation free?</span>
+        <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
+      </summary>
+      <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
+        We welcome initial enquiries and will explain any consultation charges before an appointment is confirmed. Fees for substantive legal advice or document review will be agreed in advance.
+      </p>
+    </details>
+
   </div>
 </section>
 `;
 
-// Section 08: Who We Support & Our Commitment Callout (EXACT sec_10_support.html with Our Commitment above Contact!)
-const sec08Support = `
-<!-- SECTION 08: WHO WE SUPPORT & OUR COMMITMENT (Exact Master Second Section 10 UI) -->
-<section class="container-studio py-20 relative isolate border-t border-line" id="support">
-  <div class="grid gap-10 lg:grid-cols-12">
-    <div class="lg:col-span-5">
-      <div>
-        <p class="marker"><span class="tabular-nums">08</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>Who we support</p>
-        <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
-      </div>
-      <h2 class="mt-10 font-display text-4xl leading-[1.05] md:text-6xl text-white">Here for individuals, families and businesses.</h2>
-    </div>
-    <div class="lg:col-span-7 grid gap-6 sm:grid-cols-2">
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Individuals</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Practical legal assistance with personal matters, disputes, agreements and legal documentation, helping you understand your options and make informed decisions.</p>
-      </div>
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Families</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Sensitive and approachable assistance with family-related matters, wills, powers of attorney and personal legal documentation.</p>
-      </div>
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Tenants &amp; Landlords</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Legal support with tenancy agreements, rent arrears, deposit disputes, disrepair concerns and landlord-tenant disagreements.</p>
-      </div>
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Businesses &amp; Entrepreneurs</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Commercial contract support, dispute resolution, workplace documentation and practical legal assistance to help your business operate with confidence.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Our Commitment Callout (Exact Master Second Component - Above Get in Touch!) -->
-  <div class="mt-16 rounded-2xl border border-line bg-canvas/60 p-8 md:p-10 text-center max-w-4xl mx-auto backdrop-blur" id="commitment">
-    <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">Our commitment</p>
-    <p class="mt-4 text-xl md:text-2xl font-light text-white leading-relaxed">
-      Accessible, approachable and practical legal support. We believe legal assistance should be straightforward, transparent and centred on the people we support.
-    </p>
-  </div>
-</section>
-`;
-
-// Section 09: Contact Us / Get in Touch (EXACT sec_11_contact.html from master second!)
-const sec09Contact = `
-<!-- SECTION 09: GET IN TOUCH (Exact Master Second Section 11 UI) -->
+// 11. SECTION: CONTACT US (Exact Benchmark Copy & Interactive Form with Details)
+const secContactUs = `
+<!-- SECTION: CONTACT US (Exact Benchmark Copy) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="contact">
   <div class="grid gap-12 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">09</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>Get in touch</p>
+        <p class="marker"><span class="tabular-nums">09</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>CONTACT US</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
-      <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">Let’s build what’s next.</h2>
-      <button type="button" data-intake-open="" class="btn-pill-primary mt-12">
-        Describe your matter
-      </button>
+      <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">Let’s discuss your next step.</h2>
+      
+      <p class="mt-8 text-lg leading-relaxed text-fg-2">
+        Whether you need assistance with a personal legal matter, a business issue, a dispute or legal documentation, we are here to help.
+      </p>
+      <p class="mt-4 text-base leading-relaxed text-fg-3">
+        Tell us briefly about your enquiry, and we will consider how we may be able to assist and explain the next steps.
+      </p>
+
+      <!-- Our Contact Details (from Benchmark) -->
+      <div class="mt-10 border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur space-y-4">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Our Contact Details</h3>
+        <ul class="space-y-3 text-sm text-fg-2">
+          <li class="flex items-start gap-3">
+            <span class="text-fg-3 w-32 shrink-0">Office address</span>
+            <span class="text-white">London, United Kingdom</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-fg-3 w-32 shrink-0">Telephone number</span>
+            <a href="tel:+447543105658" class="text-white hover:underline">+44 7543 105658</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-fg-3 w-32 shrink-0">Email address</span>
+            <a href="mailto:info@elevancelegal.co.uk" class="text-white hover:underline">info@elevancelegal.co.uk</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-fg-3 w-32 shrink-0">Opening hours</span>
+            <span class="text-white">Monday &ndash; Friday, 9:00 AM &ndash; 6:00 PM</span>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="lg:col-span-5 lg:col-start-8">
-      <ul class="divide-y divide-line border-y border-line">
-        <li>
-          <a href="mailto:info@elevancelegal.co.uk" class="flex items-center justify-between gap-4 py-5 hover:text-fg-2 transition-colors">
-            <span class="text-sm font-medium text-white">Mail us</span>
-            <span class="text-sm text-fg-3">info@elevancelegal.co.uk</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://wa.me/447543105658" target="_blank" rel="noopener" class="flex items-center justify-between gap-4 py-5 hover:text-fg-2 transition-colors">
-            <span class="text-sm font-medium text-white">WhatsApp</span>
-            <span class="text-sm text-fg-3 font-mono">+44 7543 105658 &rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a href="tel:+447543105658" class="flex items-center justify-between gap-4 py-5 hover:text-fg-2 transition-colors">
-            <span class="text-sm font-medium text-white">Telephone</span>
-            <span class="text-sm text-fg-3 font-mono">+44 7543 105658</span>
-          </a>
-        </li>
-      </ul>
-      <p class="mt-8 text-base leading-relaxed text-fg-2">
-        Send a WhatsApp or an email, or just call. We reply within one business day. The first conversation (20 to 30 minutes) is free, with no obligation.
-      </p>
-      <a href="#how" class="mt-4 inline-block text-sm link text-fg-2 hover:text-fg transition-colors">
-        We listen first: how it works &rarr;
-      </a>
+    <!-- Contact Form (Exact Fields from Benchmark) -->
+    <div class="lg:col-span-6">
+      <form id="benchmark-contact-form" class="border border-line rounded-2xl p-6 sm:p-8 bg-canvas/40 backdrop-blur space-y-5">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="full-name" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">FULL NAME</label>
+            <input type="text" id="full-name" name="name" required class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Your full name">
+          </div>
+          <div>
+            <label for="email-address" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">EMAIL ADDRESS</label>
+            <input type="email" id="email-address" name="email" required class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="name@example.com">
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="telephone-number" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">TELEPHONE NUMBER</label>
+            <input type="tel" id="telephone-number" name="phone" class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="+44...">
+          </div>
+          <div>
+            <label for="nature-of-enquiry" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">NATURE OF ENQUIRY</label>
+            <select id="nature-of-enquiry" name="nature" class="w-full rounded-lg border border-line bg-canvas/80 px-3.5 py-2.5 text-sm text-fg focus:border-fg focus:outline-none">
+              <option value="Document Preparation & Support">Document Preparation &amp; Support</option>
+              <option value="Dispute Resolution and Case Support">Dispute Resolution and Case Support</option>
+              <option value="Housing & Landlord-Tenant Matters">Housing &amp; Landlord-Tenant Matters</option>
+              <option value="Employment & Workplace Matters">Employment &amp; Workplace Matters</option>
+              <option value="Family & Personal Matters">Family &amp; Personal Matters</option>
+              <option value="Business & Commercial Legal Services">Business &amp; Commercial Legal Services</option>
+              <option value="Translation Services">Translation Services</option>
+              <option value="Wills & Wills Drafting">Wills &amp; Wills Drafting</option>
+              <option value="Lasting Powers of Attorney">Lasting Powers of Attorney</option>
+              <option value="Document Legalisation & Notarial Coordination">Document Legalisation &amp; Notarial Coordination</option>
+              <option value="Other">Other Enquiry</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="how-can-we-help" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">HOW CAN WE HELP?</label>
+          <textarea id="how-can-we-help" name="message" rows="4" required class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Briefly describe what you would like to achieve..."></textarea>
+        </div>
+
+        <div class="flex items-start gap-3 pt-1">
+          <input type="checkbox" id="privacy-consent" name="privacy" required class="mt-1 h-4 w-4 rounded border-line bg-canvas/60 text-fg focus:ring-offset-canvas">
+          <label for="privacy-consent" class="text-xs text-fg-3 leading-relaxed">
+            I have read the Privacy Notice and understand how my personal information will be used.
+          </label>
+        </div>
+
+        <p class="text-xs text-fg-3 leading-relaxed">
+          Please provide only a brief description of your enquiry. Do not submit confidential documents or sensitive personal information through this form.
+        </p>
+
+        <p class="text-xs text-fg-3 leading-relaxed">
+          Submitting an enquiry does not establish a client relationship. We will contact you to discuss the next steps.
+        </p>
+
+        <button type="submit" id="benchmark-submit-btn" class="w-full btn-pill-primary py-3">
+          SUBMIT ENQUIRY
+        </button>
+        <div id="benchmark-success-msg" class="hidden text-center text-xs text-emerald-400 font-medium py-2">
+          &check; Thank you! Your enquiry has been received. We will contact you shortly.
+        </div>
+      </form>
     </div>
   </div>
 </section>
 `;
 
-// Site Footer (EXACT master footer from second.html with third's navigation links!)
-const siteFooter = `
-<!-- SITE FOOTER (Exact Master Second Footer with Third Navigation Links) -->
-<footer class="border-t border-line">
-  <div class="container-studio grid gap-12 py-16 md:grid-cols-12">
-    <!-- About Company on Left -->
-    <div class="md:col-span-7">
-      <a href="#top" class="logo-container inline-flex transition-transform hover:opacity-90" aria-label="Elevance Legal Services, Home">
-        <div class="logo-box">E</div>
-        <div class="logo-text">
-          <span class="logo-title">Elevance</span>
-          <span class="logo-sub">LEGAL SERVICES</span>
-        </div>
-      </a>
-      <p class="mt-8 max-w-2xl text-base leading-relaxed text-fg-2 font-light">
-        Elevance Legal Services Ltd is an independent legal consultancy in London, founded to bring clarity to complexity. We help individuals, families and entrepreneurs with document preparation, case coordination, wills, powers of attorney and certified translation, working alongside authorised, SRA-regulated solicitors where reserved legal activities are needed.
-      </p>
-    </div>
-
-    <!-- Navigation on Right (Aligned with Third Modules) -->
-    <div class="md:col-span-2">
-      <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Navigation</p>
-      <ul class="mt-4 space-y-2 text-sm text-fg-3">
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#welcome">Welcome</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#story">Our Story</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#services">Services</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#how">How we work</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#solicitor">Authorised Solicitors</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#support">Who we support</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#why">Why Elevance</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#faq">Questions</a></li>
-        <li><a class="hover:text-fg hover:underline transition-colors" href="#contact" data-intake-open="">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact & Follow Icons on Right -->
-    <div class="space-y-8 md:col-span-3">
-      <div>
-        <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Contact</p>
-        <ul class="mt-4 space-y-2 text-sm text-fg-3">
-          <li><a class="hover:text-fg hover:underline transition-colors" href="#contact" data-intake-open="" data-prefill="Schedule a consultation">Schedule a call</a></li>
-          <li><a class="hover:text-[#25d366] hover:underline transition-colors" href="https://wa.me/447543105658" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a class="hover:text-fg hover:underline transition-colors" href="mailto:info@elevancelegal.co.uk">info@elevancelegal.co.uk</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Follow</p>
-        <ul class="mt-4 space-y-2.5 text-sm text-fg-3">
-          <li>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="flex items-center gap-2.5 hover:text-fg transition-colors">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="flex items-center gap-2.5 hover:text-fg transition-colors">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
-              </svg>
-              <span>YouTube</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="flex items-center gap-2.5 hover:text-fg transition-colors">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-              </svg>
-              <span>Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://x.com/" target="_blank" rel="noopener" class="flex items-center gap-2.5 hover:text-fg transition-colors">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-              <span>X (Twitter)</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+// 12. SECTION: OUR COMMITMENT (Exact Benchmark Copy)
+const secOurCommitment = `
+<!-- SECTION: OUR COMMITMENT (Exact Benchmark Copy) -->
+<section class="container-studio py-20 relative isolate border-t border-line" id="commitment">
+  <div class="rounded-2xl border border-line bg-canvas/60 p-8 md:p-12 text-center max-w-4xl mx-auto backdrop-blur">
+    <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">OUR COMMITMENT</p>
+    <h2 class="mt-4 font-display text-3xl md:text-5xl text-white">Our commitment to you.</h2>
+    <p class="mt-6 text-base md:text-lg text-fg-2 leading-relaxed max-w-2xl mx-auto">
+      We are committed to providing clear communication, careful preparation and practical legal assistance tailored to your needs.
+    </p>
+    <p class="mt-4 text-base md:text-lg text-fg-3 leading-relaxed max-w-2xl mx-auto">
+      We approach every enquiry with professionalism, discretion and attention to detail, keeping you informed and ensuring that you understand the services we provide and the fees involved.
+    </p>
   </div>
+</section>
+`;
 
-  <div class="container-studio grid gap-6 border-t border-line py-8 text-xs leading-relaxed text-fg-3 md:grid-cols-2">
-    <div class="space-y-2">
-      <p>
-        <span class="text-fg-2 font-medium">Elevance Legal Services Ltd</span> · London, United Kingdom · Company No. 16186851 · Registered in England and Wales
-      </p>
-      <p>
-        <span class="text-fg-2 font-medium">Regulatory Notice</span> · Elevance Legal Services Ltd is an independent consultancy and not a law firm. Reserved legal activities are conducted independently by authorised solicitors regulated by the Solicitors Regulation Authority (SRA).
+// 13. EXACT BENCHMARK FOOTER
+const benchmarkFooter = `
+<!-- SITE FOOTER (Exact Benchmark Copy from Customer Spec) -->
+<footer class="border-t border-line">
+  <div class="container-studio py-16 space-y-12">
+    
+    <!-- Top Branding & Motto -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-line pb-8">
+      <div>
+        <a href="#top" class="logo-container inline-flex transition-transform hover:opacity-90" aria-label="Elevance Legal Services, Home">
+          <div class="logo-box">E</div>
+          <div class="logo-text">
+            <span class="logo-title">Elevance</span>
+            <span class="logo-sub">LEGAL SERVICES LTD</span>
+          </div>
+        </a>
+      </div>
+      <p class="text-sm font-light text-fg-2 tracking-wide">
+        Clarity, confidence and a better way forward.
       </p>
     </div>
-    <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end items-center">
-      <span>© 2026 Elevance Legal Services Ltd. All rights reserved.</span>
-      <a class="hover:underline hover:text-fg" href="#contact" data-intake-open="" data-prefill="Privacy Policy inquiry">Privacy policy</a>
-      <a class="hover:underline hover:text-fg" href="#contact" data-intake-open="" data-prefill="Terms of Service inquiry">Website terms</a>
-      <a class="hover:underline hover:text-fg cursor-pointer" href="#top" data-scroll-to-top="">Back to top &uarr;</a>
+
+    <!-- Regulatory Notice & Company Information Grid -->
+    <div class="grid gap-10 md:grid-cols-12 text-xs leading-relaxed text-fg-3">
+      
+      <!-- Important Regulatory Information -->
+      <div class="md:col-span-8 space-y-3">
+        <p class="font-medium text-fg-2 text-sm">Important regulatory information</p>
+        <p>
+          Elevance Legal Services Ltd is an independent provider of non-reserved legal services. It is not a solicitors' practice and is not authorised or regulated by the Solicitors Regulation Authority (SRA).
+        </p>
+        <p>
+          We provide legal consultancy, document drafting and related legal assistance within the scope of activities we are legally permitted and competent to undertake.
+        </p>
+        <p>
+          Elevance does not conduct litigation, exercise reserved rights of audience, undertake reserved instrument activities or reserved probate activities, or provide regulated UK immigration advice or services.
+        </p>
+        <p>
+          As Elevance is not an SRA-regulated firm, clients do not automatically benefit from the regulatory protections applicable to authorised solicitors' practices, including compulsory SRA professional indemnity insurance and access to the SRA Compensation Fund.
+        </p>
+        <p>
+          Where an appointment with a qualified solicitor is arranged, any solicitor services are provided separately and subject to the solicitor's own professional obligations, terms of engagement and fees.
+        </p>
+        <p>
+          Information on this website is provided for general information only. Submitting an enquiry does not establish a professional engagement or solicitor-client relationship.
+        </p>
+      </div>
+
+      <!-- Company Information -->
+      <div class="md:col-span-4 space-y-3 border-t border-line/40 pt-6 md:border-t-0 md:pt-0">
+        <p class="font-medium text-fg-2 text-sm">Company information</p>
+        <p class="text-white font-medium">Elevance Legal Services Ltd</p>
+        <p>Registered in England and Wales</p>
+        <p>Company Registration Number: 16186851</p>
+        <p>Registered Office: London, United Kingdom</p>
+        <p>Email: <a href="mailto:info@elevancelegal.co.uk" class="text-fg-2 hover:underline">info@elevancelegal.co.uk</a></p>
+        <p>Telephone: <a href="tel:+447543105658" class="text-fg-2 hover:underline">+44 7543 105658</a></p>
+      </div>
+
     </div>
+
+    <!-- Bottom Hyperlinks & Copyright -->
+    <div class="border-t border-line pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-fg-3">
+      <div class="flex flex-wrap gap-x-6 gap-y-2">
+        <a href="#contact" data-intake-open="" data-prefill="Privacy Notice enquiry" class="hover:text-fg hover:underline">Privacy Notice</a>
+        <a href="#contact" data-intake-open="" data-prefill="Terms of Business enquiry" class="hover:text-fg hover:underline">Terms of Business</a>
+        <a href="#contact" data-intake-open="" data-prefill="Complaints Procedure enquiry" class="hover:text-fg hover:underline">Complaints Procedure</a>
+        <a href="#solicitor" class="hover:text-fg hover:underline">Regulatory Information</a>
+      </div>
+      <div>
+        <span>&copy; 2026 Elevance Legal Services Ltd. All rights reserved.</span>
+      </div>
+    </div>
+
   </div>
 </footer>
 `;
 
-// COMBINE ALL SECTIONS IN EXACT MASTER SECOND ORDER
+// ASSEMBLE ALL SECTIONS IN EXACT SEQUENCE
 const allSections = [
-  sec01Welcome,
-  sec02Story,
-  sec03Services,
-  sec04Solicitor,
-  sec05Why,
-  sec06How,
-  sec07Faq,
-  sec08Support,
-  sec09Contact,
-  siteFooter
+  secWelcome,
+  secOurStory,
+  secOurServices,
+  secSolicitor,
+  secWhoWeSupport,
+  secWhyElevance,
+  secHowWeWork,
+  secFaq,
+  secOurCommitment,
+  secContactUs,
+  benchmarkFooter
 ].join('\n\n');
 
 // -------------------------------------------------------------
-// 4. ASSEMBLE COMPLETE DOCUMENT
+// 14. BUILD COMPLETE HTML DOCUMENT
 // -------------------------------------------------------------
 let html = secondHtml;
 
 // Replace Desktop Nav
-html = html.replace(/<nav aria-label="Navigation" class="site-nav-desktop">[\s\S]*?<\/nav>/i, desktopNav);
+html = html.replace(/<nav aria-label="Navigation" class="site-nav-desktop">[\s\S]*?<\/nav>/i, benchmarkDesktopNav);
 
 // Replace Mobile Drawer links
-html = html.replace(/<ul class="space-y-4 font-display text-2xl">[\s\S]*?<\/ul>/i, mobileDrawerNav);
+html = html.replace(/<ul class="space-y-4 font-display text-2xl">[\s\S]*?<\/ul>/i, benchmarkMobileNav);
 
-// Slice after Hero #top, replace everything up to </main>
+// Replace Hero section
+const heroStart = html.indexOf('<section class="relative flex flex-col justify-center overflow-hidden"');
+const heroEnd = html.indexOf('</section>', heroStart) + 10;
+html = html.slice(0, heroStart) + benchmarkHero + html.slice(heroEnd);
+
+// Replace everything between Hero and </main> with allSections
 const topEnd = html.indexOf('</section>', html.indexOf('id="top"'));
 const mainEnd = html.indexOf('</main>');
 
@@ -742,16 +855,64 @@ html = html.slice(0, topEnd + 10) + '\n\n' + allSections + '\n\n' + html.slice(m
 html = html.replace(/<link rel="canonical"[^>]*>/i, '<link rel="canonical" href="https://www.elevancelegal.co.uk/third/">');
 html = html.replace(/<title>[\s\S]*?<\/title>/i, '<title>Elevance Legal Services — Practical Legal Support &amp; Document Preparation</title>');
 
-// Fix any ESM export
+// Fix ESM export
 html = html.replace('export{wt as a,mt as f};', 'window.wt = wt; window.mt = mt;');
 
-// Write out to third/index.html and third.html
+// Add Contact Form submission handler
+const formScript = `
+<script>
+(function() {
+  const form = document.getElementById("benchmark-contact-form");
+  if (!form || form.__bound) return;
+  form.__bound = true;
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const btn = document.getElementById("benchmark-submit-btn");
+    const successMsg = document.getElementById("benchmark-success-msg");
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = "Submitting...";
+    }
+    const payload = {
+      name: document.getElementById("full-name")?.value || "",
+      email: document.getElementById("email-address")?.value || "",
+      phone: document.getElementById("telephone-number")?.value || "",
+      nature: document.getElementById("nature-of-enquiry")?.value || "",
+      question: "[" + (document.getElementById("nature-of-enquiry")?.value || "") + "] " + 
+                (document.getElementById("how-can-we-help")?.value || "") + 
+                (document.getElementById("telephone-number")?.value ? " (Phone: " + document.getElementById("telephone-number").value + ")" : "")
+    };
+    fetch("contact.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function() {}).finally(function() {
+      form.reset();
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = "SUBMIT ENQUIRY";
+      }
+      if (successMsg) {
+        successMsg.classList.remove("hidden");
+        setTimeout(function() { successMsg.classList.add("hidden"); }, 8000);
+      }
+    });
+  });
+})();
+</script>
+`;
+
+if (!html.includes('benchmark-contact-form')) {
+  html = html.replace('</body>', `${formScript}\n</body>`);
+}
+
+// Write outputs to third/index.html and third.html
 const outThirdIndex = path.join(__dirname, 'third', 'index.html');
 const outThirdRoot = path.join(__dirname, 'third.html');
 
 fs.writeFileSync(outThirdIndex, html, 'utf8');
 fs.writeFileSync(outThirdRoot, html, 'utf8');
 
-console.log('[SUCCESS] Rebuilt /third/ with 100% master second UI and site footer restored:');
+console.log('[SUCCESS] Rebuilt /third/ with EXACT benchmark copy:');
 console.log(' - ' + outThirdIndex);
 console.log(' - ' + outThirdRoot);
