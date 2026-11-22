@@ -724,17 +724,17 @@ const secContactUs = `
           </div>
           <div>
             <label for="nature-of-enquiry" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">NATURE OF ENQUIRY</label>
-            <select id="nature-of-enquiry" name="nature" class="w-full rounded-lg border border-line bg-canvas/80 px-3.5 py-2.5 text-sm text-fg focus:border-fg focus:outline-none">
-              <option value="Document Preparation & Support">Document Preparation &amp; Support</option>
-              <option value="Dispute Resolution and Case Support">Dispute Resolution and Case Support</option>
-              <option value="Housing & Landlord-Tenant Matters">Housing &amp; Landlord-Tenant Matters</option>
-              <option value="Employment & Workplace Matters">Employment &amp; Workplace Matters</option>
-              <option value="Family & Personal Matters">Family &amp; Personal Matters</option>
-              <option value="Business & Commercial Legal Services">Business &amp; Commercial Legal Services</option>
-              <option value="Translation Services">Translation Services</option>
-              <option value="Wills & Wills Drafting">Wills &amp; Wills Drafting</option>
-              <option value="Lasting Powers of Attorney">Lasting Powers of Attorney</option>
-              <option value="Other">Other Enquiry</option>
+            <select id="nature-of-enquiry" name="nature" class="w-full rounded-lg border border-line bg-canvas/80 px-3.5 py-2.5 text-sm text-fg focus:border-fg focus:outline-none" style="color-scheme: dark; background-color: #121212 !important; color: #ffffff !important;">
+              <option value="Document Preparation & Support" style="background-color: #1a1a1a; color: #ffffff;">01 &bull; Document Preparation &amp; Support</option>
+              <option value="Dispute Resolution and Case Support" style="background-color: #1a1a1a; color: #ffffff;">02 &bull; Dispute Resolution and Case Support</option>
+              <option value="Housing & Landlord-Tenant Matters" style="background-color: #1a1a1a; color: #ffffff;">03 &bull; Housing &amp; Landlord-Tenant Matters</option>
+              <option value="Employment & Workplace Matters" style="background-color: #1a1a1a; color: #ffffff;">04 &bull; Employment &amp; Workplace Matters</option>
+              <option value="Family & Personal Matters" style="background-color: #1a1a1a; color: #ffffff;">05 &bull; Family &amp; Personal Matters</option>
+              <option value="Business & Commercial Legal Services" style="background-color: #1a1a1a; color: #ffffff;">06 &bull; Business &amp; Commercial Legal Services</option>
+              <option value="Translation Services" style="background-color: #1a1a1a; color: #ffffff;">07 &bull; Translation Services</option>
+              <option value="Wills & Wills Drafting" style="background-color: #1a1a1a; color: #ffffff;">08 &bull; Wills &amp; Wills Drafting</option>
+              <option value="Lasting Powers of Attorney" style="background-color: #1a1a1a; color: #ffffff;">09 &bull; Lasting Powers of Attorney</option>
+              <option value="Other" style="background-color: #1a1a1a; color: #ffffff;">General Legal Consultancy / Other</option>
             </select>
           </div>
         </div>
@@ -918,6 +918,25 @@ const customStyles = `
     background-color: #000000 !important;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  }
+
+  /* Fix Select Dropdown Option Visibility on All OS & Browsers */
+  select,
+  select#nature-of-enquiry {
+    color-scheme: dark !important;
+    background-color: #121212 !important;
+    color: #ffffff !important;
+  }
+  select option,
+  select#nature-of-enquiry option {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    padding: 8px 12px !important;
+  }
+  select option:checked,
+  select option:hover {
+    background-color: #262626 !important;
+    color: #ffffff !important;
   }
 
   /* Dropdown Menus: 3 equal-width columns for 9 services */
