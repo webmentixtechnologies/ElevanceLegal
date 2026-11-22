@@ -345,12 +345,6 @@ const secSolicitor = `
       <p class="mt-6 text-base leading-relaxed text-fg-2 md:text-lg">
         While Elevance Legal Services provides a range of legal services, we recognise that some matters may require the advice or assistance of a qualified solicitor.
       </p>
-      <p class="mt-4 text-base leading-relaxed text-fg-3">
-        Appointments with a solicitor may be available by prior arrangement, depending on the nature of your enquiry and availability.
-      </p>
-      <p class="mt-4 text-base leading-relaxed text-fg-3">
-        Any solicitor services are provided separately, subject to the solicitor's own terms of engagement and fees.
-      </p>
       <div class="mt-8 flex flex-wrap gap-4">
         <button type="button" data-intake-open="" data-prefill="I would like to ask about an appointment with a qualified solicitor" class="btn-pill-primary">
           ASK ABOUT AN APPOINTMENT
@@ -659,6 +653,538 @@ const secFaq = `
 </section>
 `;
 
+
+// ============================================================================
+// REUSABLE ENQUIRY WIZARD COMPONENT (4 Steps based on Client Feedback Document)
+// Step 1: Select 1 of 7 Services (+ Other / I'm not sure)
+// Step 2: Tailored Service Questions + Urgency & Deadline Check
+// Step 3: Contact Details & Optional Document Upload
+// Step 4: Review & Submit with Section 9 Confirmation Message
+// ============================================================================
+function renderEnquiryWizardHtml(pfx, isModal) {
+  return `
+    <div id="${pfx}-wizard-container" class="enquiry-wizard-wrap ${isModal ? 'p-6 sm:p-8' : 'border border-line rounded-2xl p-6 sm:p-8 bg-canvas/40 backdrop-blur'}">
+      
+      <!-- Progress Bar & Step Tracker -->
+      <div class="mb-6 border-b border-line/60 pb-4">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono text-fg-3 uppercase tracking-wider ${pfx}-step-indicator">Step 1 of 4 &bull; Select Service</span>
+          <span class="font-medium text-fg-2 ${pfx}-step-badge">Initial Enquiry</span>
+        </div>
+        <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+          <div class="${pfx}-progress-bar bg-white h-full transition-all duration-300" style="width: 25%;"></div>
+        </div>
+      </div>
+
+      <!-- STEP 1: SELECT A SERVICE -->
+      <div id="${pfx}-step-1" class="wizard-step space-y-4">
+        <div>
+          <h3 class="font-display text-2xl sm:text-3xl text-white">What do you want to achieve?</h3>
+          <p class="mt-1.5 text-xs text-neutral-400">Select one of the seven service categories below to view tailored questions:</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Document Preparation & Support">
+            <div>
+              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">01</span>
+              <span class="text-sm font-medium text-white group-hover:text-white">Document Preparation &amp; Support</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Housing & Landlord-Tenant Matters">
+            <div>
+              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">02</span>
+              <span class="text-sm font-medium text-white group-hover:text-white">Housing &amp; Landlord-Tenant Matters</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Family & Personal Matters">
+            <div>
+              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">03</span>
+              <span class="text-sm font-medium text-white group-hover:text-white">Family &amp; Personal Matters</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Business & Commercial Legal Services">
+            <div>
+              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">04</span>
+              <span class="text-sm font-medium text-white group-hover:text-white">Business &amp; Commercial Legal Services</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Translation Services">
+            <div>
+              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">05</span>
+              <span class="text-sm font-medium text-white group-hover:text-white">Translation Services</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Wills & Wills Drafting">
+            <div>
+              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">06</span>
+              <span class="text-sm font-medium text-white group-hover:text-white">Wills &amp; Wills Drafting</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Document Legalisation & Notarial Coordination">
+            <div>
+              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">07</span>
+              <span class="text-sm font-medium text-white group-hover:text-white">Document Legalisation &amp; Notarial Coordination</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Other / I’m not sure">
+            <div>
+              <span class="text-[11px] font-mono text-neutral-400 block mb-0.5">&bull;</span>
+              <span class="text-sm font-medium text-neutral-300 group-hover:text-white">Other / I’m not sure</span>
+            </div>
+            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: SERVICE-SPECIFIC QUESTIONS -->
+      <div id="${pfx}-step-2" class="wizard-step hidden space-y-5">
+        <div class="flex items-center justify-between">
+          <button type="button" class="${pfx}-back-to-1 text-xs text-neutral-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer">
+            &larr; Change Service
+          </button>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-white font-medium ${pfx}-selected-service-pill">Selected Service</span>
+        </div>
+
+        <!-- 4.1 Document Preparation & Support Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Document Preparation & Support">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What type of document do you need help preparing or organising?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Letter" class="sr-only"><span>Letter</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Application" class="sr-only"><span>Application</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Complaint" class="sr-only"><span>Complaint</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Agreement" class="sr-only"><span>Agreement</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Notice" class="sr-only"><span>Notice</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Formal response" class="sr-only"><span>Formal response</span></label>
+              <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-doc-type" value="Other document" class="sr-only"><span>Other document</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What is the purpose of the document, and what would you like it to achieve?</label>
+            <input type="text" class="${pfx}-doc-purpose w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Brief outline...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. New document or existing draft?</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-status" value="New document" class="sr-only"><span>New document</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-doc-status" value="Existing draft needs review / proofreading" class="sr-only"><span>Existing draft needs review</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Who are the individuals, businesses or organisations involved?</label>
+            <input type="text" class="${pfx}-doc-parties w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Names or organisation types...">
+          </div>
+        </div>
+
+        <!-- 4.2 Housing & Landlord-Tenant Matters Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Housing & Landlord-Tenant Matters">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. Are you a landlord, tenant, leaseholder or another occupier?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-role" value="Tenant" class="sr-only"><span>Tenant</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-role" value="Landlord" class="sr-only"><span>Landlord</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-role" value="Leaseholder" class="sr-only"><span>Leaseholder</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-role" value="Other occupier" class="sr-only"><span>Other occupier</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What is the nature of the issue?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Tenancy agreement" class="sr-only"><span>Tenancy agreement</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Rent arrears" class="sr-only"><span>Rent arrears</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Deposit dispute" class="sr-only"><span>Deposit dispute</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Disrepair" class="sr-only"><span>Disrepair</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Eviction or possession notice" class="sr-only"><span>Eviction notice</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Correspondence / Other" class="sr-only"><span>Correspondence / Other</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. What type of property is involved, and where is it located?</label>
+            <input type="text" class="${pfx}-housing-prop w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Residential flat in London...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Have you received any formal notice or correspondence?</label>
+            <div class="flex gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-notice" value="Yes" class="sr-only"><span>Yes</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-notice" value="No" class="sr-only"><span>No</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-notice" value="Not sure" class="sr-only"><span>Not sure</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">5. Has the matter progressed to court, or dealt through correspondence?</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-stage" value="Correspondence only" class="sr-only"><span>Correspondence only</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-stage" value="Court proceedings started" class="sr-only"><span>Court proceedings</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-housing-stage" value="Threat of court action" class="sr-only"><span>Threat of action</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.3 Family & Personal Matters Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Family & Personal Matters">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What type of family or personal matter do you need assistance with?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Separation" class="sr-only"><span>Separation</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Divorce-related documentation" class="sr-only"><span>Divorce documents</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Financial arrangements" class="sr-only"><span>Financial arrangements</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Family dispute" class="sr-only"><span>Family dispute</span></label>
+              <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-family-type" value="Other personal matter" class="sr-only"><span>Other personal matter</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Who are the individuals involved, and what is your relationship to them?</label>
+            <input type="text" class="${pfx}-family-parties w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Spouse / Former partner...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. What would you like to achieve or resolve?</label>
+            <input type="text" class="${pfx}-family-goal w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Desired outcome...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Has the matter been discussed, or has any formal process started?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-process" value="Discussed informally" class="sr-only"><span>Discussed</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-process" value="No discussion yet" class="sr-only"><span>Not discussed</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-process" value="Formal process started" class="sr-only"><span>Formal process</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-process" value="Mediation" class="sr-only"><span>Mediation</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">5. Children, property or financial arrangements? (Brief outline only)</label>
+            <input type="text" class="${pfx}-family-outline w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Brief indication...">
+          </div>
+        </div>
+
+        <!-- 4.4 Business & Commercial Legal Services Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Business & Commercial Legal Services">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What is the name and nature of your business?</label>
+            <input type="text" class="${pfx}-biz-info w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. IT Consultancy, Retail, Founder...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What type of commercial assistance do you need?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Business contract" class="sr-only"><span>Business contract</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Service agreement" class="sr-only"><span>Service agreement</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Consultancy agreement" class="sr-only"><span>Consultancy</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Non-disclosure agreement" class="sr-only"><span>NDA</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Commercial lease" class="sr-only"><span>Commercial lease</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Contractual dispute" class="sr-only"><span>Contract dispute</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. Who are the other parties involved?</label>
+            <input type="text" class="${pfx}-biz-parties w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Other company or individual names...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Stage of agreement / commercial terms?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="New agreement" class="sr-only"><span>New agreement</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="Review or amendment" class="sr-only"><span>Review / Amend</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="Terms agreed" class="sr-only"><span>Terms agreed</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="Still negotiating" class="sr-only"><span>Negotiating</span></label>
+              <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-biz-stage" value="Dispute arisen" class="sr-only"><span>Dispute arisen</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.5 Translation Services Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Translation Services">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What language is the original document in & direction required?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-lang" value="Arabic to English" class="sr-only"><span>Arabic &rarr; English</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-lang" value="Kurdish to English" class="sr-only"><span>Kurdish &rarr; English</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-lang" value="English to Arabic" class="sr-only"><span>English &rarr; Arabic</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-lang" value="English to Kurdish" class="sr-only"><span>English &rarr; Kurdish</span></label>
+              <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-trans-lang" value="Other language pair" class="sr-only"><span>Other language</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What type of document needs translating?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Personal document" class="sr-only"><span>Personal document</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Official certificate" class="sr-only"><span>Official certificate</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Court document" class="sr-only"><span>Court document</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Business document" class="sr-only"><span>Business document</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Agreement / Contract" class="sr-only"><span>Agreement</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Other" class="sr-only"><span>Other</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. Approximately how many pages does the document contain?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-pages" value="1–2 pages" class="sr-only"><span>1–2 pages</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-pages" value="3–5 pages" class="sr-only"><span>3–5 pages</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-pages" value="6–10 pages" class="sr-only"><span>6–10 pages</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-trans-pages" value="10+ pages" class="sr-only"><span>10+ pages</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Where will the translated document be submitted or used?</label>
+            <input type="text" class="${pfx}-trans-target w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Home Office, Court, University, Solicitor, Embassy...">
+          </div>
+        </div>
+
+        <!-- 4.6 Wills & Wills Drafting Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Wills & Wills Drafting">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. Are you looking to prepare a new will or amend an existing will?</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-action" value="Prepare a new will" class="sr-only"><span>Prepare new will</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-action" value="Amend an existing will" class="sr-only"><span>Amend existing will</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-action" value="Assistance with existing will" class="sr-only"><span>Assistance</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Marital status & Dependants?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-marital" value="Single" class="sr-only"><span>Single</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-marital" value="Married / Civil Partner" class="sr-only"><span>Married</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-marital" value="Divorced / Widowed" class="sr-only"><span>Divorced</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-marital" value="Have Children / Dependants" class="sr-only"><span>Children</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. Beneficiaries & Estate assets general indication?</label>
+            <input type="text" class="${pfx}-will-estate w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Spouse & children, UK property, investments...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Have you considered who you would like to appoint as executor?</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-exec" value="Yes, family or friend" class="sr-only"><span>Family or friend</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-exec" value="Solicitor or professional" class="sr-only"><span>Professional</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-will-exec" value="Not decided yet" class="sr-only"><span>Not decided yet</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.7 Document Legalisation & Notarial Coordination Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Document Legalisation & Notarial Coordination">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What document or documents do you need help with?</label>
+            <input type="text" class="${pfx}-legal-doc w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Power of Attorney, Certificate, Commercial Contract...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Will the document be used in the UK or overseas?</label>
+            <div class="flex gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-dest" value="In the UK" class="sr-only"><span>In the UK</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-dest" value="Overseas" class="sr-only"><span>Overseas (Specify country below)</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. What do you understand is required?</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-req" value="Notarisation" class="sr-only"><span>Notarisation</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-req" value="Hague Apostille" class="sr-only"><span>Hague Apostille</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-req" value="Consular legalisation" class="sr-only"><span>Legalisation</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-req" value="Certified translation" class="sr-only"><span>Translation</span></label>
+              <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-legal-req" value="Combination / Not sure" class="sr-only"><span>Combination / Need advice</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Do you need assistance arranging a notary appointment?</label>
+            <div class="flex gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-notary" value="Yes" class="sr-only"><span>Yes</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-notary" value="No" class="sr-only"><span>No</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-legal-notary" value="Not sure" class="sr-only"><span>Not sure</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Other / I’m not sure Questions -->
+        <div class="${pfx}-q-panel hidden space-y-4" data-for="Other / I’m not sure">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. Briefly describe the matter and the assistance you are looking for</label>
+            <textarea class="${pfx}-other-desc w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" rows="3" placeholder="Tell us what you need help with in your own words..."></textarea>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Is there a particular document or issue you need help with?</label>
+            <input type="text" class="${pfx}-other-doc w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Specific document, agreement, court paperwork...">
+          </div>
+          <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-neutral-400 leading-relaxed">
+            <strong>Note:</strong> This option allows Elevance to consider your enquiry and does not confirm that the requested service is offered. Enquiries outside our seven core services will be reviewed before advice is given.
+          </div>
+        </div>
+
+        <!-- COMMON SECTION 7: URGENCY & DEADLINE QUESTION -->
+        <div class="border-t border-line/60 pt-4 space-y-3">
+          <label class="block text-xs uppercase tracking-wider text-fg-3 font-medium">
+            Is there a deadline, hearing, appointment or other urgent date connected with your enquiry?
+          </label>
+          <div class="flex gap-2">
+            <label class="wizard-pill"><input type="radio" name="${pfx}-urgency" value="No" checked class="sr-only"><span>No</span></label>
+            <label class="wizard-pill"><input type="radio" name="${pfx}-urgency" value="Yes" class="sr-only"><span>Yes (Specify date)</span></label>
+            <label class="wizard-pill"><input type="radio" name="${pfx}-urgency" value="Not sure" class="sr-only"><span>Not sure</span></label>
+          </div>
+          <div class="${pfx}-urgency-detail hidden grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div>
+              <label class="block text-[11px] text-fg-3 mb-1 font-medium">Deadline / Hearing Date</label>
+              <input type="date" class="${pfx}-urgent-date w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-xs text-fg focus:border-fg focus:outline-none" style="color-scheme: dark;">
+            </div>
+            <div>
+              <label class="block text-[11px] text-fg-3 mb-1 font-medium">What does this date relate to?</label>
+              <input type="text" class="${pfx}-urgent-context w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-xs text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Notice expiry, court filing...">
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button type="button" class="${pfx}-btn-goto-3 btn-pill-primary w-full justify-center py-2.5 cursor-pointer">
+            CONTINUE TO CONTACT DETAILS &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: CONTACT DETAILS & OPTIONAL UPLOAD -->
+      <div id="${pfx}-step-3" class="wizard-step hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <button type="button" class="${pfx}-back-to-2 text-xs text-neutral-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer">
+            &larr; Back to Questions
+          </button>
+          <span class="text-xs text-fg-3 font-mono">Step 3 of 4</span>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Full Name <span class="text-red-400">*</span></label>
+            <input type="text" id="${pfx}-name" required class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Your full name">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Email Address <span class="text-red-400">*</span></label>
+            <input type="email" id="${pfx}-email" required class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="name@example.com">
+          </div>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Telephone Number <span class="text-fg-3 font-normal">(Optional)</span></label>
+            <input type="tel" id="${pfx}-phone" class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="+44...">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Preferred Contact Method</label>
+            <div class="flex gap-2">
+              <label class="wizard-pill"><input type="radio" name="${pfx}-contact-pref" value="Email" checked class="sr-only"><span>Email</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-contact-pref" value="Telephone" class="sr-only"><span>Telephone</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Preferred Time to be Contacted <span class="text-fg-3 font-normal">(Optional)</span></label>
+          <div class="flex flex-wrap gap-2">
+            <label class="wizard-pill"><input type="radio" name="${pfx}-contact-time" value="Morning (9am – 12pm)" class="sr-only"><span>Morning (9am – 12pm)</span></label>
+            <label class="wizard-pill"><input type="radio" name="${pfx}-contact-time" value="Afternoon (12pm – 5pm)" class="sr-only"><span>Afternoon (12pm – 5pm)</span></label>
+            <label class="wizard-pill"><input type="radio" name="${pfx}-contact-time" value="Anytime" checked class="sr-only"><span>Anytime</span></label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Upload Supporting Documents <span class="text-fg-3 font-normal">(Optional)</span></label>
+          <input type="file" id="${pfx}-files" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" class="w-full text-xs text-fg-3 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border file:border-line file:bg-white/10 file:text-white file:text-xs hover:file:bg-white/20 cursor-pointer">
+          <p class="text-[11px] text-neutral-500 mt-1">Optional. Accepted formats: PDF, Word, images. Max 10MB.</p>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Is there anything else you would like us to know? <span class="text-fg-3 font-normal">(Optional)</span></label>
+          <textarea id="${pfx}-extra-notes" rows="2" class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Brief outline only. Please do not submit unnecessary sensitive details."></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button type="button" class="${pfx}-btn-goto-4 btn-pill-primary w-full justify-center py-2.5 cursor-pointer">
+            REVIEW ENQUIRY &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: REVIEW & SUBMIT -->
+      <div id="${pfx}-step-4" class="wizard-step hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <button type="button" class="${pfx}-back-to-3 text-xs text-neutral-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer">
+            &larr; Edit Details
+          </button>
+          <span class="text-xs text-fg-3 font-mono">Step 4 of 4 &bull; Final Review</span>
+        </div>
+
+        <!-- Summary Card -->
+        <div class="rounded-xl border border-line/80 bg-canvas/60 p-4 space-y-3 text-xs">
+          <div class="flex items-center justify-between border-b border-line/40 pb-2">
+            <span class="text-fg-3 uppercase tracking-wider">Service Category</span>
+            <span class="font-medium text-white ${pfx}-rev-service">Document Preparation</span>
+          </div>
+          <div class="flex items-center justify-between border-b border-line/40 pb-2">
+            <span class="text-fg-3 uppercase tracking-wider">Contact Details</span>
+            <span class="font-medium text-white ${pfx}-rev-client">John Doe &bull; john@example.com</span>
+          </div>
+          <div class="flex items-center justify-between border-b border-line/40 pb-2">
+            <span class="text-fg-3 uppercase tracking-wider">Urgency / Deadline</span>
+            <span class="font-medium text-white ${pfx}-rev-urgency">None stated</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-fg-3 uppercase tracking-wider">Supporting Documents</span>
+            <span class="font-medium text-neutral-300 ${pfx}-rev-files">None attached</span>
+          </div>
+        </div>
+
+        <!-- Mandatory Privacy Consent -->
+        <div class="flex items-start gap-3 pt-1">
+          <input type="checkbox" id="${pfx}-privacy-check" required class="mt-1 h-4 w-4 rounded border-line bg-canvas/60 text-fg focus:ring-offset-canvas cursor-pointer">
+          <label for="${pfx}-privacy-check" class="text-xs text-fg-3 leading-relaxed cursor-pointer">
+            I have read the Privacy Notice and understand how my personal information will be used.
+          </label>
+        </div>
+
+        <!-- Section 9 Pre-submission Disclaimer -->
+        <p class="text-[11px] text-neutral-500 leading-relaxed">
+          Submitting this enquiry does not mean that Elevance has accepted your matter or that a client relationship has been created. If your matter is urgent or involves an imminent deadline, hearing or appointment, please contact us directly.
+        </p>
+
+        <div class="pt-2">
+          <button type="button" class="${pfx}-submit-btn btn-pill-primary w-full justify-center py-3 cursor-pointer">
+            SUBMIT ENQUIRY
+          </button>
+        </div>
+      </div>
+
+      <!-- CONFIRMATION / THANK YOU STATE (Section 9) -->
+      <div id="${pfx}-confirmation" class="wizard-step hidden py-8 text-center space-y-4">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mb-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl sm:text-3xl text-white">Thank you for contacting Elevance.</h3>
+        <p class="text-sm text-neutral-300 leading-relaxed max-w-md mx-auto">
+          Your enquiry has been submitted successfully. We will review the information provided and contact you about the next steps.
+        </p>
+        <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-neutral-400 leading-relaxed text-left max-w-md mx-auto">
+          <strong>Please note:</strong> Submitting this form does not mean that Elevance has accepted your matter or that a client relationship has been created. If your matter is urgent or involves an imminent deadline, hearing or appointment, please do not rely on this form alone. Contact us directly or seek appropriate urgent legal assistance.
+        </div>
+        ${isModal ? `
+          <div class="pt-4">
+            <button type="button" data-intake-close="" class="text-sm underline underline-offset-4 text-neutral-400 hover:text-white cursor-pointer">
+              Close Window
+            </button>
+          </div>
+        ` : ''}
+      </div>
+
+    </div>
+  `;
+}
+
 // 11. SECTION: CONTACT US (Clean Top Alignment & Interactive Form)
 const secContactUs = `
 <!-- SECTION: CONTACT US (Exact Benchmark Copy) -->
@@ -703,69 +1229,9 @@ const secContactUs = `
       </div>
     </div>
 
-    <!-- Contact Form (Exact Fields from Benchmark) -->
+    <!-- Interactive Multi-Step Enquiry Form (Aligned with Make an Enquiry) -->
     <div class="lg:col-span-6">
-      <form id="benchmark-contact-form" class="border border-line rounded-2xl p-6 sm:p-8 bg-canvas/40 backdrop-blur space-y-5">
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label for="full-name" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">FULL NAME</label>
-            <input type="text" id="full-name" name="name" required class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Your full name">
-          </div>
-          <div>
-            <label for="email-address" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">EMAIL ADDRESS</label>
-            <input type="email" id="email-address" name="email" required class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="name@example.com">
-          </div>
-        </div>
-
-        <div class="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label for="telephone-number" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">TELEPHONE NUMBER</label>
-            <input type="tel" id="telephone-number" name="phone" class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="+44...">
-          </div>
-          <div>
-            <label for="nature-of-enquiry" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">NATURE OF ENQUIRY</label>
-            <select id="nature-of-enquiry" name="nature" class="w-full rounded-lg border border-line bg-canvas/80 px-3.5 py-2.5 text-sm text-fg focus:border-fg focus:outline-none" style="color-scheme: dark; background-color: #121212 !important; color: #ffffff !important;">
-              <option value="Document Preparation & Support" style="background-color: #1a1a1a; color: #ffffff;">01 &bull; Document Preparation &amp; Support</option>
-              <option value="Dispute Resolution and Case Support" style="background-color: #1a1a1a; color: #ffffff;">02 &bull; Dispute Resolution and Case Support</option>
-              <option value="Housing & Landlord-Tenant Matters" style="background-color: #1a1a1a; color: #ffffff;">03 &bull; Housing &amp; Landlord-Tenant Matters</option>
-              <option value="Employment & Workplace Matters" style="background-color: #1a1a1a; color: #ffffff;">04 &bull; Employment &amp; Workplace Matters</option>
-              <option value="Family & Personal Matters" style="background-color: #1a1a1a; color: #ffffff;">05 &bull; Family &amp; Personal Matters</option>
-              <option value="Business & Commercial Legal Services" style="background-color: #1a1a1a; color: #ffffff;">06 &bull; Business &amp; Commercial Legal Services</option>
-              <option value="Translation Services" style="background-color: #1a1a1a; color: #ffffff;">07 &bull; Translation Services</option>
-              <option value="Wills & Wills Drafting" style="background-color: #1a1a1a; color: #ffffff;">08 &bull; Wills &amp; Wills Drafting</option>
-              <option value="Lasting Powers of Attorney" style="background-color: #1a1a1a; color: #ffffff;">09 &bull; Lasting Powers of Attorney</option>
-              <option value="Other" style="background-color: #1a1a1a; color: #ffffff;">General Legal Consultancy / Other</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label for="how-can-we-help" class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">HOW CAN WE HELP?</label>
-          <textarea id="how-can-we-help" name="message" rows="4" required class="w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Briefly describe what you would like to achieve..."></textarea>
-        </div>
-
-        <div class="flex items-start gap-3 pt-1">
-          <input type="checkbox" id="privacy-consent" name="privacy" required class="mt-1 h-4 w-4 rounded border-line bg-canvas/60 text-fg focus:ring-offset-canvas">
-          <label for="privacy-consent" class="text-xs text-fg-3 leading-relaxed">
-            I have read the Privacy Notice and understand how my personal information will be used.
-          </label>
-        </div>
-
-        <p class="text-xs text-fg-3 leading-relaxed">
-          Please provide only a brief description of your enquiry. Do not submit confidential documents or sensitive personal information through this form.
-        </p>
-
-        <p class="text-xs text-fg-3 leading-relaxed">
-          Submitting an enquiry does not establish a client relationship. We will contact you to discuss the next steps.
-        </p>
-
-        <button type="submit" id="benchmark-submit-btn" class="w-full btn-pill-primary py-3">
-          SUBMIT ENQUIRY
-        </button>
-        <div id="benchmark-success-msg" class="hidden text-center text-xs text-emerald-400 font-medium py-2">
-          &check; Thank you! Your enquiry has been received. We will contact you shortly.
-        </div>
-      </form>
+      ${renderEnquiryWizardHtml('page', false)}
     </div>
   </div>
 </section>
@@ -851,11 +1317,14 @@ const benchmarkFooter = `
 
     <!-- Bottom Hyperlinks & Copyright -->
     <div class="border-t border-line pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-fg-3">
-      <div class="flex flex-wrap gap-x-6 gap-y-2">
-        <a href="#contact" data-intake-open="" data-prefill="Privacy Notice enquiry" class="hover:text-fg hover:underline">Privacy Notice</a>
-        <a href="#contact" data-intake-open="" data-prefill="Terms of Business enquiry" class="hover:text-fg hover:underline">Terms of Business</a>
-        <a href="#contact" data-intake-open="" data-prefill="Complaints Procedure enquiry" class="hover:text-fg hover:underline">Complaints Procedure</a>
-        <a href="#solicitor" class="hover:text-fg hover:underline">Regulatory Information</a>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-fg-3">
+        <span>Privacy Notice</span>
+        <span class="text-fg-3/30" aria-hidden="true">&bull;</span>
+        <span>Terms of Business</span>
+        <span class="text-fg-3/30" aria-hidden="true">&bull;</span>
+        <span>Complaints Procedure</span>
+        <span class="text-fg-3/30" aria-hidden="true">&bull;</span>
+        <span>Regulatory Information</span>
       </div>
       <div>
         <span>&copy; 2026 Elevance Legal Services Ltd. All rights reserved.</span>
@@ -902,6 +1371,24 @@ const topEnd = html.indexOf('</section>', html.indexOf('id="top"'));
 const mainEnd = html.indexOf('</main>');
 
 html = html.slice(0, topEnd + 10) + '\n\n' + allSections + '\n\n' + html.slice(mainEnd);
+
+
+// Replace old intake dialog with the new Unified Multi-Step Enquiry Modal Dialog
+const newModalHtml = `
+<dialog data-intake-modal="" aria-labelledby="modal-intake-title" class="p-0 border-0 bg-transparent backdrop:bg-black/85 backdrop:backdrop-blur-md">
+  <div class="intake-dialog-card mx-auto w-full max-w-2xl bg-black border border-white/20 rounded-2xl overflow-hidden shadow-2xl">
+    <header class="flex items-center justify-between border-b border-line px-6 py-4 bg-black/90">
+      <p id="modal-intake-title" class="eyebrow tracking-widest text-xs uppercase font-semibold text-white">ELEVANCE &bull; MAKE AN ENQUIRY</p>
+      <button type="button" data-intake-close="" aria-label="Close" class="text-sm text-neutral-400 hover:text-white transition-colors cursor-pointer px-2 py-1">
+        Esc ✕
+      </button>
+    </header>
+    ${renderEnquiryWizardHtml('modal', true)}
+  </div>
+</dialog>
+`;
+
+html = html.replace(/<dialog data-intake-modal=""[\s\S]*?<\/dialog>/i, newModalHtml);
 
 // Update title and canonical
 html = html.replace(/<link rel="canonical"[^>]*>/i, '<link rel="canonical" href="https://www.elevancelegal.co.uk/third/">');
@@ -1000,6 +1487,36 @@ const customStyles = `
     padding-bottom: 0.75rem !important;
     margin: 0 !important;
   }
+
+  /* Wizard Radio & Checkbox Pills */
+  .wizard-pill {
+    cursor: pointer !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 0.5rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: #cccccc !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+    transition: all 0.2s ease !important;
+    user-select: none !important;
+  }
+  .wizard-pill:hover {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    color: #ffffff !important;
+  }
+  .wizard-pill:has(:checked) {
+    border-color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+  }
+
   @media (max-width: 1023px) {
     .dropdown-grid-3 {
       grid-template-columns: 1fr !important;
@@ -1011,47 +1528,289 @@ const customStyles = `
 // Inject custom styles before </head>
 html = html.replace('</head>', `  <style>\n${customStyles}\n  </style>\n</head>`);
 
-// Add Contact Form submission handler and Dropdown Auto-Close script
 const scriptsToAppend = `
 <script>
 (function() {
-  const form = document.getElementById("benchmark-contact-form");
-  if (form && !form.__bound) {
-    form.__bound = true;
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const btn = document.getElementById("benchmark-submit-btn");
-      const successMsg = document.getElementById("benchmark-success-msg");
+  // Wizard Controller Engine for both 'page' and 'modal'
+  function initEnquiryWizard(pfx) {
+    const container = document.getElementById(pfx + "-wizard-container");
+    if (!container || container.__inited) return;
+    container.__inited = true;
+
+    let currentStep = 1;
+    let selectedService = "";
+
+    const step1 = document.getElementById(pfx + "-step-1");
+    const step2 = document.getElementById(pfx + "-step-2");
+    const step3 = document.getElementById(pfx + "-step-3");
+    const step4 = document.getElementById(pfx + "-step-4");
+    const stepConfirm = document.getElementById(pfx + "-confirmation");
+
+    const progressBar = container.querySelector("." + pfx + "-progress-bar");
+    const stepIndicator = container.querySelector("." + pfx + "-step-indicator");
+    const stepBadge = container.querySelector("." + pfx + "-step-badge");
+
+    function setStep(step) {
+      currentStep = step;
+      [step1, step2, step3, step4, stepConfirm].forEach(function(el) {
+        if (el) el.classList.add("hidden");
+      });
+      if (step === 1) {
+        if (step1) step1.classList.remove("hidden");
+        if (progressBar) progressBar.style.width = "25%";
+        if (stepIndicator) stepIndicator.textContent = "Step 1 of 4 • Select Service";
+        if (stepBadge) stepBadge.textContent = "Initial Enquiry";
+      } else if (step === 2) {
+        if (step2) step2.classList.remove("hidden");
+        if (progressBar) progressBar.style.width = "50%";
+        if (stepIndicator) stepIndicator.textContent = "Step 2 of 4 • Service Questions";
+        if (stepBadge) stepBadge.textContent = selectedService;
+      } else if (step === 3) {
+        if (step3) step3.classList.remove("hidden");
+        if (progressBar) progressBar.style.width = "75%";
+        if (stepIndicator) stepIndicator.textContent = "Step 3 of 4 • Contact Details";
+        if (stepBadge) stepBadge.textContent = "Client Details";
+      } else if (step === 4) {
+        if (step4) step4.classList.remove("hidden");
+        if (progressBar) progressBar.style.width = "95%";
+        if (stepIndicator) stepIndicator.textContent = "Step 4 of 4 • Final Review";
+        if (stepBadge) stepBadge.textContent = "Review & Submit";
+        updateReviewSummary();
+      } else if (step === 5) {
+        if (stepConfirm) stepConfirm.classList.remove("hidden");
+        if (progressBar) progressBar.style.width = "100%";
+        if (stepIndicator) stepIndicator.textContent = "Enquiry Submitted";
+        if (stepBadge) stepBadge.textContent = "Confirmed";
+      }
+    }
+
+    // Service buttons in Step 1
+    container.querySelectorAll("." + pfx + "-srv-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        selectedService = btn.getAttribute("data-service") || "";
+        container.querySelectorAll("." + pfx + "-selected-service-pill").forEach(function(el) {
+          el.textContent = selectedService;
+        });
+
+        // Show matching questions panel in Step 2
+        container.querySelectorAll("." + pfx + "-q-panel").forEach(function(p) {
+          if (p.getAttribute("data-for") === selectedService) {
+            p.classList.remove("hidden");
+          } else {
+            p.classList.add("hidden");
+          }
+        });
+        setStep(2);
+      });
+    });
+
+    // Back navigation buttons
+    container.querySelector("." + pfx + "-back-to-1")?.addEventListener("click", function() { setStep(1); });
+    container.querySelector("." + pfx + "-back-to-2")?.addEventListener("click", function() { setStep(2); });
+    container.querySelector("." + pfx + "-back-to-3")?.addEventListener("click", function() { setStep(3); });
+
+    // Urgency toggle
+    const urgencyRadios = container.querySelectorAll("input[name='" + pfx + "-urgency']");
+    const urgencyDetail = container.querySelector("." + pfx + "-urgency-detail");
+    urgencyRadios.forEach(function(r) {
+      r.addEventListener("change", function() {
+        if (urgencyDetail) {
+          if (r.value === "Yes") {
+            urgencyDetail.classList.remove("hidden");
+          } else {
+            urgencyDetail.classList.add("hidden");
+          }
+        }
+      });
+    });
+
+    // Step 2 -> Step 3
+    container.querySelector("." + pfx + "-btn-goto-3")?.addEventListener("click", function() {
+      setStep(3);
+    });
+
+    // Step 3 -> Step 4
+    container.querySelector("." + pfx + "-btn-goto-4")?.addEventListener("click", function() {
+      const nameInput = document.getElementById(pfx + "-name");
+      const emailInput = document.getElementById(pfx + "-email");
+      if (!nameInput?.value.trim()) {
+        alert("Please provide your name.");
+        nameInput?.focus();
+        return;
+      }
+      if (!emailInput?.value.trim() || !emailInput.value.includes("@")) {
+        alert("Please provide a valid email address.");
+        emailInput?.focus();
+        return;
+      }
+      setStep(4);
+    });
+
+    // Review Summary in Step 4
+    function updateReviewSummary() {
+      const revService = container.querySelector("." + pfx + "-rev-service");
+      const revClient = container.querySelector("." + pfx + "-rev-client");
+      const revUrgency = container.querySelector("." + pfx + "-rev-urgency");
+      const revFiles = container.querySelector("." + pfx + "-rev-files");
+
+      if (revService) revService.textContent = selectedService || "Not selected";
+
+      const name = document.getElementById(pfx + "-name")?.value || "";
+      const email = document.getElementById(pfx + "-email")?.value || "";
+      const phone = document.getElementById(pfx + "-phone")?.value || "";
+      if (revClient) revClient.textContent = name + " • " + email + (phone ? " (" + phone + ")" : "");
+
+      const isUrgent = container.querySelector("input[name='" + pfx + "-urgency']:checked")?.value || "No";
+      if (isUrgent === "Yes") {
+        const uDate = container.querySelector("." + pfx + "-urgent-date")?.value || "";
+        const uCtx = container.querySelector("." + pfx + "-urgent-context")?.value || "";
+        if (revUrgency) {
+          revUrgency.textContent = "URGENT: " + (uDate || "Date unspecified") + (uCtx ? " (" + uCtx + ")" : "");
+          revUrgency.className = "font-medium text-amber-400 " + pfx + "-rev-urgency";
+        }
+      } else {
+        if (revUrgency) {
+          revUrgency.textContent = isUrgent;
+          revUrgency.className = "font-medium text-white " + pfx + "-rev-urgency";
+        }
+      }
+
+      const fileInput = document.getElementById(pfx + "-files");
+      if (revFiles) {
+        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+          revFiles.textContent = fileInput.files.length + " file(s) attached (" + Array.from(fileInput.files).map(f => f.name).join(", ") + ")";
+        } else {
+          revFiles.textContent = "None attached";
+        }
+      }
+    }
+
+    // Submit handler
+    container.querySelector("." + pfx + "-submit-btn")?.addEventListener("click", function() {
+      const privacyCheck = document.getElementById(pfx + "-privacy-check");
+      if (!privacyCheck?.checked) {
+        alert("Please check the box confirming you have read the Privacy Notice.");
+        privacyCheck?.focus();
+        return;
+      }
+
+      const btn = container.querySelector("." + pfx + "-submit-btn");
       if (btn) {
         btn.disabled = true;
-        btn.innerText = "Submitting...";
+        btn.textContent = "Submitting...";
       }
+
+      const name = document.getElementById(pfx + "-name")?.value || "";
+      const email = document.getElementById(pfx + "-email")?.value || "";
+      const phone = document.getElementById(pfx + "-phone")?.value || "";
+      const contactPref = container.querySelector("input[name='" + pfx + "-contact-pref']:checked")?.value || "Email";
+      const contactTime = container.querySelector("input[name='" + pfx + "-contact-time']:checked")?.value || "Anytime";
+      const extraNotes = document.getElementById(pfx + "-extra-notes")?.value || "";
+
+      const isUrgent = container.querySelector("input[name='" + pfx + "-urgency']:checked")?.value || "No";
+      const uDate = container.querySelector("." + pfx + "-urgent-date")?.value || "";
+      const uCtx = container.querySelector("." + pfx + "-urgent-context")?.value || "";
+
+      let detailsArr = [];
+      const activePanel = container.querySelector("." + pfx + "-q-panel:not(.hidden)");
+      if (activePanel) {
+        activePanel.querySelectorAll("label.wizard-pill input:checked").forEach(function(inp) {
+          detailsArr.push(inp.name.replace(pfx + "-", "") + ": " + inp.value);
+        });
+        activePanel.querySelectorAll("input[type='text'], textarea").forEach(function(txt) {
+          if (txt.value.trim()) {
+            detailsArr.push(txt.placeholder.split("...")[0].trim() + ": " + txt.value.trim());
+          }
+        });
+      }
+
+      const fileInput = document.getElementById(pfx + "-files");
+      let fileNames = [];
+      if (fileInput && fileInput.files) {
+        for (let i = 0; i < fileInput.files.length; i++) {
+          fileNames.push(fileInput.files[i].name);
+        }
+      }
+
+      const compiledQuestion = [
+        "SERVICE AREA: " + selectedService,
+        "URGENCY / DEADLINE: " + (isUrgent === "Yes" ? ("YES (" + uDate + " - " + uCtx + ")") : isUrgent),
+        detailsArr.length ? ("SPECIFIC DETAILS: " + detailsArr.join("; ")) : "",
+        "PREFERRED CONTACT: " + contactPref + " (" + contactTime + ")",
+        extraNotes ? ("ADDITIONAL NOTES: " + extraNotes) : "",
+        fileNames.length ? ("ATTACHED FILES: " + fileNames.join(", ")) : ""
+      ].filter(Boolean).join(" | ");
+
       const payload = {
-        name: document.getElementById("full-name")?.value || "",
-        email: document.getElementById("email-address")?.value || "",
-        phone: document.getElementById("telephone-number")?.value || "",
-        nature: document.getElementById("nature-of-enquiry")?.value || "",
-        question: "[" + (document.getElementById("nature-of-enquiry")?.value || "") + "] " + 
-                  (document.getElementById("how-can-we-help")?.value || "") + 
-                  (document.getElementById("telephone-number")?.value ? " (Phone: " + document.getElementById("telephone-number").value + ")" : "")
+        name: name,
+        email: email,
+        phone: phone,
+        service: selectedService,
+        question: compiledQuestion
       };
+
       fetch("contact.php", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(payload)
       }).catch(function() {}).finally(function() {
-        form.reset();
-        if (btn) {
-          btn.disabled = false;
-          btn.innerText = "SUBMIT ENQUIRY";
-        }
-        if (successMsg) {
-          successMsg.classList.remove("hidden");
-          setTimeout(function() { successMsg.classList.add("hidden"); }, 8000);
-        }
+        setStep(5);
       });
     });
+
+    window[pfx + "WizardOpenWithService"] = function(srv) {
+      if (srv) {
+        const btn = container.querySelector("." + pfx + "-srv-btn[data-service*='" + srv + "']");
+        if (btn) {
+          btn.click();
+          return;
+        }
+      }
+      setStep(1);
+    };
   }
+
+  // Initialize both wizards
+  function initAllWizards() {
+    initEnquiryWizard("page");
+    initEnquiryWizard("modal");
+  }
+
+  // Intake Modal open/close wiring
+  const modal = document.querySelector("[data-intake-modal]");
+  function openModal(prefill) {
+    if (modal) {
+      modal.showModal();
+      if (window.modalWizardOpenWithService) {
+        window.modalWizardOpenWithService(prefill || "");
+      }
+    }
+  }
+
+  function closeModal() {
+    if (modal && modal.open) {
+      modal.close();
+    }
+  }
+
+  document.addEventListener("click", function(e) {
+    const openTarget = e.target.closest("[data-intake-open]");
+    if (openTarget) {
+      e.preventDefault();
+      openModal(openTarget.dataset.prefill || "");
+      return;
+    }
+    const closeTarget = e.target.closest("[data-intake-close]");
+    if (closeTarget) {
+      e.preventDefault();
+      closeModal();
+      return;
+    }
+    if (modal && e.target === modal) {
+      closeModal();
+      return;
+    }
+  });
 
   // Auto-close dropdown when a link is clicked
   function initDropdownCloser() {
@@ -1064,9 +1823,14 @@ const scriptsToAppend = `
       });
     });
   }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initDropdownCloser);
+    document.addEventListener("DOMContentLoaded", function() {
+      initAllWizards();
+      initDropdownCloser();
+    });
   } else {
+    initAllWizards();
     initDropdownCloser();
   }
 })();
