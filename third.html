@@ -445,6 +445,31 @@
     margin-top: 10px !important;
   }
 
+    /* Proportional 80% Scale for H1 & H2 Across the Site */
+  #hero-title {
+    font-size: clamp(1.9rem, 4.15vw, 4.15rem) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.03em !important;
+    max-width: 28ch !important;
+  }
+  h2.text-5xl.md\:text-7xl,
+  h2.md\:text-7xl {
+    font-size: clamp(2.2rem, 3.6vw, 3.6rem) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.025em !important;
+  }
+  h2.text-4xl.md\:text-6xl,
+  h2.md\:text-6xl {
+    font-size: clamp(1.8rem, 3vw, 3rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.025em !important;
+  }
+  h2.text-3xl.md\:text-5xl,
+  h2.md\:text-5xl {
+    font-size: clamp(1.5rem, 2.4vw, 2.4rem) !important;
+    line-height: 1.15 !important;
+  }
+
   /* Wizard Step 4: Polish Review Summary Card (Pixel-Perfect, Zero Line Collision) */
   .wizard-summary-card {
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
@@ -578,7 +603,7 @@
 
   /* Exact Pitch Hero Headline Sizing - Responsive for all viewports */
   #hero-title {
-    font-size: clamp(2.4rem, 5.2vw, 5.2rem) !important;
+    font-size: clamp(1.9rem, 4.15vw, 4.15rem) !important;
     line-height: 1.02 !important;
     letter-spacing: -0.035em !important;
     font-weight: 400 !important;
