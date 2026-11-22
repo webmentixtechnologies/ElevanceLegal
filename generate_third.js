@@ -685,7 +685,7 @@ const secContactUs = `
         <ul class="space-y-3 text-sm text-fg-2">
           <li class="flex items-start gap-3">
             <span class="text-fg-3 w-32 shrink-0">Office address</span>
-            <span class="text-white">London, United Kingdom</span>
+            <span class="text-white">157, Pitshanger Lane, London W5 1RH</span>
           </li>
           <li class="flex items-start gap-3">
             <span class="text-fg-3 w-32 shrink-0">Telephone number</span>
@@ -842,7 +842,7 @@ const benchmarkFooter = `
         <p class="text-white font-medium">Elevance Legal Services Ltd</p>
         <p>Registered in England and Wales</p>
         <p>Company Registration Number: 16186851</p>
-        <p>Registered Office: London, United Kingdom</p>
+        <p>Registered Office: 157, Pitshanger Lane, London W5 1RH</p>
         <p>Email: <a href="mailto:info@elevancelegal.co.uk" class="text-fg-2 hover:underline">info@elevancelegal.co.uk</a></p>
         <p>Telephone: <a href="tel:+447543105658" class="text-fg-2 hover:underline">+44 7543 105658</a></p>
       </div>
