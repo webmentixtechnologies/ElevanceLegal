@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevance Legal Services - Fused E+L Logo Monogram Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090b;
+    --card-bg: #121215;
+    --border: #27272a;
+    --gold: #d4af37;
+    --gold-light: #f3e5ab;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    padding: 40px 24px 80px;
+    min-height: 100vh;
+  }
+  .header {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 9999px;
+    color: var(--gold-light);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 40%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p.subtitle {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+  }
+  .concept-tag {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .logo-showcase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 36px 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%);
+  }
+  .squircle-black {
+    width: 120px;
+    height: 120px;
+    background: #000000;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.1);
+    border: 1px solid #1a1a1a;
+  }
+  .squircle-gold {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(145deg, #1f1b13, #0d0c0a);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+  }
+  .squircle-white {
+    width: 120px;
+    height: 120px;
+    background: #ffffff;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .card p.desc {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  .specs {
+    list-style: none;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    color: #ccc;
+  }
+  .specs li {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .specs li:last-child { margin-bottom: 0; }
+  .specs li span.bullet {
+    color: var(--gold);
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .preview-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .brand-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+  .brand-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <span class="badge">Elevance Legal Services Brand Identity</span>
+  <h1>Fused "E + L" Monogram Concepts</h1>
+  <p class="subtitle">Exploring sophisticated Didone / Modern serif fusions of the letters <strong>E</strong> (Elevance) and <strong>L</strong> (Legal), maintaining the exact weight, geometry, and squircle silhouette of the original mark.</p>
+</header>
+
+<div class="grid">
+
+  <!-- Concept 1: The Extended Foot Ligature -->
+  <div class="card">
+    <span class="concept-tag">Option 01 &bull; Recommended</span>
+    <div class="logo-showcase">
+      <div class="squircle-black">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <!-- Shared Stem & Upper E Bars -->
+          <path d="M 28 22 L 72 22 L 72 32 L 67 32 C 66 28 64 26 58 26 L 41 26 L 41 46 L 56 46 C 60 46 62 45 63 41 L 68 41 L 68 57 L 63 57 C 62 53 60 52 56 52 L 41 52 L 41 74 L 66 74 C 74 74 78 72 80 66 L 85 66 L 83 78 L 22 78 L 22 72 C 27 72 29 70 29 65 L 29 35 C 29 30 27 28 22 28 L 22 22 Z" fill="#FFFFFF"/>
+          <!-- L Upward Serif Terminal on extended foot -->
+          <path d="M 78 64 L 84 64 L 82 78 L 76 78 Z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <div class="squircle-gold">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <path d="M 28 22 L 72 22 L 72 32 L 67 32 C 66 28 64 26 58 26 L 41 26 L 41 46 L 56 46 C 60 46 62 45 63 41 L 68 41 L 68 57 L 63 57 C 62 53 60 52 56 52 L 41 52 L 41 74 L 66 74 C 74 74 78 72 80 66 L 85 66 L 83 78 L 22 78 L 22 72 C 27 72 29 70 29 65 L 29 35 C 29 30 27 28 22 28 L 22 22 Z" fill="url(#gold1)"/>
+          <defs>
+            <linearGradient id="gold1" x1="20" y1="20" x2="85" y2="80" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FBF4D8"/>
+              <stop offset="0.5" stop-color="#D4AF37"/>
+              <stop offset="1" stop-color="#AA820A"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <h3>01. The Horizon Baseline</h3>
+    <p class="desc">The vertical stem and top/middle arms preserve the exact Didone serif anatomy of the original "E", while the lower arm sweeps forward uninterrupted into an extended "L" foundation with a sharp upright chisel terminal.</p>
+    <ul class="specs">
+      <li><span class="bullet">&bull;</span> Identical visual weight and counter proportions to original image</li>
+      <li><span class="bullet">&bull;</span> Subtly reads as "E" at first glance and reveals the unified "L" foot</li>
+      <li><span class="bullet">&bull;</span> Symbolizes a solid legal foundation and elevated forward trajectory</li>
+    </ul>
+    <div class="preview-bar">
+      <div>
+        <div class="brand-wordmark">Elevance</div>
+        <span class="brand-sub">Legal Services</span>
+      </div>
+      <span style="font-size: 0.8rem; color: #888;">Didone Classic</span>
+    </div>
+  </div>
+
+  <!-- Concept 2: Interlocking Luxury Monogram -->
+  <div class="card">
+    <span class="concept-tag">Option 02 &bull; Luxury Weave</span>
+    <div class="logo-showcase">
+      <div class="squircle-black">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <!-- E letterform -->
+          <path d="M 25 24 L 62 24 L 62 32 L 58 32 C 56 28 54 27 49 27 L 37 27 L 37 46 L 50 46 C 53 46 55 45 56 42 L 59 42 L 59 54 L 56 54 C 55 51 53 50 50 50 L 37 50 L 37 73 L 53 73 C 58 73 60 72 62 67 L 65 67 L 63 76 L 21 76 L 21 71 C 24 71 25 70 25 66 L 25 34 C 25 30 24 29 21 29 L 21 24 Z" fill="#FFFFFF"/>
+          <!-- Interlocking L passing through and over -->
+          <path d="M 54 18 L 65 18 L 65 65 C 65 69 67 70 71 70 L 82 70 C 85 70 86 67 87 62 L 90 62 L 88 76 L 49 76 L 49 71 C 52 71 54 69 54 65 L 54 18 Z" fill="#D4AF37"/>
+          <!-- Mask cutouts to create weaving depth -->
+          <line x1="51" y1="44" x2="67" y2="44" stroke="#000" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div class="squircle-white">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <path d="M 25 24 L 62 24 L 62 32 L 58 32 C 56 28 54 27 49 27 L 37 27 L 37 46 L 50 46 C 53 46 55 45 56 42 L 59 42 L 59 54 L 56 54 C 55 51 53 50 50 50 L 37 50 L 37 73 L 53 73 C 58 73 60 72 62 67 L 65 67 L 63 76 L 21 76 L 21 71 C 24 71 25 70 25 66 L 25 34 C 25 30 24 29 21 29 L 21 24 Z" fill="#121215"/>
+          <path d="M 54 18 L 65 18 L 65 65 C 65 69 67 70 71 70 L 82 70 C 85 70 86 67 87 62 L 90 62 L 88 76 L 49 76 L 49 71 C 52 71 54 69 54 65 L 54 18 Z" fill="#997819"/>
+          <line x1="51" y1="44" x2="67" y2="44" stroke="#fff" stroke-width="2.5"/>
+        </svg>
+      </div>
+    </div>
+    <h3>02. The Interlocking Crest</h3>
+    <p class="desc">A haute-couture weave reminiscent of Mayfair legal boutiques and royal charters. The gold "L" gracefully interlaces behind the top bar of "E" and in front of the middle bar, creating striking three-dimensional depth.</p>
+    <ul class="specs">
+      <li><span class="bullet">&bull;</span> Distinct dual-tone contrast (White/Gold or Platinum/Charcoal)</li>
+      <li><span class="bullet">&bull;</span> High prestige and memorable presence on letterheads and wax seals</li>
+      <li><span class="bullet">&bull;</span> Highlights the collaborative partnership between Elevance &amp; Ranjay</li>
+    </ul>
+    <div class="preview-bar">
+      <div>
+        <div class="brand-wordmark">Elevance</div>
+        <span class="brand-sub">Legal Services</span>
+      </div>
+      <span style="font-size: 0.8rem; color: #888;">Interlaced Dual Tone</span>
+    </div>
+  </div>
+
+  <!-- Concept 3: The Nested Counter Silhouette -->
+  <div class="card">
+    <span class="concept-tag">Option 03 &bull; Architectural</span>
+    <div class="logo-showcase">
+      <div class="squircle-black">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <!-- E Silhouette with L nestled inside lower counter -->
+          <path d="M 26 22 L 74 22 L 74 33 L 68 33 C 67 28 65 26 59 26 L 42 26 L 42 45 L 58 45 C 62 45 64 43 65 39 L 70 39 L 70 55 L 65 55 C 64 51 62 50 58 50 L 42 50 L 42 74 L 70 74 C 76 74 79 72 81 67 L 85 67 L 84 78 L 20 78 L 20 72 C 24 72 26 70 26 65 L 26 35 C 26 30 24 28 20 28 L 20 22 Z" fill="#FFFFFF"/>
+          <!-- L nested in middle right slot -->
+          <path d="M 64 36 L 73 36 L 73 68 L 84 68 C 86 68 87 67 87 64 L 89 64 L 88 73 L 59 73 L 59 69 C 62 69 64 68 64 65 L 64 36 Z" fill="#D4AF37"/>
+        </svg>
+      </div>
+      <div class="squircle-gold">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <path d="M 26 22 L 74 22 L 74 33 L 68 33 C 67 28 65 26 59 26 L 42 26 L 42 45 L 58 45 C 62 45 64 43 65 39 L 70 39 L 70 55 L 65 55 C 64 51 62 50 58 50 L 42 50 L 42 74 L 70 74 C 76 74 79 72 81 67 L 85 67 L 84 78 L 20 78 L 20 72 C 24 72 26 70 26 65 L 26 35 C 26 30 24 28 20 28 L 20 22 Z" fill="#FFFFFF"/>
+          <path d="M 64 36 L 73 36 L 73 68 L 84 68 C 86 68 87 67 87 64 L 89 64 L 88 73 L 59 73 L 59 69 C 62 69 64 68 64 65 L 64 36 Z" fill="#F3E5AB"/>
+        </svg>
+      </div>
+    </div>
+    <h3>03. The Stepped Counter</h3>
+    <p class="desc">A geometric marvel where the "L" is carved directly within the open negative space between the middle and lower crossbars of "E". Clean, balanced, and perfectly proportioned for mobile app icons and favicons.</p>
+    <ul class="specs">
+      <li><span class="bullet">&bull;</span> Compact optical footprint, ultra-sharp at 16px and 32px</li>
+      <li><span class="bullet">&bull;</span> Modern architectural aesthetic with British legal restraint</li>
+      <li><span class="bullet">&bull;</span> 100% scalable vector geometry</li>
+    </ul>
+    <div class="preview-bar">
+      <div>
+        <div class="brand-wordmark">Elevance</div>
+        <span class="brand-sub">Legal Services</span>
+      </div>
+      <span style="font-size: 0.8rem; color: #888;">Precision Inset</span>
+    </div>
+  </div>
+
+  <!-- Concept 4: The Shared Vertical Dual Pillar -->
+  <div class="card">
+    <span class="concept-tag">Option 04 &bull; Classical Pillars</span>
+    <div class="logo-showcase">
+      <div class="squircle-black">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <!-- Left Column (E) -->
+          <path d="M 22 22 L 58 22 L 58 31 L 54 31 C 52 28 50 26 45 26 L 35 26 L 35 46 L 46 46 L 46 51 L 35 51 L 35 73 L 48 73 C 52 73 54 71 56 67 L 59 67 L 57 78 L 16 78 L 16 73 C 20 73 22 71 22 66 L 22 34 C 22 29 20 27 16 27 L 16 22 Z" fill="#FFFFFF"/>
+          <!-- Right Column (L) -->
+          <path d="M 52 22 L 66 22 L 66 67 C 66 71 68 73 73 73 L 84 73 C 88 73 90 71 91 66 L 94 66 L 92 78 L 46 78 L 46 73 C 50 73 52 71 52 66 L 52 22 Z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <div class="squircle-gold">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <path d="M 22 22 L 58 22 L 58 31 L 54 31 C 52 28 50 26 45 26 L 35 26 L 35 46 L 46 46 L 46 51 L 35 51 L 35 73 L 48 73 C 52 73 54 71 56 67 L 59 67 L 57 78 L 16 78 L 16 73 C 20 73 22 71 22 66 L 22 34 C 22 29 20 27 16 27 L 16 22 Z" fill="#E2C768"/>
+          <path d="M 52 22 L 66 22 L 66 67 C 66 71 68 73 73 73 L 84 73 C 88 73 90 71 91 66 L 94 66 L 92 78 L 46 78 L 46 73 C 50 73 52 71 52 66 L 52 22 Z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+    </div>
+    <h3>04. The Dual Columns</h3>
+    <p class="desc">Evoking the colonnades of London's Royal Courts of Justice. The twin parallel columns ground the monogram with profound institutional permanence, bridged by the three graceful horizontal crossbars of the "E".</p>
+    <ul class="specs">
+      <li><span class="bullet">&bull;</span> Unmistakable legal authority and structural symmetry</li>
+      <li><span class="bullet">&bull;</span> Balances the square frame with harmonious negative space</li>
+      <li><span class="bullet">&bull;</span> Strongest choice for formal corporate documentation</li>
+    </ul>
+    <div class="preview-bar">
+      <div>
+        <div class="brand-wordmark">Elevance</div>
+        <span class="brand-sub">Legal Services</span>
+      </div>
+      <span style="font-size: 0.8rem; color: #888;">Classical Columns</span>
+    </div>
+  </div>
+
+  <!-- Concept 5: Heritage Ball Terminal Swash -->
+  <div class="card">
+    <span class="concept-tag">Option 05 &bull; Heritage Serif</span>
+    <div class="logo-showcase">
+      <div class="squircle-black">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <!-- Monogram with Didot ball terminal on L -->
+          <path d="M 26 22 L 72 22 L 72 32 L 67 32 C 66 27 63 26 57 26 L 39 26 L 39 45 L 53 45 C 57 45 59 44 60 40 L 64 40 L 64 56 L 60 56 C 59 52 57 51 53 51 L 39 51 L 39 72 C 39 74 41 75 45 75 L 68 75 C 75 75 79 71 80 66 C 81 61 78 57 74 57 C 71 57 69 59 69 62 C 69 65 71 67 74 67 C 75 67 76 66 76 65 C 76 67 73 70 69 70 L 46 70 C 34 70 30 67 30 60 L 30 35 C 30 29 28 27 23 27 L 23 22 Z" fill="#FFFFFF"/>
+          <circle cx="79" cy="62" r="5" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <div class="squircle-gold">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <path d="M 26 22 L 72 22 L 72 32 L 67 32 C 66 27 63 26 57 26 L 39 26 L 39 45 L 53 45 C 57 45 59 44 60 40 L 64 40 L 64 56 L 60 56 C 59 52 57 51 53 51 L 39 51 L 39 72 C 39 74 41 75 45 75 L 68 75 C 75 75 79 71 80 66 C 81 61 78 57 74 57 C 71 57 69 59 69 62 C 69 65 71 67 74 67 C 75 67 76 66 76 65 C 76 67 73 70 69 70 L 46 70 C 34 70 30 67 30 60 L 30 35 C 30 29 28 27 23 27 L 23 22 Z" fill="#D4AF37"/>
+          <circle cx="79" cy="62" r="5" fill="#D4AF37"/>
+        </svg>
+      </div>
+    </div>
+    <h3>05. The Didot Ball Terminal</h3>
+    <p class="desc">A romanticized calligraphic flourish where the lower arm of the "E" loops gracefully into a sweeping script "L" foot culminating in an authentic 18th-century French Didot teardrop/ball terminal.</p>
+    <ul class="specs">
+      <li><span class="bullet">&bull;</span> Warm, artistic, and highly distinctive signature flourish</li>
+      <li><span class="bullet">&bull;</span> Conveys bespoke personal attention and artisanal craft</li>
+      <li><span class="bullet">&bull;</span> Beautiful on business cards and luxury merchandise</li>
+    </ul>
+    <div class="preview-bar">
+      <div>
+        <div class="brand-wordmark">Elevance</div>
+        <span class="brand-sub">Legal Services</span>
+      </div>
+      <span style="font-size: 0.8rem; color: #888;">Didot Flourish</span>
+    </div>
+  </div>
+
+  <!-- Concept 6: Modernist Stencil Fusion -->
+  <div class="card">
+    <span class="concept-tag">Option 06 &bull; Modernist Cut</span>
+    <div class="logo-showcase">
+      <div class="squircle-black">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <!-- Vertical spine with hairline incision -->
+          <rect x="25" y="22" width="13" height="56" fill="#FFFFFF"/>
+          <!-- Top bar -->
+          <rect x="38" y="22" width="34" height="7" fill="#FFFFFF"/>
+          <rect x="65" y="22" width="7" height="11" fill="#FFFFFF"/>
+          <!-- Mid bar -->
+          <rect x="38" y="46" width="22" height="6" fill="#FFFFFF"/>
+          <!-- Fused L lower bar extending with wedge -->
+          <polygon points="38,71 83,71 83,61 77,61 77,78 38,78" fill="#D4AF37"/>
+        </svg>
+      </div>
+      <div class="squircle-white">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
+          <rect x="25" y="22" width="13" height="56" fill="#121215"/>
+          <rect x="38" y="22" width="34" height="7" fill="#121215"/>
+          <rect x="65" y="22" width="7" height="11" fill="#121215"/>
+          <rect x="38" y="46" width="22" height="6" fill="#121215"/>
+          <polygon points="38,71 83,71 83,61 77,61 77,78 38,78" fill="#AA820A"/>
+        </svg>
+      </div>
+    </div>
+    <h3>06. The Modernist Stencil</h3>
+    <p class="desc">A contemporary editorial design combining high-contrast serifs with geometric cuts. The "L" forms a distinctive gold foundation block extending forward, creating a bold, tech-forward legal brand identity.</p>
+    <ul class="specs">
+      <li><span class="bullet">&bull;</span> Modern, clean, and forward-looking</li>
+      <li><span class="bullet">&bull;</span> Uncompromising clarity on high-density digital displays</li>
+      <li><span class="bullet">&bull;</span> Great synergy with Pitch-style dark aesthetic</li>
+    </ul>
+    <div class="preview-bar">
+      <div>
+        <div class="brand-wordmark">Elevance</div>
+        <span class="brand-sub">Legal Services</span>
+      </div>
+      <span style="font-size: 0.8rem; color: #888;">Editorial Modern</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
