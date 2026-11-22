@@ -666,86 +666,110 @@ function renderEnquiryWizardHtml(pfx, isModal) {
     <div id="${pfx}-wizard-container" class="enquiry-wizard-wrap ${isModal ? 'p-6 sm:p-8' : 'border border-line rounded-2xl p-6 sm:p-8 bg-canvas/40 backdrop-blur'}">
       
       <!-- Progress Bar & Step Tracker -->
-      <div class="mb-6 border-b border-line/60 pb-4">
-        <div class="flex items-center justify-between text-xs mb-2">
-          <span class="font-mono text-fg-3 uppercase tracking-wider ${pfx}-step-indicator">Step 1 of 4 &bull; Select Service</span>
-          <span class="font-medium text-fg-2 ${pfx}-step-badge">Initial Enquiry</span>
+      <div class="mb-6">
+        <div class="flex items-center justify-between text-[11px] mb-2.5">
+          <span class="font-mono tracking-widest uppercase text-neutral-400 ${pfx}-step-indicator">Step 1 of 4 &bull; Select Service</span>
+          <span class="font-medium text-neutral-300 ${pfx}-step-badge">Initial Enquiry</span>
         </div>
-        <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+        <div class="w-full bg-white/15 h-1 rounded-full overflow-hidden">
           <div class="${pfx}-progress-bar bg-white h-full transition-all duration-300" style="width: 25%;"></div>
         </div>
       </div>
 
       <!-- STEP 1: SELECT A SERVICE -->
       <div id="${pfx}-step-1" class="wizard-step space-y-4">
-        <div>
-          <h3 class="font-display text-2xl sm:text-3xl text-white">What do you want to achieve?</h3>
-          <p class="mt-1.5 text-xs text-neutral-400">Select one of the seven service categories below to view tailored questions:</p>
+        <div class="mb-2">
+          <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal leading-tight">What do you want to achieve?</h3>
+          <p class="mt-2 text-xs sm:text-sm text-neutral-400">Select one of the seven service categories below to view tailored questions:</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Document Preparation & Support">
-            <div>
-              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">01</span>
-              <span class="text-sm font-medium text-white group-hover:text-white">Document Preparation &amp; Support</span>
+        <div class="mt-4 border-t border-b border-white/15">
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Document Preparation & Support">
+            <div class="service-left">
+              <span class="service-row-num">01</span>
+              <span class="service-row-title">Document Preparation &amp; Support</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">Legal Drafting &amp; Assistance</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
 
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Housing & Landlord-Tenant Matters">
-            <div>
-              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">02</span>
-              <span class="text-sm font-medium text-white group-hover:text-white">Housing &amp; Landlord-Tenant Matters</span>
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Housing & Landlord-Tenant Matters">
+            <div class="service-left">
+              <span class="service-row-num">02</span>
+              <span class="service-row-title">Housing &amp; Landlord-Tenant Matters</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">Tenancy &amp; Disrepair</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
 
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Family & Personal Matters">
-            <div>
-              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">03</span>
-              <span class="text-sm font-medium text-white group-hover:text-white">Family &amp; Personal Matters</span>
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Family & Personal Matters">
+            <div class="service-left">
+              <span class="service-row-num">03</span>
+              <span class="service-row-title">Family &amp; Personal Matters</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">Personal &amp; Separation</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
 
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Business & Commercial Legal Services">
-            <div>
-              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">04</span>
-              <span class="text-sm font-medium text-white group-hover:text-white">Business &amp; Commercial Legal Services</span>
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Business & Commercial Legal Services">
+            <div class="service-left">
+              <span class="service-row-num">04</span>
+              <span class="service-row-title">Business &amp; Commercial Legal Services</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">Commercial Contracts</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
 
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Translation Services">
-            <div>
-              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">05</span>
-              <span class="text-sm font-medium text-white group-hover:text-white">Translation Services</span>
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Translation Services">
+            <div class="service-left">
+              <span class="service-row-num">05</span>
+              <span class="service-row-title">Translation Services</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">Certified Arabic / Kurdish</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
 
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Wills & Wills Drafting">
-            <div>
-              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">06</span>
-              <span class="text-sm font-medium text-white group-hover:text-white">Wills &amp; Wills Drafting</span>
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Wills & Wills Drafting">
+            <div class="service-left">
+              <span class="service-row-num">06</span>
+              <span class="service-row-title">Wills &amp; Wills Drafting</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">Wills &amp; Estate Planning</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
 
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Document Legalisation & Notarial Coordination">
-            <div>
-              <span class="text-[11px] font-mono text-fg-3 block mb-0.5">07</span>
-              <span class="text-sm font-medium text-white group-hover:text-white">Document Legalisation &amp; Notarial Coordination</span>
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Document Legalisation & Notarial Coordination">
+            <div class="service-left">
+              <span class="service-row-num">07</span>
+              <span class="service-row-title">Document Legalisation &amp; Notarial Coordination</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">Apostille &amp; Legalisation</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
 
-          <button type="button" class="wizard-service-btn ${pfx}-srv-btn text-left p-3.5 rounded-xl border border-line bg-canvas/60 hover:border-white hover:bg-white/[0.05] transition-all flex items-center justify-between group cursor-pointer" data-service="Other / I’m not sure">
-            <div>
-              <span class="text-[11px] font-mono text-neutral-400 block mb-0.5">&bull;</span>
-              <span class="text-sm font-medium text-neutral-300 group-hover:text-white">Other / I’m not sure</span>
+          <button type="button" class="wizard-service-btn ${pfx}-srv-btn" data-service="Other / I’m not sure">
+            <div class="service-left">
+              <span class="service-row-num">&bull;</span>
+              <span class="service-row-title text-neutral-300">Other / I’m not sure</span>
             </div>
-            <span class="text-xs text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all">&rarr;</span>
+            <div class="service-right">
+              <span class="service-row-tag">General Enquiry</span>
+              <span class="service-row-arrow">&rarr;</span>
+            </div>
           </button>
         </div>
       </div>
@@ -1486,6 +1510,123 @@ const customStyles = `
     border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
     padding-bottom: 0.75rem !important;
     margin: 0 !important;
+  }
+
+  
+  /* Intake Modal Dialog Refined Framing */
+  dialog[data-intake-modal] {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    width: 94vw !important;
+    max-width: 720px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: 0 30px 90px -10px rgba(0, 0, 0, 0.98) !important;
+    z-index: 100 !important;
+    outline: none !important;
+  }
+  dialog[data-intake-modal]::backdrop {
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+  }
+  .intake-dialog-card {
+    background: #09090b !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    color: #ffffff !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85) !important;
+  }
+
+  /* Wizard Service List Rows (Pitch.law hairline style) */
+  .wizard-service-btn {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 13px 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    background: transparent !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    text-align: left !important;
+  }
+  .wizard-service-btn:last-child {
+    border-bottom: none !important;
+  }
+  .wizard-service-btn:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+    padding-left: 12px !important;
+  }
+  .wizard-service-btn .service-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-width: 0 !important;
+    padding-right: 12px !important;
+  }
+  .wizard-service-btn .service-row-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: 11px !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    min-width: 20px !important;
+    flex-shrink: 0 !important;
+    transition: color 0.2s ease !important;
+  }
+  .wizard-service-btn:hover .service-row-num {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  .wizard-service-btn .service-row-title {
+    font-size: 14.5px !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    line-height: 1.3 !important;
+    transition: color 0.2s ease !important;
+  }
+  .wizard-service-btn .service-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+  }
+  .wizard-service-btn .service-row-tag {
+    font-size: 12px !important;
+    color: rgba(255, 255, 255, 0.38) !important;
+    transition: color 0.2s ease !important;
+  }
+  @media (max-width: 639px) {
+    .wizard-service-btn .service-row-tag {
+      display: none !important;
+    }
+  }
+  .wizard-service-btn:hover .service-row-tag {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  .wizard-service-btn .service-row-arrow {
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+  }
+  .wizard-service-btn:hover .service-row-arrow {
+    color: #ffffff !important;
+    transform: translateX(4px) !important;
+  }
+  .wizard-pill.active {
+    border-color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
   }
 
   /* Wizard Radio & Checkbox Pills */
