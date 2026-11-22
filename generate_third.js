@@ -30,9 +30,9 @@ const benchmarkDesktopNav = `
               <span aria-hidden="true" class="tone-line block h-px w-full"></span>
               <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 py-10 dropdown-grid-3">
                 
-                <!-- Column 1: Services 01-03 -->
+                <!-- Column 1: Personal & Tenancy -->
                 <div>
-                  <p class="dropdown-col-title">Documentation &amp; Housing</p>
+                  <p class="dropdown-col-title">Personal &amp; Tenancy</p>
                   <ul>
                     <li>
                       <a href="#service-01">
@@ -43,63 +43,51 @@ const benchmarkDesktopNav = `
                     <li>
                       <a href="#service-02">
                         <span class="service-num">02</span>
-                        <span>Dispute Resolution and Case Support</span>
+                        <span>Housing &amp; Landlord-Tenant Matters</span>
                       </a>
                     </li>
                     <li>
                       <a href="#service-03">
                         <span class="service-num">03</span>
-                        <span>Housing &amp; Landlord-Tenant Matters</span>
+                        <span>Family &amp; Personal Matters</span>
                       </a>
                     </li>
                   </ul>
                 </div>
 
-                <!-- Column 2: Services 04-06 -->
+                <!-- Column 2: Commercial & Language -->
                 <div>
-                  <p class="dropdown-col-title">Workplace &amp; Commercial</p>
+                  <p class="dropdown-col-title">Commercial &amp; Language</p>
                   <ul>
                     <li>
                       <a href="#service-04">
                         <span class="service-num">04</span>
-                        <span>Employment &amp; Workplace Matters</span>
+                        <span>Business &amp; Commercial Legal Services</span>
                       </a>
                     </li>
                     <li>
                       <a href="#service-05">
                         <span class="service-num">05</span>
-                        <span>Family &amp; Personal Matters</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#service-06">
-                        <span class="service-num">06</span>
-                        <span>Business &amp; Commercial Legal Services</span>
+                        <span>Translation Services</span>
                       </a>
                     </li>
                   </ul>
                 </div>
 
-                <!-- Column 3: Services 07-09 -->
+                <!-- Column 3: Wills & Legalisation -->
                 <div>
-                  <p class="dropdown-col-title">Estates &amp; Translation</p>
+                  <p class="dropdown-col-title">Wills &amp; Legalisation</p>
                   <ul>
                     <li>
-                      <a href="#service-07">
-                        <span class="service-num">07</span>
-                        <span>Translation Services</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#service-08">
-                        <span class="service-num">08</span>
+                      <a href="#service-06">
+                        <span class="service-num">06</span>
                         <span>Wills &amp; Wills Drafting</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#service-09">
-                        <span class="service-num">09</span>
-                        <span>Lasting Powers of Attorney</span>
+                      <a href="#service-07">
+                        <span class="service-num">07</span>
+                        <span>Document Legalisation &amp; Notarial Coordination</span>
                       </a>
                     </li>
                   </ul>
@@ -109,9 +97,9 @@ const benchmarkDesktopNav = `
 
               <!-- Dropdown Bottom Bar -->
               <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 border-t border-line/60 py-4 flex items-center justify-between">
-                <span class="text-xs font-mono uppercase tracking-wider text-fg-3">9 Core Practice Areas &bull; London, United Kingdom</span>
+                <span class="text-xs font-mono uppercase tracking-wider text-fg-3">7 Core Practice Areas &bull; London, United Kingdom</span>
                 <a href="#services" class="text-sm font-medium text-white hover:text-white/80 underline underline-offset-4 flex items-center gap-1.5 transition-colors">
-                  View all 9 services <span aria-hidden="true">&rarr;</span>
+                  View all 7 services <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
             </div>
@@ -186,7 +174,7 @@ const secWelcome = `
     </div>
     <div class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8 space-y-4">
       <p>
-        Legal matters can be complex and sometimes overwhelming. Whether you are dealing with a housing issue, an employment matter, a family concern or a business dispute, obtaining clear and practical assistance can make a real difference.
+        Legal matters can be complex and sometimes overwhelming. Whether you are dealing with a housing issue, a family concern, business agreements or document preparation, obtaining clear and practical assistance can make a real difference.
       </p>
       <p class="text-base text-fg-3">
         At Elevance, we provide accessible document preparation and practical assistance to individuals, families and businesses. Our approach is straightforward: we listen to your concerns, explain how we can help and work towards practical solutions tailored to your circumstances.
@@ -267,60 +255,52 @@ const secOurServices = `
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist individuals and businesses with preparing, formatting and organising correspondence, applications, complaints and other documents. Our services include document typing, proofreading, compiling supporting information and preparing documents from instructions or information provided by clients. Where a matter requires legal advice or specialist drafting, we can help identify appropriate professional assistance.</p>
     </div>
 
-    <!-- 02 Dispute Resolution and Case Support -->
+    <!-- 02 Housing & Landlord-Tenant Matters -->
     <div id="service-02" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">02</span>
-      <h3 class="mt-3 text-xl font-normal text-white">Dispute Resolution and Case Support</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical assistance to individuals and businesses involved in disputes, including reviewing relevant documents, preparing formal correspondence, organising evidence and drafting responses to claims or complaints. We can assist with pre-action correspondence, settlement proposals and negotiations, helping clients explore practical solutions without unnecessary escalation. Where court proceedings or other reserved legal activities are required, we can explain the limitations of our services and discuss appropriate next steps.</p>
-    </div>
-
-    <!-- 03 Housing & Landlord-Tenant Matters -->
-    <div id="service-03" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
-      <span class="text-xs font-mono text-fg-3">03</span>
       <h3 class="mt-3 text-xl font-normal text-white">Housing &amp; Landlord-Tenant Matters</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical assistance to landlords and tenants on a range of housing and tenancy matters, including tenancy agreements, rent arrears, deposit disputes, disrepair, tenancy disputes and housing-related correspondence. Our services include reviewing documents, explaining relevant rights and obligations, preparing formal correspondence and assisting with negotiations to resolve disputes. Where court proceedings or specialist representation are required, we can explain the limitations of our services and help you identify appropriate next steps.</p>
     </div>
 
-    <!-- 04 Employment & Workplace Matters -->
-    <div id="service-04" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
-      <span class="text-xs font-mono text-fg-3">04</span>
-      <h3 class="mt-3 text-xl font-normal text-white">Employment &amp; Workplace Matters</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical legal assistance to employees and employers on a range of workplace matters, including employment contracts, grievances, disciplinary procedures, workplace disputes and settlement agreements. Our services include reviewing employment documentation, explaining relevant rights and obligations, preparing formal correspondence and assisting with workplace negotiations and dispute resolution. Where specialist representation or services outside our permitted scope are required, we can help identify appropriate next steps.</p>
-    </div>
-
-    <!-- 05 Family & Personal Matters -->
-    <div id="service-05" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
-      <span class="text-xs font-mono text-fg-3">05</span>
+    <!-- 03 Family & Personal Matters -->
+    <div id="service-03" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
+      <span class="text-xs font-mono text-fg-3">03</span>
       <h3 class="mt-3 text-xl font-normal text-white">Family &amp; Personal Matters</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide sensitive and practical legal assistance with family and personal matters, including separation, divorce-related documentation, financial arrangements and family disputes. Our services include reviewing documents, explaining relevant rights and obligations, preparing correspondence and assisting with negotiations and proposed agreements. We aim to help clients navigate difficult personal circumstances with clarity, discretion and understanding.</p>
     </div>
 
-    <!-- 06 Business & Commercial Legal Services -->
-    <div id="service-06" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
-      <span class="text-xs font-mono text-fg-3">06</span>
+    <!-- 04 Business & Commercial Legal Services -->
+    <div id="service-04" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
+      <span class="text-xs font-mono text-fg-3">04</span>
       <h3 class="mt-3 text-xl font-normal text-white">Business &amp; Commercial Legal Services</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical legal assistance to businesses, entrepreneurs and self-employed professionals on a range of commercial matters, including business contracts, service agreements, non-disclosure agreements, commercial leases and contractual disputes. Our services include reviewing and drafting agreements, explaining contractual rights and obligations, preparing formal correspondence and assisting with commercial negotiations and dispute resolution. We aim to provide clear, commercially focused solutions that help businesses protect their interests and make informed decisions.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical legal assistance to businesses, entrepreneurs and self-employed professionals on a range of commercial matters, including business contracts, service agreements, non-disclosure agreements, commercial leases and contractual disputes. Our services include reviewing and drafting agreements, explaining contractual rights and obligations, preparing formal correspondence and assisting with commercial negotiations and contract finalisation. We aim to provide clear, commercially focused solutions that help businesses protect their interests and make informed decisions.</p>
     </div>
 
-    <!-- 07 Translation Services -->
-    <div id="service-07" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
-      <span class="text-xs font-mono text-fg-3">07</span>
+    <!-- 05 Translation Services -->
+    <div id="service-05" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
+      <span class="text-xs font-mono text-fg-3">05</span>
       <h3 class="mt-3 text-xl font-normal text-white">Translation Services</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist with Arabic and Kurdish to English translations of personal, business and other documents, subject to language availability and the nature of the assignment. Where certified translations are required, we can arrange these through appropriately qualified translators, subject to the requirements of the receiving organisation. Please contact us to discuss your translation requirements.</p>
     </div>
 
-    <!-- 08 Wills & Wills Drafting -->
-    <div id="service-08" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
-      <span class="text-xs font-mono text-fg-3">08</span>
+    <!-- 06 Wills & Wills Drafting -->
+    <div id="service-06" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
+      <span class="text-xs font-mono text-fg-3">06</span>
       <h3 class="mt-3 text-xl font-normal text-white">Wills &amp; Wills Drafting</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide assistance with preparing straightforward wills, helping individuals record their wishes and make arrangements for the distribution of their estate. Our services include gathering relevant information, preparing draft wills and explaining the requirements for signing and witnessing. Where more complex circumstances arise, we can explain when specialist legal advice may be appropriate.</p>
     </div>
 
-    <!-- 09 Lasting Powers of Attorney -->
-    <div id="service-09" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
-      <span class="text-xs font-mono text-fg-3">09</span>
-      <h3 class="mt-3 text-xl font-normal text-white">Lasting Powers of Attorney</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist individuals with preparing Lasting Powers of Attorney (LPAs) for Property and Financial Affairs and Health and Welfare. Our services include explaining the purpose of LPAs, gathering relevant information, preparing the necessary forms and providing guidance on signing, witnessing and registration with the Office of the Public Guardian. Where complex circumstances or concerns about mental capacity arise, specialist legal advice may be required.</p>
+    <!-- 07 Document Legalisation & Notarial Coordination -->
+    <div id="service-07" class="p-8 sm:col-span-2 lg:col-span-3 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
+      <div class="grid gap-6 lg:grid-cols-12 items-start">
+        <div class="lg:col-span-4">
+          <span class="text-xs font-mono text-fg-3">07</span>
+          <h3 class="mt-3 text-xl font-normal text-white">Document Legalisation &amp; Notarial Coordination</h3>
+        </div>
+        <div class="lg:col-span-8 lg:pt-5">
+          <p class="text-sm leading-relaxed text-fg-3">We provide administrative assistance with documents intended for use in the UK and overseas. Our services include coordinating appointments with notaries, arranging document translations and assisting with apostille and legalisation procedures. We can also help clients identify the documentation and formalities required by the relevant receiving authority.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -384,7 +364,7 @@ const secWhoWeSupport = `
         We provide accessible legal assistance to individuals, families and businesses across London and beyond.
       </p>
       <p class="text-base text-fg-3">
-        Whether you need help with a personal matter, guidance on a dispute, support with property documentation or assistance with business contracts, we are here to provide clear, practical help.
+        Whether you need help with a personal matter, support with property documentation, assistance with business contracts or document translation, we are here to provide clear, practical help.
       </p>
     </div>
   </div>
@@ -393,12 +373,12 @@ const secWhoWeSupport = `
     <div class="rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
       <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">CLIENT FOCUS 01</p>
       <h3 class="mt-4 text-2xl font-normal text-white">Individuals &amp; Families</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Assistance with tenancy issues, family matters, wills, powers of attorney, correspondence and dispute resolution.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">Assistance with tenancy issues, family matters, wills, personal correspondence and legal document preparation.</p>
     </div>
     <div class="rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
       <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">CLIENT FOCUS 02</p>
       <h3 class="mt-4 text-2xl font-normal text-white">Businesses &amp; Entrepreneurs</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">Assistance with business contracts, terms of service, workplace documentation, commercial correspondence and dispute management.</p>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">Assistance with business contracts, terms of service, commercial agreements and business correspondence.</p>
     </div>
     <div class="rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
       <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">CLIENT FOCUS 03</p>
@@ -575,17 +555,17 @@ const secFaq = `
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        No. Elevance does not conduct litigation or exercise reserved rights of audience. We can, however, assist with permitted pre-action correspondence, document preparation and dispute resolution.
+        No. Elevance does not conduct litigation or exercise reserved rights of audience. We can, however, assist with permitted document preparation, correspondence and administrative coordination.
       </p>
     </details>
 
     <details class="group py-6">
       <summary class="flex cursor-pointer items-center justify-between text-lg font-normal text-white hover:text-fg-2 [&::-webkit-details-marker]:hidden">
-        <span>Can you help with housing and employment matters?</span>
+        <span>Can you help with housing and tenancy matters?</span>
         <span class="text-xl text-fg-3 transition-transform group-open:rotate-45">+</span>
       </summary>
       <p class="mt-4 text-sm leading-relaxed text-fg-3 pr-8">
-        Yes. We assist with tenancy disputes, housing correspondence and related legal documentation. The assistance available will depend on the circumstances of your enquiry.
+        Yes. We assist with tenancy agreements, housing correspondence and related documentation. The assistance available will depend on the circumstances of your enquiry.
       </p>
     </details>
 
@@ -842,7 +822,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
               <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Separation" class="sr-only"><span>Separation</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Divorce-related documentation" class="sr-only"><span>Divorce documents</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Financial arrangements" class="sr-only"><span>Financial arrangements</span></label>
-              <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Family dispute" class="sr-only"><span>Family dispute</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Family dispute" class="sr-only"><span>Family arrangements</span></label>
               <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-family-type" value="Other personal matter" class="sr-only"><span>Other personal matter</span></label>
             </div>
           </div>
@@ -883,7 +863,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Consultancy agreement" class="sr-only"><span>Consultancy</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Non-disclosure agreement" class="sr-only"><span>NDA</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Commercial lease" class="sr-only"><span>Commercial lease</span></label>
-              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Contractual dispute" class="sr-only"><span>Contract dispute</span></label>
+              <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Contractual dispute" class="sr-only"><span>Contractual matters</span></label>
             </div>
           </div>
           <div>
@@ -897,7 +877,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="Review or amendment" class="sr-only"><span>Review / Amend</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="Terms agreed" class="sr-only"><span>Terms agreed</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="Still negotiating" class="sr-only"><span>Negotiating</span></label>
-              <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-biz-stage" value="Dispute arisen" class="sr-only"><span>Dispute arisen</span></label>
+              <label class="wizard-pill col-span-2"><input type="radio" name="${pfx}-biz-stage" value="Dispute arisen" class="sr-only"><span>Negotiation / Formal stage</span></label>
             </div>
           </div>
         </div>
@@ -1199,7 +1179,7 @@ const secContactUs = `
       <h2 class="font-display text-5xl leading-[1.02] md:text-7xl text-white">Let’s discuss your next step.</h2>
       
       <p class="mt-8 text-lg leading-relaxed text-fg-2">
-        Whether you need assistance with a personal legal matter, a business issue, a dispute or legal documentation, we are here to help.
+        Whether you need assistance with a personal legal matter, a business issue or legal documentation, we are here to help.
       </p>
       <p class="mt-4 text-base leading-relaxed text-fg-3">
         Tell us briefly about your enquiry, and we will consider how we may be able to assist and explain the next steps.
