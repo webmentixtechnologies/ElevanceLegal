@@ -776,17 +776,18 @@ function renderEnquiryWizardHtml(pfx, isModal) {
 
       <!-- STEP 2: SERVICE-SPECIFIC QUESTIONS -->
       <div id="${pfx}-step-2" class="wizard-step hidden space-y-5">
-        <div class="flex items-center justify-between">
-          <button type="button" class="${pfx}-back-to-1 text-xs text-neutral-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer">
-            &larr; Change Service
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <button type="button" class="${pfx}-back-to-1 text-xs text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer group">
+            <span class="transition-transform group-hover:-translate-x-1">&larr;</span>
+            <span>Change Service</span>
           </button>
-          <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-white font-medium ${pfx}-selected-service-pill">Selected Service</span>
+          <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.08] border border-white/15 text-neutral-200 ${pfx}-selected-service-pill">Selected Service</span>
         </div>
 
         <!-- 4.1 Document Preparation & Support Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Document Preparation & Support">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What type of document do you need help preparing or organising?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. What type of document do you need help preparing or organising?</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Letter" class="sr-only"><span>Letter</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-doc-type" value="Application" class="sr-only"><span>Application</span></label>
@@ -798,26 +799,26 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What is the purpose of the document, and what would you like it to achieve?</label>
-            <input type="text" class="${pfx}-doc-purpose w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Brief outline...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. What is the purpose of the document, and what would you like it to achieve?</label>
+            <input type="text" class="wizard-input ${pfx}-doc-purpose" placeholder="Brief outline...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. New document or existing draft?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">3. New document or existing draft?</label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-doc-status" value="New document" class="sr-only"><span>New document</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-doc-status" value="Existing draft needs review / proofreading" class="sr-only"><span>Existing draft needs review</span></label>
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Who are the individuals, businesses or organisations involved?</label>
-            <input type="text" class="${pfx}-doc-parties w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Names or organisation types...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">4. Who are the individuals, businesses or organisations involved?</label>
+            <input type="text" class="wizard-input ${pfx}-doc-parties" placeholder="Names or organisation types...">
           </div>
         </div>
 
         <!-- 4.2 Housing & Landlord-Tenant Matters Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Housing & Landlord-Tenant Matters">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. Are you a landlord, tenant, leaseholder or another occupier?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. Are you a landlord, tenant, leaseholder or another occupier?</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-role" value="Tenant" class="sr-only"><span>Tenant</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-role" value="Landlord" class="sr-only"><span>Landlord</span></label>
@@ -826,7 +827,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What is the nature of the issue?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. What is the nature of the issue?</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Tenancy agreement" class="sr-only"><span>Tenancy agreement</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-issue" value="Rent arrears" class="sr-only"><span>Rent arrears</span></label>
@@ -837,11 +838,11 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. What type of property is involved, and where is it located?</label>
-            <input type="text" class="${pfx}-housing-prop w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Residential flat in London...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">3. What type of property is involved, and where is it located?</label>
+            <input type="text" class="wizard-input ${pfx}-housing-prop" placeholder="e.g. Residential flat in London...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Have you received any formal notice or correspondence?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">4. Have you received any formal notice or correspondence?</label>
             <div class="flex gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-notice" value="Yes" class="sr-only"><span>Yes</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-notice" value="No" class="sr-only"><span>No</span></label>
@@ -849,7 +850,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">5. Has the matter progressed to court, or dealt through correspondence?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">5. Has the matter progressed to court, or dealt through correspondence?</label>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-stage" value="Correspondence only" class="sr-only"><span>Correspondence only</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-housing-stage" value="Court proceedings started" class="sr-only"><span>Court proceedings</span></label>
@@ -861,7 +862,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
         <!-- 4.3 Family & Personal Matters Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Family & Personal Matters">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What type of family or personal matter do you need assistance with?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. What type of family or personal matter do you need assistance with?</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Separation" class="sr-only"><span>Separation</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-family-type" value="Divorce-related documentation" class="sr-only"><span>Divorce documents</span></label>
@@ -871,15 +872,15 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Who are the individuals involved, and what is your relationship to them?</label>
-            <input type="text" class="${pfx}-family-parties w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Spouse / Former partner...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. Who are the individuals involved, and what is your relationship to them?</label>
+            <input type="text" class="wizard-input ${pfx}-family-parties" placeholder="e.g. Spouse / Former partner...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. What would you like to achieve or resolve?</label>
-            <input type="text" class="${pfx}-family-goal w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Desired outcome...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">3. What would you like to achieve or resolve?</label>
+            <input type="text" class="wizard-input ${pfx}-family-goal" placeholder="Desired outcome...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Has the matter been discussed, or has any formal process started?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">4. Has the matter been discussed, or has any formal process started?</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-family-process" value="Discussed informally" class="sr-only"><span>Discussed</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-family-process" value="No discussion yet" class="sr-only"><span>Not discussed</span></label>
@@ -888,19 +889,19 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">5. Children, property or financial arrangements? (Brief outline only)</label>
-            <input type="text" class="${pfx}-family-outline w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Brief indication...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">5. Children, property or financial arrangements? (Brief outline only)</label>
+            <input type="text" class="wizard-input ${pfx}-family-outline" placeholder="Brief indication...">
           </div>
         </div>
 
         <!-- 4.4 Business & Commercial Legal Services Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Business & Commercial Legal Services">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What is the name and nature of your business?</label>
-            <input type="text" class="${pfx}-biz-info w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. IT Consultancy, Retail, Founder...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. What is the name and nature of your business?</label>
+            <input type="text" class="wizard-input ${pfx}-biz-info" placeholder="e.g. IT Consultancy, Retail, Founder...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What type of commercial assistance do you need?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. What type of commercial assistance do you need?</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Business contract" class="sr-only"><span>Business contract</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-type" value="Service agreement" class="sr-only"><span>Service agreement</span></label>
@@ -911,11 +912,11 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. Who are the other parties involved?</label>
-            <input type="text" class="${pfx}-biz-parties w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Other company or individual names...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">3. Who are the other parties involved?</label>
+            <input type="text" class="wizard-input ${pfx}-biz-parties" placeholder="Other company or individual names...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Stage of agreement / commercial terms?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">4. Stage of agreement / commercial terms?</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="New agreement" class="sr-only"><span>New agreement</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-biz-stage" value="Review or amendment" class="sr-only"><span>Review / Amend</span></label>
@@ -929,7 +930,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
         <!-- 4.5 Translation Services Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Translation Services">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What language is the original document in & direction required?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. What language is the original document in & direction required?</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-trans-lang" value="Arabic to English" class="sr-only"><span>Arabic &rarr; English</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-trans-lang" value="Kurdish to English" class="sr-only"><span>Kurdish &rarr; English</span></label>
@@ -939,7 +940,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. What type of document needs translating?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. What type of document needs translating?</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Personal document" class="sr-only"><span>Personal document</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-trans-type" value="Official certificate" class="sr-only"><span>Official certificate</span></label>
@@ -950,7 +951,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. Approximately how many pages does the document contain?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">3. Approximately how many pages does the document contain?</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-trans-pages" value="1–2 pages" class="sr-only"><span>1–2 pages</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-trans-pages" value="3–5 pages" class="sr-only"><span>3–5 pages</span></label>
@@ -959,15 +960,15 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Where will the translated document be submitted or used?</label>
-            <input type="text" class="${pfx}-trans-target w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Home Office, Court, University, Solicitor, Embassy...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">4. Where will the translated document be submitted or used?</label>
+            <input type="text" class="wizard-input ${pfx}-trans-target" placeholder="e.g. Home Office, Court, University, Solicitor, Embassy...">
           </div>
         </div>
 
         <!-- 4.6 Wills & Wills Drafting Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Wills & Wills Drafting">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. Are you looking to prepare a new will or amend an existing will?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. Are you looking to prepare a new will or amend an existing will?</label>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-will-action" value="Prepare a new will" class="sr-only"><span>Prepare new will</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-will-action" value="Amend an existing will" class="sr-only"><span>Amend existing will</span></label>
@@ -975,7 +976,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Marital status & Dependants?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. Marital status & Dependants?</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-will-marital" value="Single" class="sr-only"><span>Single</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-will-marital" value="Married / Civil Partner" class="sr-only"><span>Married</span></label>
@@ -984,11 +985,11 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. Beneficiaries & Estate assets general indication?</label>
-            <input type="text" class="${pfx}-will-estate w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Spouse & children, UK property, investments...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">3. Beneficiaries & Estate assets general indication?</label>
+            <input type="text" class="wizard-input ${pfx}-will-estate" placeholder="e.g. Spouse & children, UK property, investments...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Have you considered who you would like to appoint as executor?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">4. Have you considered who you would like to appoint as executor?</label>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-will-exec" value="Yes, family or friend" class="sr-only"><span>Family or friend</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-will-exec" value="Solicitor or professional" class="sr-only"><span>Professional</span></label>
@@ -1000,18 +1001,18 @@ function renderEnquiryWizardHtml(pfx, isModal) {
         <!-- 4.7 Document Legalisation & Notarial Coordination Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Document Legalisation & Notarial Coordination">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. What document or documents do you need help with?</label>
-            <input type="text" class="${pfx}-legal-doc w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Power of Attorney, Certificate, Commercial Contract...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. What document or documents do you need help with?</label>
+            <input type="text" class="wizard-input ${pfx}-legal-doc" placeholder="e.g. Power of Attorney, Certificate, Commercial Contract...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Will the document be used in the UK or overseas?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. Will the document be used in the UK or overseas?</label>
             <div class="flex gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-legal-dest" value="In the UK" class="sr-only"><span>In the UK</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-legal-dest" value="Overseas" class="sr-only"><span>Overseas (Specify country below)</span></label>
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">3. What do you understand is required?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">3. What do you understand is required?</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-legal-req" value="Notarisation" class="sr-only"><span>Notarisation</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-legal-req" value="Hague Apostille" class="sr-only"><span>Hague Apostille</span></label>
@@ -1021,7 +1022,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
             </div>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">4. Do you need assistance arranging a notary appointment?</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">4. Do you need assistance arranging a notary appointment?</label>
             <div class="flex gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-legal-notary" value="Yes" class="sr-only"><span>Yes</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-legal-notary" value="No" class="sr-only"><span>No</span></label>
@@ -1033,21 +1034,22 @@ function renderEnquiryWizardHtml(pfx, isModal) {
         <!-- 5. Other / I’m not sure Questions -->
         <div class="${pfx}-q-panel hidden space-y-4" data-for="Other / I’m not sure">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">1. Briefly describe the matter and the assistance you are looking for</label>
-            <textarea class="${pfx}-other-desc w-full rounded-lg border border-line bg-canvas/60 px-3.5 py-2.5 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" rows="3" placeholder="Tell us what you need help with in your own words..."></textarea>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">1. Briefly describe your matter and the assistance you are looking for</label>
+            <textarea class="wizard-textarea ${pfx}-other-desc" rows="4" placeholder="Tell us what you need help with in your own words..."></textarea>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1.5 font-medium">2. Is there a particular document or issue you need help with?</label>
-            <input type="text" class="${pfx}-other-doc w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="e.g. Specific document, agreement, court paperwork...">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">2. Is there a particular document, contract or issue involved? <span class="text-neutral-400 text-xs font-normal">(Optional)</span></label>
+            <input type="text" class="wizard-input ${pfx}-other-doc" placeholder="e.g. Specific agreement, tenancy letter, court notice, or paperwork...">
           </div>
-          <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-xs text-neutral-400 leading-relaxed">
-            <strong>Note:</strong> This option allows Elevance to consider your enquiry and does not confirm that the requested service is offered. Enquiries outside our seven core services will be reviewed before advice is given.
+          <div class="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.03] border-l-2 border-white/40 text-xs text-neutral-300 leading-relaxed">
+            <span class="text-neutral-400 font-mono text-[11px] uppercase tracking-wider shrink-0 mt-0.5">Notice &bull;</span>
+            <span>This option allows Elevance to review your enquiry and determine the appropriate next steps. Enquiries outside our seven listed service categories will be assessed for suitability before any advice is given.</span>
           </div>
         </div>
 
         <!-- COMMON SECTION 7: URGENCY & DEADLINE QUESTION -->
         <div class="border-t border-line/60 pt-4 space-y-3">
-          <label class="block text-xs uppercase tracking-wider text-fg-3 font-medium">
+          <label class="block text-sm font-normal text-neutral-100 mb-2">
             Is there a deadline, hearing, appointment or other urgent date connected with your enquiry?
           </label>
           <div class="flex gap-2">
@@ -1069,38 +1071,39 @@ function renderEnquiryWizardHtml(pfx, isModal) {
 
         <div class="pt-2">
           <button type="button" class="${pfx}-btn-goto-3 btn-pill-primary w-full justify-center py-2.5 cursor-pointer">
-            CONTINUE TO CONTACT DETAILS &rarr;
+            Continue to Contact Details &rarr;
           </button>
         </div>
       </div>
 
       <!-- STEP 3: CONTACT DETAILS & OPTIONAL UPLOAD -->
       <div id="${pfx}-step-3" class="wizard-step hidden space-y-4">
-        <div class="flex items-center justify-between">
-          <button type="button" class="${pfx}-back-to-2 text-xs text-neutral-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer">
-            &larr; Back to Questions
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <button type="button" class="${pfx}-back-to-2 text-xs text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer group">
+            <span class="transition-transform group-hover:-translate-x-1">&larr;</span>
+            <span>Back to Questions</span>
           </button>
-          <span class="text-xs text-fg-3 font-mono">Step 3 of 4</span>
+          <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.08] border border-white/15 text-neutral-200">Contact Details</span>
         </div>
 
         <div class="grid gap-3 sm:grid-cols-2">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Full Name <span class="text-red-400">*</span></label>
-            <input type="text" id="${pfx}-name" required class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Your full name">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">Full Name <span class="text-red-400">*</span></label>
+            <input type="text" id="${pfx}-name" required class="wizard-input" placeholder="Your full name">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Email Address <span class="text-red-400">*</span></label>
-            <input type="email" id="${pfx}-email" required class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="name@example.com">
+            <label class="block text-sm font-normal text-neutral-100 mb-2">Email Address <span class="text-red-400">*</span></label>
+            <input type="email" id="${pfx}-email" required class="wizard-input" placeholder="name@example.com">
           </div>
         </div>
 
         <div class="grid gap-3 sm:grid-cols-2">
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Telephone Number <span class="text-fg-3 font-normal">(Optional)</span></label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">Telephone Number <span class="text-fg-3 font-normal">(Optional)</span></label>
             <input type="tel" id="${pfx}-phone" class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="+44...">
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Preferred Contact Method</label>
+            <label class="block text-sm font-normal text-neutral-100 mb-2">Preferred Contact Method</label>
             <div class="flex gap-2">
               <label class="wizard-pill"><input type="radio" name="${pfx}-contact-pref" value="Email" checked class="sr-only"><span>Email</span></label>
               <label class="wizard-pill"><input type="radio" name="${pfx}-contact-pref" value="Telephone" class="sr-only"><span>Telephone</span></label>
@@ -1109,7 +1112,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
         </div>
 
         <div>
-          <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Preferred Time to be Contacted <span class="text-fg-3 font-normal">(Optional)</span></label>
+          <label class="block text-sm font-normal text-neutral-100 mb-2">Preferred Time to be Contacted <span class="text-fg-3 font-normal">(Optional)</span></label>
           <div class="flex flex-wrap gap-2">
             <label class="wizard-pill"><input type="radio" name="${pfx}-contact-time" value="Morning (9am – 12pm)" class="sr-only"><span>Morning (9am – 12pm)</span></label>
             <label class="wizard-pill"><input type="radio" name="${pfx}-contact-time" value="Afternoon (12pm – 5pm)" class="sr-only"><span>Afternoon (12pm – 5pm)</span></label>
@@ -1118,13 +1121,13 @@ function renderEnquiryWizardHtml(pfx, isModal) {
         </div>
 
         <div>
-          <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Upload Supporting Documents <span class="text-fg-3 font-normal">(Optional)</span></label>
+          <label class="block text-sm font-normal text-neutral-100 mb-2">Upload Supporting Documents <span class="text-fg-3 font-normal">(Optional)</span></label>
           <input type="file" id="${pfx}-files" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" class="w-full text-xs text-fg-3 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border file:border-line file:bg-white/10 file:text-white file:text-xs hover:file:bg-white/20 cursor-pointer">
           <p class="text-[11px] text-neutral-500 mt-1">Optional. Accepted formats: PDF, Word, images. Max 10MB.</p>
         </div>
 
         <div>
-          <label class="block text-xs uppercase tracking-wider text-fg-3 mb-1 font-medium">Is there anything else you would like us to know? <span class="text-fg-3 font-normal">(Optional)</span></label>
+          <label class="block text-sm font-normal text-neutral-100 mb-2">Is there anything else you would like us to know? <span class="text-fg-3 font-normal">(Optional)</span></label>
           <textarea id="${pfx}-extra-notes" rows="2" class="w-full rounded-lg border border-line bg-canvas/60 px-3 py-2 text-sm text-fg placeholder:text-fg-3 focus:border-fg focus:outline-none" placeholder="Brief outline only. Please do not submit unnecessary sensitive details."></textarea>
         </div>
 
@@ -1137,15 +1140,16 @@ function renderEnquiryWizardHtml(pfx, isModal) {
 
       <!-- STEP 4: REVIEW & SUBMIT -->
       <div id="${pfx}-step-4" class="wizard-step hidden space-y-4">
-        <div class="flex items-center justify-between">
-          <button type="button" class="${pfx}-back-to-3 text-xs text-neutral-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer">
-            &larr; Edit Details
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <button type="button" class="${pfx}-back-to-3 text-xs text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer group">
+            <span class="transition-transform group-hover:-translate-x-1">&larr;</span>
+            <span>Edit Details</span>
           </button>
-          <span class="text-xs text-fg-3 font-mono">Step 4 of 4 &bull; Final Review</span>
+          <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.08] border border-white/15 text-neutral-200">Final Review</span>
         </div>
 
         <!-- Summary Card -->
-        <div class="rounded-xl border border-line/80 bg-canvas/60 p-4 space-y-3 text-xs">
+        <div class="rounded-2xl border border-white/15 bg-white/[0.02] p-5 space-y-3.5 text-xs">
           <div class="flex items-center justify-between border-b border-line/40 pb-2">
             <span class="text-fg-3 uppercase tracking-wider">Service Category</span>
             <span class="font-medium text-white ${pfx}-rev-service">Document Preparation</span>
@@ -1179,7 +1183,7 @@ function renderEnquiryWizardHtml(pfx, isModal) {
 
         <div class="pt-2">
           <button type="button" class="${pfx}-submit-btn btn-pill-primary w-full justify-center py-3 cursor-pointer">
-            SUBMIT ENQUIRY
+            Submit Enquiry
           </button>
         </div>
       </div>
@@ -1629,6 +1633,63 @@ const customStyles = `
     font-weight: 500 !important;
   }
 
+  
+  /* Wizard Modern Inputs & Textareas */
+  .wizard-input,
+  .wizard-textarea {
+    width: 100% !important;
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 10px !important;
+    padding: 11px 14px !important;
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
+    color: #ffffff !important;
+    outline: none !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+  }
+  .wizard-input:focus,
+  .wizard-textarea:focus {
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+  }
+  .wizard-input::placeholder,
+  .wizard-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35) !important;
+  }
+
+  /* Wizard Pills Polish */
+  .wizard-pill {
+    cursor: pointer !important;
+    font-size: 0.8rem !important;
+    padding: 0.6rem 0.9rem !important;
+    border-radius: 0.6rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.02) !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+    transition: all 0.2s ease !important;
+    user-select: none !important;
+  }
+  .wizard-pill:hover {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+  }
+  .wizard-pill:has(:checked),
+  .wizard-pill.active {
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+  }
+
   /* Wizard Radio & Checkbox Pills */
   .wizard-pill {
     cursor: pointer !important;
@@ -1705,7 +1766,7 @@ const scriptsToAppend = `
         if (step2) step2.classList.remove("hidden");
         if (progressBar) progressBar.style.width = "50%";
         if (stepIndicator) stepIndicator.textContent = "Step 2 of 4 • Service Questions";
-        if (stepBadge) stepBadge.textContent = selectedService;
+        if (stepBadge) stepBadge.textContent = 'Service Questions';
       } else if (step === 3) {
         if (step3) step3.classList.remove("hidden");
         if (progressBar) progressBar.style.width = "75%";
