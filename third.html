@@ -646,6 +646,14 @@
 </style>
   <style>
 
+  /* Solid Opaque Background for Dropdown Menus */
+  details[data-dropdown] div[data-tone] {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  }
+
   /* Dropdown Menus: 3 equal-width columns for 9 services */
   .dropdown-grid-3 {
     display: grid !important;
@@ -746,7 +754,7 @@
             <summary class="eyebrow flex cursor-pointer list-none items-center gap-1.5 text-fg-2 transition-colors hover:text-fg group-open/dd:text-fg [&::-webkit-details-marker]:hidden">
               SERVICES<span class="text-[10px] leading-none transition-transform group-open/dd:rotate-180" aria-hidden="true">▾</span>
             </summary>
-            <div data-tone="solutions" class="absolute inset-x-0 top-[72px] max-h-[calc(100vh-72px)] overflow-y-auto border-b border-line bg-[#080808]/98 backdrop-blur-2xl shadow-2xl z-50">
+            <div data-tone="solutions" class="absolute inset-x-0 top-[72px] max-h-[calc(100vh-72px)] overflow-y-auto border-b border-line shadow-2xl z-50" style="background: #000000 !important; background-color: #000000 !important; border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95) !important;">
               <span aria-hidden="true" class="tone-line block h-px w-full"></span>
               <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 py-10 dropdown-grid-3">
                 
