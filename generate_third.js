@@ -12,7 +12,7 @@ const secondPath = path.join(__dirname, 'second.html');
 const secondHtml = fs.readFileSync(secondPath, 'utf8');
 
 // 1. EXACT BENCHMARK MENU
-// HOME     ABOUT     SERVICES     HOW WE WORK     CONTACT
+// HOME     ABOUT     SERVICES (9 Services in 3 Columns)     HOW WE WORK     CONTACT
 const benchmarkDesktopNav = `
     <!-- Benchmark Navigation Bar -->
     <nav aria-label="Navigation" class="site-nav-desktop">
@@ -20,50 +20,99 @@ const benchmarkDesktopNav = `
         <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#top">HOME</a></li>
         <li><a class="eyebrow text-fg-2 hover:text-fg transition-colors" href="#story">ABOUT</a></li>
         
-        <!-- SERVICES DROPDOWN -->
+        <!-- SERVICES DROPDOWN: Exactly 9 Services in 3 Equal-Width Columns -->
         <li>
           <details data-dropdown="" class="group/dd">
             <summary class="eyebrow flex cursor-pointer list-none items-center gap-1.5 text-fg-2 transition-colors hover:text-fg group-open/dd:text-fg [&::-webkit-details-marker]:hidden">
               SERVICES<span class="text-[10px] leading-none transition-transform group-open/dd:rotate-180" aria-hidden="true">▾</span>
             </summary>
-            <div data-tone="solutions" class="absolute inset-x-0 top-[72px] max-h-[calc(100vh-72px)] overflow-y-auto border-b border-line bg-canvas">
+            <div data-tone="solutions" class="absolute inset-x-0 top-[72px] max-h-[calc(100vh-72px)] overflow-y-auto border-b border-line bg-[#080808]/98 backdrop-blur-2xl shadow-2xl z-50">
               <span aria-hidden="true" class="tone-line block h-px w-full"></span>
-              <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 py-10 dropdown-grid-4">
+              <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 py-10 dropdown-grid-3">
+                
+                <!-- Column 1: Services 01-03 -->
                 <div>
-                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Documentation &amp; Dispute</p>
+                  <p class="dropdown-col-title">Documentation &amp; Housing</p>
                   <ul>
-                    <li><a href="#services">Document Preparation &amp; Support</a></li>
-                    <li><a href="#services">Dispute Resolution and Case Support</a></li>
-                    <li><a href="#services">Business &amp; Commercial Legal Services</a></li>
+                    <li>
+                      <a href="#service-01">
+                        <span class="service-num">01</span>
+                        <span>Document Preparation &amp; Support</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#service-02">
+                        <span class="service-num">02</span>
+                        <span>Dispute Resolution and Case Support</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#service-03">
+                        <span class="service-num">03</span>
+                        <span>Housing &amp; Landlord-Tenant Matters</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
+
+                <!-- Column 2: Services 04-06 -->
                 <div>
-                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Housing &amp; Workplace</p>
+                  <p class="dropdown-col-title">Workplace &amp; Commercial</p>
                   <ul>
-                    <li><a href="#services">Housing &amp; Landlord-Tenant Matters</a></li>
-                    <li><a href="#services">Employment &amp; Workplace Matters</a></li>
-                    <li><a href="#services">Family &amp; Personal Matters</a></li>
+                    <li>
+                      <a href="#service-04">
+                        <span class="service-num">04</span>
+                        <span>Employment &amp; Workplace Matters</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#service-05">
+                        <span class="service-num">05</span>
+                        <span>Family &amp; Personal Matters</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#service-06">
+                        <span class="service-num">06</span>
+                        <span>Business &amp; Commercial Legal Services</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
+
+                <!-- Column 3: Services 07-09 -->
                 <div>
-                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Estates &amp; Notarial</p>
+                  <p class="dropdown-col-title">Estates &amp; Translation</p>
                   <ul>
-                    <li><a href="#services">Wills &amp; Wills Drafting</a></li>
-                    <li><a href="#services">Lasting Powers of Attorney</a></li>
-                    <li><a href="#services">Document Legalisation &amp; Notarial Coordination</a></li>
+                    <li>
+                      <a href="#service-07">
+                        <span class="service-num">07</span>
+                        <span>Translation Services</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#service-08">
+                        <span class="service-num">08</span>
+                        <span>Wills &amp; Wills Drafting</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#service-09">
+                        <span class="service-num">09</span>
+                        <span>Lasting Powers of Attorney</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
-                <div>
-                  <p class="eyebrow uppercase tracking-wider text-xs font-semibold text-fg-3">Translation &amp; Solicitor</p>
-                  <ul>
-                    <li><a href="#services">Translation Services</a></li>
-                    <li><a href="#solicitor">Solicitor by Appointment</a></li>
-                    <li><a href="#services" class="text-sm font-medium text-fg underline underline-offset-4 mt-1 inline-block">View all 10 services &rarr;</a></li>
-                  </ul>
-                </div>
+
               </div>
-              <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 border-t border-line py-5">
-                <a href="#services" class="text-sm link text-fg-2 hover:text-fg">View all services &rarr;</a>
+
+              <!-- Dropdown Bottom Bar -->
+              <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-8 lg:px-14 2xl:px-20 border-t border-line/60 py-4 flex items-center justify-between">
+                <span class="text-xs font-mono uppercase tracking-wider text-fg-3">9 Core Practice Areas &bull; London, United Kingdom</span>
+                <a href="#services" class="text-sm font-medium text-white hover:text-white/80 underline underline-offset-4 flex items-center gap-1.5 transition-colors">
+                  View all 9 services <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
             </div>
           </details>
@@ -115,8 +164,6 @@ const benchmarkHero = `
       </a>
     </div>
 
-    
-
   </div>
 </section>
 `;
@@ -161,22 +208,19 @@ const secOurStory = `
   <div class="grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">02</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>OUR STORY</p>
+        <p class="marker"><span class="tabular-nums">02</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>ABOUT ELEVANCE</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
       <h2 id="story-title" class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">
-        A more approachable way <br><span style="color: rgba(255, 255, 255, 0.65);">to navigate legal matters.</span>
+        Practical legal support, <br><span style="color: rgba(255, 255, 255, 0.65);">delivered with care.</span>
       </h2>
     </div>
     <div class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8 space-y-4">
       <p>
-        Elevance Legal Services was established with a simple objective: to make legal assistance more accessible, practical and straightforward.
+        Elevance Legal Services Ltd is an independent legal services company based in London, providing document preparation, administrative assistance and related support services to individuals, families and businesses.
       </p>
       <p class="text-base text-fg-3">
-        We recognise that individuals, families and businesses often need reliable legal support without the complexity or expense that can sometimes accompany traditional legal services.
-      </p>
-      <p class="text-base text-fg-3">
-        Our approach is built on understanding our clients' needs, providing clear guidance and delivering practical solutions. We offer assistance across a range of legal matters, including document drafting, contractual issues, housing, family matters and business-related concerns.
+        We understand that accessing legal support can often feel daunting, costly and difficult to navigate. Our goal is to provide a practical alternative: accessible, cost-effective assistance with the documents, processes and everyday legal matters that affect people's lives and businesses.
       </p>
       <p class="text-base text-fg-3">
         We believe in clear communication, careful preparation and a personal approach, ensuring that every client understands the assistance available and the steps involved.
@@ -186,9 +230,9 @@ const secOurStory = `
 </section>
 `;
 
-// 5. SECTION: OUR SERVICES (Exact Benchmark 10 Services in Hairline Grid)
+// 5. SECTION: OUR SERVICES (Strictly 9 Services in 3x3 Hairline Grid)
 const secOurServices = `
-<!-- SECTION: OUR SERVICES (Exact Benchmark Copy in Master Second Hairline Grid) -->
+<!-- SECTION: OUR SERVICES (Strictly 9 Core Practice Areas in 3x3 Hairline Grid) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="services">
   <!-- Google-Inspired Blue & Green Ambient Sine Wave -->
   <span aria-hidden="true" data-ambient-lines="" data-seed="services-google" data-colors="#4285F4,#34A853" class="absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_15%,#000_85%,transparent)] pointer-events-none opacity-55"></span>
@@ -217,73 +261,66 @@ const secOurServices = `
   <div class="mt-16 grid hairline-grid sm:grid-cols-2 lg:grid-cols-3">
     
     <!-- 01 Document Preparation & Support -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-01" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">01</span>
       <h3 class="mt-3 text-xl font-normal text-white">Document Preparation &amp; Support</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist individuals and businesses with preparing, formatting and organising correspondence, applications, complaints and other documents. Our services include document typing, proofreading, compiling supporting information and preparing documents from instructions or information provided by clients. Where a matter requires legal advice or specialist drafting, we can help identify appropriate professional assistance.</p>
     </div>
 
     <!-- 02 Dispute Resolution and Case Support -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-02" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">02</span>
       <h3 class="mt-3 text-xl font-normal text-white">Dispute Resolution and Case Support</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical assistance to individuals and businesses involved in disputes, including reviewing relevant documents, preparing formal correspondence, organising evidence and drafting responses to claims or complaints. We can assist with pre-action correspondence, settlement proposals and negotiations, helping clients explore practical solutions without unnecessary escalation. Where court proceedings or other reserved legal activities are required, we can explain the limitations of our services and discuss appropriate next steps.</p>
     </div>
 
     <!-- 03 Housing & Landlord-Tenant Matters -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-03" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">03</span>
       <h3 class="mt-3 text-xl font-normal text-white">Housing &amp; Landlord-Tenant Matters</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical assistance to landlords and tenants on a range of housing and tenancy matters, including tenancy agreements, rent arrears, deposit disputes, disrepair, tenancy disputes and housing-related correspondence. Our services include reviewing documents, explaining relevant rights and obligations, preparing formal correspondence and assisting with negotiations to resolve disputes. Where court proceedings or specialist representation are required, we can explain the limitations of our services and help you identify appropriate next steps.</p>
     </div>
 
     <!-- 04 Employment & Workplace Matters -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-04" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">04</span>
       <h3 class="mt-3 text-xl font-normal text-white">Employment &amp; Workplace Matters</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical legal assistance to employees and employers on a range of workplace matters, including employment contracts, grievances, disciplinary procedures, workplace disputes and settlement agreements. Our services include reviewing employment documentation, explaining relevant rights and obligations, preparing formal correspondence and assisting with workplace negotiations and dispute resolution. Where specialist representation or services outside our permitted scope are required, we can help identify appropriate next steps.</p>
     </div>
 
     <!-- 05 Family & Personal Matters -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-05" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">05</span>
       <h3 class="mt-3 text-xl font-normal text-white">Family &amp; Personal Matters</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide sensitive and practical legal assistance with family and personal matters, including separation, divorce-related documentation, financial arrangements and family disputes. Our services include reviewing documents, explaining relevant rights and obligations, preparing correspondence and assisting with negotiations and proposed agreements. We aim to help clients navigate difficult personal circumstances with clarity, discretion and understanding.</p>
     </div>
 
     <!-- 06 Business & Commercial Legal Services -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-06" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">06</span>
       <h3 class="mt-3 text-xl font-normal text-white">Business &amp; Commercial Legal Services</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide practical legal assistance to businesses, entrepreneurs and self-employed professionals on a range of commercial matters, including business contracts, service agreements, non-disclosure agreements, commercial leases and contractual disputes. Our services include reviewing and drafting agreements, explaining contractual rights and obligations, preparing formal correspondence and assisting with commercial negotiations and dispute resolution. We aim to provide clear, commercially focused solutions that help businesses protect their interests and make informed decisions.</p>
     </div>
 
     <!-- 07 Translation Services -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-07" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">07</span>
       <h3 class="mt-3 text-xl font-normal text-white">Translation Services</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist with Arabic and Kurdish to English translations of personal, business and other documents, subject to language availability and the nature of the assignment. Where certified translations are required, we can arrange these through appropriately qualified translators, subject to the requirements of the receiving organisation. Please contact us to discuss your translation requirements.</p>
     </div>
 
     <!-- 08 Wills & Wills Drafting -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-08" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">08</span>
       <h3 class="mt-3 text-xl font-normal text-white">Wills &amp; Wills Drafting</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide assistance with preparing straightforward wills, helping individuals record their wishes and make arrangements for the distribution of their estate. Our services include gathering relevant information, preparing draft wills and explaining the requirements for signing and witnessing. Where more complex circumstances arise, we can explain when specialist legal advice may be appropriate.</p>
     </div>
 
     <!-- 09 Lasting Powers of Attorney -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02]">
+    <div id="service-09" class="p-8 transition-colors duration-300 hover:bg-white/[0.02]" style="scroll-margin-top: 100px;">
       <span class="text-xs font-mono text-fg-3">09</span>
       <h3 class="mt-3 text-xl font-normal text-white">Lasting Powers of Attorney</h3>
       <p class="mt-3 text-sm leading-relaxed text-fg-3">We assist individuals with preparing Lasting Powers of Attorney (LPAs) for Property and Financial Affairs and Health and Welfare. Our services include explaining the purpose of LPAs, gathering relevant information, preparing the necessary forms and providing guidance on signing, witnessing and registration with the Office of the Public Guardian. Where complex circumstances or concerns about mental capacity arise, specialist legal advice may be required.</p>
-    </div>
-
-    <!-- 10 Document Legalisation & Notarial Coordination -->
-    <div class="p-8 transition-colors duration-300 hover:bg-white/[0.02] sm:col-span-2 lg:col-span-3">
-      <span class="text-xs font-mono text-fg-3">10</span>
-      <h3 class="mt-3 text-xl font-normal text-white">Document Legalisation &amp; Notarial Coordination</h3>
-      <p class="mt-3 text-sm leading-relaxed text-fg-3">We provide administrative assistance with documents intended for use in the UK and overseas. Our services include coordinating appointments with notaries, arranging document translations and assisting with apostille and legalisation procedures. We can also help clients identify the documentation and formalities required by the relevant receiving authority.</p>
     </div>
   </div>
 </section>
@@ -348,79 +385,94 @@ const secWhoWeSupport = `
       </div>
       <h2 class="mt-10 font-display text-4xl leading-[1.05] md:text-6xl text-white">Here for individuals, families and businesses.</h2>
     </div>
-    <div class="lg:col-span-7 grid gap-6 sm:grid-cols-2">
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Individuals</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Practical legal assistance with personal matters, disputes, agreements and legal documentation, helping you understand your options and take informed decisions.</p>
-      </div>
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Families</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Sensitive and approachable assistance with family-related matters, wills, powers of attorney and personal legal documentation.</p>
-      </div>
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Tenants &amp; landlords</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Legal support with tenancy agreements, rent arrears, deposit disputes, disrepair concerns and landlord-tenant disagreements.</p>
-      </div>
-      <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-        <h3 class="text-lg font-normal text-white">Businesses &amp; entrepreneurs</h3>
-        <p class="mt-3 text-xs leading-relaxed text-fg-3">Commercial legal assistance with contracts, business agreements, disputes and legal documentation, tailored to the needs of businesses and self-employed professionals.</p>
-      </div>
+    <div class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-6 lg:col-start-7 space-y-4">
+      <p>
+        We provide accessible legal assistance to individuals, families and businesses across London and beyond.
+      </p>
+      <p class="text-base text-fg-3">
+        Whether you need help with a personal matter, guidance on a dispute, support with property documentation or assistance with business contracts, we are here to provide clear, practical help.
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
+      <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">CLIENT FOCUS 01</p>
+      <h3 class="mt-4 text-2xl font-normal text-white">Individuals &amp; Families</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">Assistance with tenancy issues, family matters, wills, powers of attorney, correspondence and dispute resolution.</p>
+    </div>
+    <div class="rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
+      <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">CLIENT FOCUS 02</p>
+      <h3 class="mt-4 text-2xl font-normal text-white">Businesses &amp; Entrepreneurs</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">Assistance with business contracts, terms of service, workplace documentation, commercial correspondence and dispute management.</p>
+    </div>
+    <div class="rounded-2xl p-8 border border-line bg-canvas/40 backdrop-blur">
+      <p class="text-xs uppercase tracking-widest text-fg-3 font-mono">CLIENT FOCUS 03</p>
+      <h3 class="mt-4 text-2xl font-normal text-white">Language Communities</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">Translation assistance and practical legal support for Arabic and Kurdish speakers navigating English legal processes.</p>
     </div>
   </div>
 </section>
 `;
 
-// 8. SECTION: WHY ELEVANCE (Exact Benchmark 5 Items)
+// 8. SECTION: WHY ELEVANCE (Exact Benchmark Copy)
 const secWhyElevance = `
-<!-- SECTION: WHY ELEVANCE (Exact Benchmark 5 Items) -->
+<!-- SECTION: WHY ELEVANCE (Exact Benchmark Copy) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="why" aria-labelledby="why-title">
   <div class="grid gap-10 lg:grid-cols-12">
     <div class="lg:col-span-6">
       <div>
-        <p class="marker"><span class="tabular-nums">06</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>WHY ELEVANCE</p>
+        <p class="marker"><span class="tabular-nums">06</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>WHY ELEVANCE</p>
         <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
       </div>
-      <h2 id="why-title" class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">
-        Support that is clear, <br><span style="color: rgba(255, 255, 255, 0.65);">considered and accountable.</span>
-      </h2>
+      <h2 id="why-title" class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">A different kind of legal support.</h2>
     </div>
-    <p class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8">
-      We believe legal services should be accessible, transparent, and centred on your needs. Here is what you can count on when you work with us.
-    </p>
+    <div class="self-end text-lg leading-relaxed text-fg-2 lg:col-span-5 lg:col-start-8 space-y-4">
+      <p>
+        We believe that accessing legal help should not be complicated, intimidating or prohibitively expensive.
+      </p>
+      <p class="text-base text-fg-3">
+        Here is what sets our approach apart.
+      </p>
+    </div>
   </div>
 
-  <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <h3 class="text-lg font-normal text-white">Client-first approach</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We take time to understand your circumstances, listen to your concerns and provide practical assistance tailored to your individual needs.</p>
+  <div class="mt-16 grid hairline-grid sm:grid-cols-2 lg:grid-cols-3">
+    <div class="p-8">
+      <span class="text-xs font-mono text-fg-3">01</span>
+      <h3 class="mt-3 text-xl font-normal text-white">Clear &amp; Accessible</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We explain things in plain English, avoiding unnecessary jargon and ensuring that you understand your options and the steps involved.</p>
     </div>
-
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <h3 class="text-lg font-normal text-white">Plain-English communication</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We communicate clearly and straightforwardly, explaining our services and the practical steps involved without unnecessary jargon.</p>
+    <div class="p-8">
+      <span class="text-xs font-mono text-fg-3">02</span>
+      <h3 class="mt-3 text-xl font-normal text-white">Transparent Fees</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We believe in fee clarity. We explain our charges before commencing work and, wherever possible, offer agreed fixed fees for clearly defined tasks.</p>
     </div>
-
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <h3 class="text-lg font-normal text-white">Careful preparation</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We approach every matter with attention to detail, ensuring that documents, correspondence and other work are prepared carefully and professionally.</p>
+    <div class="p-8">
+      <span class="text-xs font-mono text-fg-3">03</span>
+      <h3 class="mt-3 text-xl font-normal text-white">Practical &amp; Proportionate</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We focus on practical solutions that are proportionate to the matter at hand, helping you avoid unnecessary conflict, expense and delay.</p>
     </div>
-
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur">
-      <h3 class="text-lg font-normal text-white">Transparent scope and fees</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We explain the services we can provide and agree the scope of work and applicable fees before commencing your matter.</p>
+    <div class="p-8">
+      <span class="text-xs font-mono text-fg-3">04</span>
+      <h3 class="mt-3 text-xl font-normal text-white">Careful &amp; Thorough</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">Every document is prepared with care and attention to detail, reflecting your specific instructions and the circumstances of your matter.</p>
     </div>
-
-    <div class="border border-line rounded-2xl p-6 bg-canvas/40 backdrop-blur sm:col-span-2 lg:col-span-2">
-      <h3 class="text-lg font-normal text-white">Clear professional boundaries</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We focus on providing sensible, cost-conscious legal assistance that reflects the nature and complexity of your circumstances.</p>
+    <div class="p-8">
+      <span class="text-xs font-mono text-fg-3">05</span>
+      <h3 class="mt-3 text-xl font-normal text-white">Personal Approach</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">We take the time to understand your circumstances and work with you to find the most appropriate way forward.</p>
     </div>
-
+    <div class="p-8">
+      <span class="text-xs font-mono text-fg-3">06</span>
+      <h3 class="mt-3 text-xl font-normal text-white">Access to Specialists</h3>
+      <p class="mt-3 text-sm leading-relaxed text-fg-3">Where a matter requires the involvement of a qualified solicitor, we can assist in arranging an appointment, subject to availability and the nature of the enquiry.</p>
+    </div>
   </div>
 </section>
 `;
 
-// 9. SECTION: HOW WE WORK (Exact Benchmark 5 Steps in Master Process Cards)
+// 9. SECTION: HOW WE WORK (Exact Benchmark Copy)
 const secHowWeWork = `
 <!-- SECTION: HOW WE WORK (Exact Benchmark Copy in Master Second Process Cards) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="how">
@@ -447,16 +499,16 @@ const secHowWeWork = `
     <div class="process-card rounded-2xl p-6">
       <span class="text-3xl font-display text-fg-3">02</span>
       <h3 class="mt-5 text-lg font-normal text-white">Enquiry Assessment</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We review your enquiry, consider the nature of the assistance required and explain the services we can provide.</p>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We assess the nature of your enquiry, explain the scope of our services and identify any matters that fall outside our permitted activities.</p>
     </div>
     <div class="process-card rounded-2xl p-6">
       <span class="text-3xl font-display text-fg-3">03</span>
-      <h3 class="mt-5 text-lg font-normal text-white">Clear engagement</h3>
-      <p class="mt-3 text-xs leading-relaxed text-fg-3">We confirm the agreed scope of work, applicable fees and terms of engagement before commencing your matter.</p>
+      <h3 class="mt-5 text-lg font-normal text-white">Agreeing Scope &amp; Fees</h3>
+      <p class="mt-3 text-xs leading-relaxed text-fg-3">We explain our fees clearly and agree the scope of work with you before any work begins. Where possible, we offer agreed fixed fees.</p>
     </div>
     <div class="process-card rounded-2xl p-6">
       <span class="text-3xl font-display text-fg-3">04</span>
-      <h3 class="mt-5 text-lg font-normal text-white">Preparation &amp; coordination</h3>
+      <h3 class="mt-5 text-lg font-normal text-white">Preparation &amp; Progress</h3>
       <p class="mt-3 text-xs leading-relaxed text-fg-3">We undertake the agreed work, provide practical guidance and keep you informed of progress throughout.</p>
     </div>
     <div class="process-card rounded-2xl p-6">
@@ -607,17 +659,18 @@ const secFaq = `
 </section>
 `;
 
-// 11. SECTION: CONTACT US (Exact Benchmark Copy & Interactive Form with Details)
+// 11. SECTION: CONTACT US (Clean Top Alignment & Interactive Form)
 const secContactUs = `
 <!-- SECTION: CONTACT US (Exact Benchmark Copy) -->
 <section class="container-studio py-24 md:py-32 relative isolate border-t border-line" id="contact">
-  <div class="grid gap-12 lg:grid-cols-12">
+  <div>
+    <p class="marker"><span class="tabular-nums">09</span><span class="mx-3 text-fg-3" aria-hidden="true">&mdash;</span>CONTACT US</p>
+    <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
+  </div>
+
+  <div class="mt-10 grid gap-12 lg:grid-cols-12 items-start">
     <div class="lg:col-span-6">
-      <div>
-        <p class="marker"><span class="tabular-nums">09</span><span class="mx-3 text-fg-3" aria-hidden="true">—</span>CONTACT US</p>
-        <span class="mt-4 block h-px w-8 bg-fg-3" aria-hidden="true"></span>
-      </div>
-      <h2 class="mt-10 font-display text-5xl leading-[1.02] md:text-7xl text-white">Let’s discuss your next step.</h2>
+      <h2 class="font-display text-5xl leading-[1.02] md:text-7xl text-white">Let’s discuss your next step.</h2>
       
       <p class="mt-8 text-lg leading-relaxed text-fg-2">
         Whether you need assistance with a personal legal matter, a business issue, a dispute or legal documentation, we are here to help.
@@ -681,7 +734,6 @@ const secContactUs = `
               <option value="Translation Services">Translation Services</option>
               <option value="Wills & Wills Drafting">Wills &amp; Wills Drafting</option>
               <option value="Lasting Powers of Attorney">Lasting Powers of Attorney</option>
-              <option value="Document Legalisation & Notarial Coordination">Document Legalisation &amp; Notarial Coordination</option>
               <option value="Other">Other Enquiry</option>
             </select>
           </div>
@@ -858,53 +910,143 @@ html = html.replace(/<title>[\s\S]*?<\/title>/i, '<title>Elevance Legal Services
 // Fix ESM export
 html = html.replace('export{wt as a,mt as f};', 'window.wt = wt; window.mt = mt;');
 
-// Add Contact Form submission handler
-const formScript = `
+// Custom CSS for 3-column dropdown layout & crystal clear text contrast
+const customStyles = `
+  /* Dropdown Menus: 3 equal-width columns for 9 services */
+  .dropdown-grid-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 3.5rem !important;
+  }
+  .dropdown-grid-3 ul {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.85rem !important;
+    margin-top: 1.25rem !important;
+    padding: 0 !important;
+    list-style: none !important;
+    width: 100% !important;
+  }
+  .dropdown-grid-3 li {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .dropdown-grid-3 li a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.85rem !important;
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+    color: #e5e5e5 !important;
+    font-weight: 400 !important;
+    transition: all 0.2s ease !important;
+    white-space: normal !important;
+    text-decoration: none !important;
+  }
+  .dropdown-grid-3 li a:hover {
+    color: #ffffff !important;
+    transform: translateX(4px) !important;
+  }
+  .dropdown-grid-3 .service-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    letter-spacing: 0.05em !important;
+    flex-shrink: 0 !important;
+  }
+  .dropdown-grid-3 li a:hover .service-num {
+    color: #ffffff !important;
+  }
+  .dropdown-col-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding-bottom: 0.75rem !important;
+    margin: 0 !important;
+  }
+  @media (max-width: 1023px) {
+    .dropdown-grid-3 {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+  }
+`;
+
+// Inject custom styles before </head>
+html = html.replace('</head>', `  <style>\n${customStyles}\n  </style>\n</head>`);
+
+// Add Contact Form submission handler and Dropdown Auto-Close script
+const scriptsToAppend = `
 <script>
 (function() {
   const form = document.getElementById("benchmark-contact-form");
-  if (!form || form.__bound) return;
-  form.__bound = true;
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const btn = document.getElementById("benchmark-submit-btn");
-    const successMsg = document.getElementById("benchmark-success-msg");
-    if (btn) {
-      btn.disabled = true;
-      btn.innerText = "Submitting...";
-    }
-    const payload = {
-      name: document.getElementById("full-name")?.value || "",
-      email: document.getElementById("email-address")?.value || "",
-      phone: document.getElementById("telephone-number")?.value || "",
-      nature: document.getElementById("nature-of-enquiry")?.value || "",
-      question: "[" + (document.getElementById("nature-of-enquiry")?.value || "") + "] " + 
-                (document.getElementById("how-can-we-help")?.value || "") + 
-                (document.getElementById("telephone-number")?.value ? " (Phone: " + document.getElementById("telephone-number").value + ")" : "")
-    };
-    fetch("contact.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(payload)
-    }).catch(function() {}).finally(function() {
-      form.reset();
+  if (form && !form.__bound) {
+    form.__bound = true;
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const btn = document.getElementById("benchmark-submit-btn");
+      const successMsg = document.getElementById("benchmark-success-msg");
       if (btn) {
-        btn.disabled = false;
-        btn.innerText = "SUBMIT ENQUIRY";
+        btn.disabled = true;
+        btn.innerText = "Submitting...";
       }
-      if (successMsg) {
-        successMsg.classList.remove("hidden");
-        setTimeout(function() { successMsg.classList.add("hidden"); }, 8000);
-      }
+      const payload = {
+        name: document.getElementById("full-name")?.value || "",
+        email: document.getElementById("email-address")?.value || "",
+        phone: document.getElementById("telephone-number")?.value || "",
+        nature: document.getElementById("nature-of-enquiry")?.value || "",
+        question: "[" + (document.getElementById("nature-of-enquiry")?.value || "") + "] " + 
+                  (document.getElementById("how-can-we-help")?.value || "") + 
+                  (document.getElementById("telephone-number")?.value ? " (Phone: " + document.getElementById("telephone-number").value + ")" : "")
+      };
+      fetch("contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      }).catch(function() {}).finally(function() {
+        form.reset();
+        if (btn) {
+          btn.disabled = false;
+          btn.innerText = "SUBMIT ENQUIRY";
+        }
+        if (successMsg) {
+          successMsg.classList.remove("hidden");
+          setTimeout(function() { successMsg.classList.add("hidden"); }, 8000);
+        }
+      });
     });
-  });
+  }
+
+  // Auto-close dropdown when a link is clicked
+  function initDropdownCloser() {
+    const dropdowns = document.querySelectorAll("details[data-dropdown]");
+    dropdowns.forEach(function(dd) {
+      dd.querySelectorAll("a").forEach(function(link) {
+        link.addEventListener("click", function() {
+          dd.open = false;
+        });
+      });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDropdownCloser);
+  } else {
+    initDropdownCloser();
+  }
 })();
 </script>
 `;
 
-if (!html.includes('benchmark-contact-form')) {
-  html = html.replace('</body>', `${formScript}\n</body>`);
-}
+html = html.replace('</body>', `${scriptsToAppend}\n</body>`);
 
 // Write outputs to third/index.html and third.html
 const outThirdIndex = path.join(__dirname, 'third', 'index.html');
